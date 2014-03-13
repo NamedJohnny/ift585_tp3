@@ -1,0 +1,24 @@
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.exe.config
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.exe
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.pdb
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.csprojResolveAssemblyReference.cache
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.HomeForm.resources
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.LoginForm.resources
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.Properties.Resources.resources
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.RoomForm.resources
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.csproj.GenerateResource.Cache
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.exe
+c:\users\john\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.pdb
+C:\Users\John\documents\visual studio 2012\Projects\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.UserProfilForm.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.exe.config
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.exe
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\bin\Debug\ift585_tp3.pdb
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.csprojResolveAssemblyReference.cache
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.HomeForm.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.LoginForm.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.Properties.Resources.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.RoomForm.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.UserProfilForm.resources
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.csproj.GenerateResource.Cache
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.exe
+C:\Users\John\Documents\GitHub\ift585_tp3\ift585_tp3\obj\Debug\ift585_tp3.pdb
