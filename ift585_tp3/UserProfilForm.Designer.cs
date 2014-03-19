@@ -101,7 +101,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label7.Location = new System.Drawing.Point(50, 324);
+            this.label7.Location = new System.Drawing.Point(50, 343);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 17);
             this.label7.TabIndex = 9;
@@ -127,7 +127,7 @@
             // label9
             // 
             this.label9.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
-            this.label9.Location = new System.Drawing.Point(260, 324);
+            this.label9.Location = new System.Drawing.Point(260, 343);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 26);
             this.label9.TabIndex = 15;
@@ -135,7 +135,7 @@
             // label8
             // 
             this.label8.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
-            this.label8.Location = new System.Drawing.Point(179, 324);
+            this.label8.Location = new System.Drawing.Point(179, 343);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 26);
             this.label8.TabIndex = 14;
@@ -150,18 +150,20 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.button1.Location = new System.Drawing.Point(150, 288);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 23);
+            this.button1.Size = new System.Drawing.Size(97, 33);
             this.button1.TabIndex = 16;
             this.button1.Text = "Modifier...";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // UserProfilForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 376);
+            this.ClientSize = new System.Drawing.Size(335, 392);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);

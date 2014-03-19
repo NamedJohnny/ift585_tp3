@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace ift585_tp3
 {
-    public partial class UserProfilForm : Form
+    public partial class AvatarForm : Form
     {
-        public UserProfilForm()
+        public AvatarForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AvatarForm avatarForm = new AvatarForm();
-            avatarForm.ShowDialog();
         }
     }
 }
