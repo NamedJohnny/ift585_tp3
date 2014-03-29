@@ -132,6 +132,12 @@
   <ItemGroup>
     <None Include="Resources\thumbs-up-24.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ift585_tp3_library\ift585_tp3_library.csproj">
+      <Project>{a7b95714-969f-4e3b-8d60-f5b1e25a6c8d}</Project>
+      <Name>ift585_tp3_library</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

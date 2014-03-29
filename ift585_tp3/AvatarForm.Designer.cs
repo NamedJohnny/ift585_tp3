@@ -28,28 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonConfirmer = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.radioButtonHomer = new System.Windows.Forms.RadioButton();
+            this.radioButtonMinion = new System.Windows.Forms.RadioButton();
+            this.radioButtonIronMan = new System.Windows.Forms.RadioButton();
+            this.radioButtonDefault = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // buttonConfirmer
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(353, 335);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(89, 44);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Valider";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonConfirmer.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonConfirmer.Location = new System.Drawing.Point(159, 353);
+            this.buttonConfirmer.Name = "buttonConfirmer";
+            this.buttonConfirmer.Size = new System.Drawing.Size(89, 32);
+            this.buttonConfirmer.TabIndex = 0;
+            this.buttonConfirmer.Text = "Confirmer";
+            this.buttonConfirmer.UseVisualStyleBackColor = true;
+            this.buttonConfirmer.Click += new System.EventHandler(this.buttonConfirmer_Click);
             // 
             // label2
             // 
@@ -62,7 +64,7 @@
             // label3
             // 
             this.label3.Image = global::ift585_tp3.Properties.Resources.minion;
-            this.label3.Location = new System.Drawing.Point(83, 189);
+            this.label3.Location = new System.Drawing.Point(63, 189);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 102);
             this.label3.TabIndex = 3;
@@ -75,81 +77,99 @@
             this.label4.Size = new System.Drawing.Size(98, 102);
             this.label4.TabIndex = 4;
             // 
-            // label1
+            // radioButtonHomer
             // 
-            this.label1.Image = global::ift585_tp3.Properties.Resources.homer;
-            this.label1.Location = new System.Drawing.Point(74, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 100);
-            this.label1.TabIndex = 1;
+            this.radioButtonHomer.AutoSize = true;
+            this.radioButtonHomer.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.radioButtonHomer.Location = new System.Drawing.Point(57, 141);
+            this.radioButtonHomer.Name = "radioButtonHomer";
+            this.radioButtonHomer.Size = new System.Drawing.Size(120, 21);
+            this.radioButtonHomer.TabIndex = 5;
+            this.radioButtonHomer.TabStop = true;
+            this.radioButtonHomer.Text = "Homer Simpson";
+            this.radioButtonHomer.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radioButtonMinion
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(77, 141);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(99, 17);
-            this.radioButton1.TabIndex = 5;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Homer Simpson";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButtonMinion.AutoSize = true;
+            this.radioButtonMinion.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.radioButtonMinion.Location = new System.Drawing.Point(57, 294);
+            this.radioButtonMinion.Name = "radioButtonMinion";
+            this.radioButtonMinion.Size = new System.Drawing.Size(66, 21);
+            this.radioButtonMinion.TabIndex = 6;
+            this.radioButtonMinion.TabStop = true;
+            this.radioButtonMinion.Text = "Minion";
+            this.radioButtonMinion.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // radioButtonIronMan
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(77, 294);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(56, 17);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Minion";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButtonIronMan.AutoSize = true;
+            this.radioButtonIronMan.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.radioButtonIronMan.Location = new System.Drawing.Point(265, 141);
+            this.radioButtonIronMan.Name = "radioButtonIronMan";
+            this.radioButtonIronMan.Size = new System.Drawing.Size(79, 21);
+            this.radioButtonIronMan.TabIndex = 7;
+            this.radioButtonIronMan.TabStop = true;
+            this.radioButtonIronMan.Text = "Iron Man";
+            this.radioButtonIronMan.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // radioButtonDefault
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(265, 141);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(67, 17);
-            this.radioButton3.TabIndex = 7;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Iron Man";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(265, 294);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(57, 17);
-            this.radioButton4.TabIndex = 8;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Défaut";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.radioButtonDefault.AutoSize = true;
+            this.radioButtonDefault.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonDefault.Location = new System.Drawing.Point(265, 294);
+            this.radioButtonDefault.Name = "radioButtonDefault";
+            this.radioButtonDefault.Size = new System.Drawing.Size(64, 21);
+            this.radioButtonDefault.TabIndex = 8;
+            this.radioButtonDefault.TabStop = true;
+            this.radioButtonDefault.Text = "Défaut";
+            this.radioButtonDefault.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.radioButton4);
+            this.panel1.Controls.Add(this.buttonConfirmer);
+            this.panel1.Controls.Add(this.radioButtonDefault);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.radioButton3);
+            this.panel1.Controls.Add(this.radioButtonIronMan);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.radioButton2);
+            this.panel1.Controls.Add(this.radioButtonMinion);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.radioButton1);
+            this.panel1.Controls.Add(this.radioButtonHomer);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(475, 401);
+            this.panel1.Size = new System.Drawing.Size(396, 402);
             this.panel1.TabIndex = 9;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonCancel.Location = new System.Drawing.Point(271, 353);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(89, 32);
+            this.buttonCancel.TabIndex = 9;
+            this.buttonCancel.Text = "Annuler";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // label1
+            // 
+            this.label1.Image = global::ift585_tp3.Properties.Resources.homer;
+            this.label1.Location = new System.Drawing.Point(54, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(101, 100);
+            this.label1.TabIndex = 1;
             // 
             // AvatarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 401);
+            this.ClientSize = new System.Drawing.Size(396, 402);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "AvatarForm";
             this.Text = "Choisir votre avatar..";
             this.panel1.ResumeLayout(false);
@@ -160,15 +180,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonConfirmer;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton radioButtonHomer;
+        private System.Windows.Forms.RadioButton radioButtonMinion;
+        private System.Windows.Forms.RadioButton radioButtonIronMan;
+        private System.Windows.Forms.RadioButton radioButtonDefault;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -31,16 +31,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxUserName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.labelAvatar = new System.Windows.Forms.Label();
+            this.buttonEditAvatar = new System.Windows.Forms.Button();
+            this.buttonConfirm = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
+            this.labelDislike = new System.Windows.Forms.Label();
+            this.labelLike = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -73,19 +77,19 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Avatar : ";
             // 
-            // textBox1
+            // textBoxLastName
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 86);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 3;
+            this.textBoxLastName.Location = new System.Drawing.Point(147, 86);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(148, 20);
+            this.textBoxLastName.TabIndex = 3;
             // 
-            // textBox2
+            // textBoxFirstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(147, 119);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBoxFirstName.Location = new System.Drawing.Point(147, 119);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(148, 20);
+            this.textBoxFirstName.TabIndex = 4;
             // 
             // label4
             // 
@@ -107,12 +111,12 @@
             this.label7.TabIndex = 9;
             this.label7.Text = "Statistiques : ";
             // 
-            // textBox3
+            // textBoxUserName
             // 
-            this.textBox3.Location = new System.Drawing.Point(147, 152);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(148, 20);
-            this.textBox3.TabIndex = 12;
+            this.textBoxUserName.Location = new System.Drawing.Point(147, 152);
+            this.textBoxUserName.Name = "textBoxUserName";
+            this.textBoxUserName.Size = new System.Drawing.Size(148, 20);
+            this.textBoxUserName.TabIndex = 12;
             // 
             // label6
             // 
@@ -140,43 +144,91 @@
             this.label8.Size = new System.Drawing.Size(31, 26);
             this.label8.TabIndex = 14;
             // 
-            // label5
+            // labelAvatar
             // 
-            this.label5.Image = global::ift585_tp3.Properties.Resources._default;
-            this.label5.Location = new System.Drawing.Point(147, 183);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 101);
-            this.label5.TabIndex = 7;
+            this.labelAvatar.Image = global::ift585_tp3.Properties.Resources._default;
+            this.labelAvatar.Location = new System.Drawing.Point(147, 183);
+            this.labelAvatar.Name = "labelAvatar";
+            this.labelAvatar.Size = new System.Drawing.Size(100, 101);
+            this.labelAvatar.TabIndex = 7;
             // 
-            // button1
+            // buttonEditAvatar
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(150, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 33);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "Modifier...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonEditAvatar.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonEditAvatar.Location = new System.Drawing.Point(150, 288);
+            this.buttonEditAvatar.Name = "buttonEditAvatar";
+            this.buttonEditAvatar.Size = new System.Drawing.Size(97, 33);
+            this.buttonEditAvatar.TabIndex = 16;
+            this.buttonEditAvatar.Text = "Modifier...";
+            this.buttonEditAvatar.UseVisualStyleBackColor = true;
+            this.buttonEditAvatar.Click += new System.EventHandler(this.buttonEditAvatar_Click);
+            // 
+            // buttonConfirm
+            // 
+            this.buttonConfirm.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonConfirm.Location = new System.Drawing.Point(147, 408);
+            this.buttonConfirm.Name = "buttonConfirm";
+            this.buttonConfirm.Size = new System.Drawing.Size(97, 33);
+            this.buttonConfirm.TabIndex = 17;
+            this.buttonConfirm.Text = "Confirmer";
+            this.buttonConfirm.UseVisualStyleBackColor = true;
+            this.buttonConfirm.Click += new System.EventHandler(this.buttonConfirm_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonCancel.Location = new System.Drawing.Point(256, 408);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(97, 33);
+            this.buttonCancel.TabIndex = 18;
+            this.buttonCancel.Text = "Annuler";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // labelDislike
+            // 
+            this.labelDislike.AutoSize = true;
+            this.labelDislike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelDislike.Location = new System.Drawing.Point(216, 343);
+            this.labelDislike.Name = "labelDislike";
+            this.labelDislike.Size = new System.Drawing.Size(15, 17);
+            this.labelDislike.TabIndex = 20;
+            this.labelDislike.Text = "0";
+            // 
+            // labelLike
+            // 
+            this.labelLike.AutoSize = true;
+            this.labelLike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelLike.Location = new System.Drawing.Point(141, 343);
+            this.labelLike.Name = "labelLike";
+            this.labelLike.Size = new System.Drawing.Size(15, 17);
+            this.labelLike.TabIndex = 21;
+            this.labelLike.Text = "0";
             // 
             // UserProfilForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 392);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(365, 453);
+            this.Controls.Add(this.labelLike);
+            this.Controls.Add(this.labelDislike);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonConfirm);
+            this.Controls.Add(this.buttonEditAvatar);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBoxUserName);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.labelAvatar);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxFirstName);
+            this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "UserProfilForm";
             this.Text = "Profil";
             this.ResumeLayout(false);
@@ -189,15 +241,19 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelAvatar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxUserName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonEditAvatar;
+        private System.Windows.Forms.Button buttonConfirm;
+        private System.Windows.Forms.Button buttonCancel;
+        private System.Windows.Forms.Label labelDislike;
+        private System.Windows.Forms.Label labelLike;
     }
 }

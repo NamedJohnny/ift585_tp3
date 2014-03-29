@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ift585_tp3_library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace ift585_tp3
 {
     public partial class RoomForm : Form
     {
-        public RoomForm()
+        public RoomForm(DiscussionRoom room)
         {
             InitializeComponent();
         }

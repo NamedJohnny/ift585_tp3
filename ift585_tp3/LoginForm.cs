@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ift585_tp3_library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,9 +20,30 @@ namespace ift585_tp3
 
         private void button_Login_Click(object sender, EventArgs e)
         {
-            HomeForm homeForm = new HomeForm();
-            this.Hide();
-            homeForm.Show();
+            bool connexionValid = true;
+            Client client = new Client();
+
+            //Envoi de requete pour vérification
+            //Assignation de l'entité client
+
+            //Si la connexion est bonne on affiche le menu d'accueil
+            if (connexionValid)
+            {
+                this.Hide();
+                HomeForm homeForm = new HomeForm(client);
+                homeForm.ShowDialog();
+                this.Close();
+            }
+        }
+
+        /// <summary>
+        /// On ferme le programme
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -30,13 +30,16 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBoxChatRooms = new System.Windows.Forms.ListBox();
+            this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelAvatar = new System.Windows.Forms.Label();
+            this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,38 +65,42 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.listBoxChatRooms);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.listBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.listBoxUsers);
             this.splitContainer1.Size = new System.Drawing.Size(502, 306);
             this.splitContainer1.SplitterDistance = 231;
             this.splitContainer1.TabIndex = 1;
             // 
-            // listBox1
+            // listBoxChatRooms
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(231, 306);
-            this.listBox1.TabIndex = 0;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.listBoxChatRooms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxChatRooms.FormattingEnabled = true;
+            this.listBoxChatRooms.Location = new System.Drawing.Point(0, 0);
+            this.listBoxChatRooms.Name = "listBoxChatRooms";
+            this.listBoxChatRooms.Size = new System.Drawing.Size(231, 306);
+            this.listBoxChatRooms.TabIndex = 0;
+            this.listBoxChatRooms.DoubleClick += new System.EventHandler(this.listBoxChatRooms_DoubleClick);
             // 
-            // listBox2
+            // listBoxUsers
             // 
-            this.listBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(0, 0);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(267, 306);
-            this.listBox2.TabIndex = 0;
+            this.listBoxUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxUsers.FormattingEnabled = true;
+            this.listBoxUsers.Location = new System.Drawing.Point(0, 0);
+            this.listBoxUsers.Name = "listBoxUsers";
+            this.listBoxUsers.Size = new System.Drawing.Size(267, 306);
+            this.listBoxUsers.TabIndex = 0;
+            this.listBoxUsers.DoubleClick += new System.EventHandler(this.listBoxUsers_DoubleClick);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.labelUserName);
+            this.panel1.Controls.Add(this.label5);
+            this.panel1.Controls.Add(this.labelAvatar);
+            this.panel1.Controls.Add(this.buttonProfil);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -101,16 +108,55 @@
             this.panel1.Size = new System.Drawing.Size(502, 114);
             this.panel1.TabIndex = 2;
             // 
-            // button1
+            // label6
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.button1.Location = new System.Drawing.Point(396, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 73);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Profil";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Lime;
+            this.label6.Location = new System.Drawing.Point(164, 48);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(76, 17);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "CONNECTÉ";
+            // 
+            // labelUserName
+            // 
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.labelUserName.Location = new System.Drawing.Point(182, 20);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(49, 17);
+            this.labelUserName.TabIndex = 4;
+            this.labelUserName.Text = "Default";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label5.Location = new System.Drawing.Point(128, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 17);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "État : ";
+            // 
+            // labelAvatar
+            // 
+            this.labelAvatar.Image = global::ift585_tp3.Properties.Resources._default;
+            this.labelAvatar.Location = new System.Drawing.Point(12, 9);
+            this.labelAvatar.Name = "labelAvatar";
+            this.labelAvatar.Size = new System.Drawing.Size(100, 97);
+            this.labelAvatar.TabIndex = 2;
+            // 
+            // buttonProfil
+            // 
+            this.buttonProfil.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonProfil.Location = new System.Drawing.Point(378, 26);
+            this.buttonProfil.Name = "buttonProfil";
+            this.buttonProfil.Size = new System.Drawing.Size(101, 55);
+            this.buttonProfil.TabIndex = 1;
+            this.buttonProfil.Text = "Profil";
+            this.buttonProfil.UseVisualStyleBackColor = true;
+            this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
             // 
             // label3
             // 
@@ -132,14 +178,6 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Utilisateurs :";
             // 
-            // label2
-            // 
-            this.label2.Image = global::ift585_tp3.Properties.Resources._default;
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 97);
-            this.label2.TabIndex = 2;
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,6 +187,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.splitContainer1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "HomeForm";
             this.Text = "Windows Live Messenger";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -166,12 +206,15 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox listBoxChatRooms;
+        private System.Windows.Forms.ListBox listBoxUsers;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelAvatar;
+        private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelUserName;
+        private System.Windows.Forms.Label label5;
     }
 }
