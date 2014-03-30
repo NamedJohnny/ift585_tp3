@@ -14,20 +14,48 @@ namespace ift585_tp3
 {
     public partial class UserProfilForm : Form
     {
-        Client actualClient = new Client();
-
-        public UserProfilForm(Client client)
+        public Client oldClient = null;
+        public UserProfilForm(Client client, bool readOnly)
         {
-            actualClient = client;
             InitializeComponent();
+            //Un backup si on enregistre pas
+            oldClient = client.Clone();
 
-            textBoxFirstName.Text = client.FirstName;
-            textBoxLastName.Text = client.LastName;
-            textBoxUserName.Text = client.UserName;
-            labelDislike.Text = client.DislikeNum.ToString();
-            labelLike.Text = client.LikeNum.ToString();
-            labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(client.Avatar) ? client.Avatar : "default");
+            this.ReadOnly = readOnly;
 
+            //On assigne si on peut modifier
+            buttonEditAvatar.Enabled = !readOnly;
+            buttonConfirm.Enabled = !readOnly;
+
+            //On assigne les sources de données
+            this.ActualClient = client;
+            this.userProfilFormBindingSource.DataSource = this;
+
+            labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(ActualClient.Avatar) ? ActualClient.Avatar : "default");
+        }
+
+        /// <summary>
+        /// Lecture seule
+        /// </summary>
+        public bool ReadOnly
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Le client actuel
+        /// </summary>
+        /// <returns></returns>
+        public Client ActualClient
+        {
+            get
+            {
+                return this.bindingSourceUser.DataSource as Client;
+            }
+            set
+            {
+                this.bindingSourceUser.DataSource = value;
+            }
         }
 
         /// <summary>
@@ -37,18 +65,10 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonEditAvatar_Click(object sender, EventArgs e)
         {
-            AvatarForm avatarForm = new AvatarForm(actualClient.Avatar);
-            avatarForm.FormClosing += avatarForm_FormClosing;
-            avatarForm.ShowDialog();
-        }
+            AvatarForm avatarForm = new AvatarForm(ActualClient);
 
-        void avatarForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (!String.IsNullOrEmpty((sender as AvatarForm).chosenAvatar))
-            {
-                labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject((sender as AvatarForm).chosenAvatar);
-                actualClient.Avatar = (sender as AvatarForm).chosenAvatar;
-            }
+            if (avatarForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(ActualClient.Avatar);
         }
 
         /// <summary>
@@ -58,11 +78,7 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            //On envoit les changements
-            actualClient.FirstName = textBoxFirstName.Text;
-            actualClient.LastName = textBoxLastName.Text;
-            actualClient.UserName = textBoxUserName.Text;
-
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
 

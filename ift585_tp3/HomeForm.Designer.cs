@@ -33,7 +33,7 @@
             this.listBoxChatRooms = new System.Windows.Forms.ListBox();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelConnected = new System.Windows.Forms.Label();
             this.labelUserName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelAvatar = new System.Windows.Forms.Label();
@@ -96,7 +96,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.labelConnected);
             this.panel1.Controls.Add(this.labelUserName);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.labelAvatar);
@@ -108,16 +108,16 @@
             this.panel1.Size = new System.Drawing.Size(502, 114);
             this.panel1.TabIndex = 2;
             // 
-            // label6
+            // labelConnected
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Lime;
-            this.label6.Location = new System.Drawing.Point(164, 48);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 17);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "CONNECTÉ";
+            this.labelConnected.AutoSize = true;
+            this.labelConnected.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelConnected.ForeColor = System.Drawing.Color.Lime;
+            this.labelConnected.Location = new System.Drawing.Point(164, 48);
+            this.labelConnected.Name = "labelConnected";
+            this.labelConnected.Size = new System.Drawing.Size(76, 17);
+            this.labelConnected.TabIndex = 5;
+            this.labelConnected.Text = "CONNECTÉ";
             // 
             // labelUserName
             // 
@@ -213,7 +213,7 @@
         private System.Windows.Forms.Button buttonProfil;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelConnected;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label label5;
     }

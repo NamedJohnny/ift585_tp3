@@ -16,10 +16,37 @@ namespace ift585_tp3
         public RoomForm(DiscussionRoom room)
         {
             InitializeComponent();
+            this.bindingSourceRoom.DataSource = room;
+            this.clientListBindingSource.DataSource = room.ClientList;
         }
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+
+        /// <summary>
+        /// Double clique sur un utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxUsers_DoubleClick(object sender, EventArgs e)
         {
+            if (listBoxUsers.SelectedItem != null)
+            {
+                if (listBoxUsers.SelectedItem.ToString().Length != 0)
+                {
+                    Client selectedClient = listBoxUsers.SelectedItem as Client;
+                    UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
+                    profilForm.Show();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Envoyer un message
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

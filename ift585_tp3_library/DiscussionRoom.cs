@@ -12,7 +12,7 @@ namespace ift585_tp3_library
         int id;
         string name;
         string description;
-        List<Client> clientList = null;
+        List<Client> clientList = new List<Client>();
         DateTime lastAdded;
         #endregion private properties
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ift585_tp3_library;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,31 +13,45 @@ namespace ift585_tp3
 {
     public partial class AvatarForm : Form
     {
-        public string chosenAvatar;
-        public AvatarForm(string avatar)
+        public Client actualClient = null;
+        public AvatarForm(Client client)
         {
             InitializeComponent();
 
-            if (avatar == "default")
-                radioButtonDefault.Checked = true;
-            else if (avatar == "homer")
-                radioButtonHomer.Checked = true;
-            else if (avatar == "ironman")
-                radioButtonIronMan.Checked = true;
-            else if (avatar == "minion")
-                radioButtonMinion.Checked = true;
+            actualClient = client;
+
+            switch (client.Avatar)
+            {
+                case "default":
+                    radioButtonDefault.Checked = true;
+                    break;
+                case "homer":
+                    radioButtonHomer.Checked = true;
+                    break;
+                case "ironman":
+                    radioButtonIronMan.Checked = true;
+                    break;
+                case "minion":
+                    radioButtonMinion.Checked = true;
+                    break;
+                default:
+                    break;
+            }
+
         }
 
         private void buttonConfirmer_Click(object sender, EventArgs e)
         {
+            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+           
             if (radioButtonDefault.Checked)
-                chosenAvatar = "default";
+                actualClient.Avatar = "default";
             else if (radioButtonHomer.Checked)
-                chosenAvatar = "homer";
+                actualClient.Avatar = "homer";
             else if (radioButtonIronMan.Checked)
-                chosenAvatar = "ironman";
+                actualClient.Avatar = "ironman";
             else if (radioButtonMinion.Checked)
-                chosenAvatar = "minion";
+                actualClient.Avatar = "minion";
 
             this.Close();
         }

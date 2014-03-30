@@ -22,7 +22,20 @@ namespace ift585_tp3
             client.Avatar = "homer";
             actualClient = client;
             InitializeComponent();
+
             labelUserName.Text = client.UserName;
+            
+            if (client.IsConnected)
+            {
+                labelConnected.Text = "CONNECTÉ";
+                labelConnected.ForeColor = Color.Lime;
+            }
+            else
+            {
+                labelConnected.Text = "DÉCONNECTÉ";
+                labelConnected.ForeColor = Color.Red;
+            }
+
             labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(client.Avatar) ? client.Avatar : "default");
 
             //On va chercher la liste des Client
@@ -36,7 +49,6 @@ namespace ift585_tp3
             clientList.Add(client1);
             clientList.Add(client2);
             clientList.Add(client3);
-            listBoxUsers.Items.AddRange(clientList.ToArray());
             listBoxUsers.DataSource = clientList;
             listBoxUsers.DisplayMember = "UserName";
 
@@ -48,7 +60,9 @@ namespace ift585_tp3
             room2.Name = "Come..WeHaveCandies";
             roomList.Add(room1);
             roomList.Add(room2);
-            listBoxChatRooms.Items.AddRange(roomList.ToArray());
+            room1.ClientList.Add(client1);
+            room1.ClientList.Add(client2);
+            room2.ClientList.Add(client3);
             listBoxChatRooms.DataSource = roomList;
             listBoxChatRooms.DisplayMember = "Name";
         }
@@ -60,11 +74,14 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonProfil_Click(object sender, EventArgs e)
         {
-            UserProfilForm profilForm = new UserProfilForm(actualClient);
-            profilForm.ShowDialog();
-
-            labelUserName.Text = actualClient.UserName;
-            labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(actualClient.Avatar);
+            UserProfilForm profilForm = new UserProfilForm(actualClient, false);
+            if (profilForm.ShowDialog() == DialogResult.OK)
+            {
+                labelUserName.Text = actualClient.UserName;
+                labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(actualClient.Avatar);
+            }
+            else
+                actualClient = profilForm.oldClient;
         }
 
         /// <summary>
@@ -99,8 +116,8 @@ namespace ift585_tp3
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
                     Client selectedClient = listBoxUsers.SelectedItem as Client;
-                    UserProfilForm profilForm = new UserProfilForm(selectedClient);
-                    profilForm.ShowDialog();
+                    UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
+                    profilForm.Show();
                 }
             }
         }

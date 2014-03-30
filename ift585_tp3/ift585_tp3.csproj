@@ -101,6 +101,9 @@
     <EmbeddedResource Include="UserProfilForm.resx">
       <DependentUpon>UserProfilForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\ift585_tp3_library.Client.datasource" />
+    <None Include="Properties\DataSources\ift585_tp3_library.DiscussionRoom.datasource" />
+    <None Include="Properties\DataSources\UserProfilForm.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

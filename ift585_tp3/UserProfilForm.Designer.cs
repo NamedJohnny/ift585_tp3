@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.bindingSourceUser = new System.Windows.Forms.BindingSource(this.components);
+            this.userProfilFormBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -45,13 +48,15 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelDislike = new System.Windows.Forms.Label();
             this.labelLike = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userProfilFormBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(50, 89);
+            this.label1.Location = new System.Drawing.Point(50, 118);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 0;
@@ -61,7 +66,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label2.Location = new System.Drawing.Point(50, 119);
+            this.label2.Location = new System.Drawing.Point(50, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 1;
@@ -79,14 +84,26 @@
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(147, 86);
+            this.textBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "LastName", true));
+            this.textBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("ReadOnly", this.userProfilFormBindingSource, "ReadOnly", true));
+            this.textBoxLastName.Location = new System.Drawing.Point(147, 118);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(148, 20);
             this.textBoxLastName.TabIndex = 3;
             // 
+            // bindingSourceUser
+            // 
+            this.bindingSourceUser.DataSource = typeof(ift585_tp3_library.Client);
+            // 
+            // userProfilFormBindingSource
+            // 
+            this.userProfilFormBindingSource.DataSource = typeof(ift585_tp3.UserProfilForm);
+            // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Location = new System.Drawing.Point(147, 119);
+            this.textBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "FirstName", true));
+            this.textBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("ReadOnly", this.userProfilFormBindingSource, "ReadOnly", true));
+            this.textBoxFirstName.Location = new System.Drawing.Point(147, 83);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(148, 20);
             this.textBoxFirstName.TabIndex = 4;
@@ -113,6 +130,8 @@
             // 
             // textBoxUserName
             // 
+            this.textBoxUserName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "UserName", true));
+            this.textBoxUserName.DataBindings.Add(new System.Windows.Forms.Binding("ReadOnly", this.userProfilFormBindingSource, "ReadOnly", true));
             this.textBoxUserName.Location = new System.Drawing.Point(147, 152);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(148, 20);
@@ -181,13 +200,14 @@
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(97, 33);
             this.buttonCancel.TabIndex = 18;
-            this.buttonCancel.Text = "Annuler";
+            this.buttonCancel.Text = "Quitter";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // labelDislike
             // 
             this.labelDislike.AutoSize = true;
+            this.labelDislike.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "DislikeNum", true));
             this.labelDislike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.labelDislike.Location = new System.Drawing.Point(216, 343);
             this.labelDislike.Name = "labelDislike";
@@ -198,6 +218,7 @@
             // labelLike
             // 
             this.labelLike.AutoSize = true;
+            this.labelLike.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "LikeNum", true));
             this.labelLike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.labelLike.Location = new System.Drawing.Point(141, 343);
             this.labelLike.Name = "labelLike";
@@ -231,6 +252,8 @@
             this.MaximizeBox = false;
             this.Name = "UserProfilForm";
             this.Text = "Profil";
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userProfilFormBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,9 +274,11 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button buttonEditAvatar;
-        private System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label labelDislike;
         private System.Windows.Forms.Label labelLike;
+        public System.Windows.Forms.Button buttonConfirm;
+        private System.Windows.Forms.BindingSource bindingSourceUser;
+        private System.Windows.Forms.BindingSource userProfilFormBindingSource;
     }
 }

@@ -29,6 +29,7 @@ namespace ift585_tp3
             //Si la connexion est bonne on affiche le menu d'accueil
             if (connexionValid)
             {
+                client.IsConnected = true;
                 this.Hide();
                 HomeForm homeForm = new HomeForm(client);
                 homeForm.ShowDialog();
