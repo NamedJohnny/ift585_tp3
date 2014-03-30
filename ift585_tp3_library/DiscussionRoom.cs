@@ -13,6 +13,7 @@ namespace ift585_tp3_library
         string name;
         string description;
         List<Client> clientList = new List<Client>();
+        List<Data> messageList = new List<Data>();
         DateTime lastAdded;
         #endregion private properties
 
@@ -57,6 +58,15 @@ namespace ift585_tp3_library
         {
             get { return lastAdded; }
             set { lastAdded = value; }
+        }
+
+        /// <summary>
+        /// Liste des messages textuels
+        /// </summary>
+        public List<Data> MessageList
+        {
+            get { return messageList; }
+            set { messageList = value; }
         }
 
         #endregion public properties
