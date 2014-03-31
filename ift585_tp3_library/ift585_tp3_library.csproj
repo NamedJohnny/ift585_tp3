@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DiscussionRoom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,8 +14,8 @@ namespace ift585_tp3
 {
     public partial class UserProfilForm : Form
     {
-        public Client oldClient = null;
-        public UserProfilForm(Client client, bool readOnly)
+        public User oldClient = null;
+        public UserProfilForm(User client, bool readOnly)
         {
             InitializeComponent();
             //Un backup si on enregistre pas
@@ -46,11 +46,11 @@ namespace ift585_tp3
         /// Le client actuel
         /// </summary>
         /// <returns></returns>
-        public Client ActualClient
+        public User ActualClient
         {
             get
             {
-                return this.bindingSourceUser.DataSource as Client;
+                return this.bindingSourceUser.DataSource as User;
             }
             set
             {

@@ -13,8 +13,8 @@ namespace ift585_tp3
 {
     public partial class AvatarForm : Form
     {
-        public Client actualClient = null;
-        public AvatarForm(Client client)
+        public User actualClient = null;
+        public AvatarForm(User client)
         {
             InitializeComponent();
 

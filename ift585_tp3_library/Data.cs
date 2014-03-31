@@ -12,7 +12,7 @@ namespace ift585_tp3_library
         #region private members
         int id;
         string text;
-        Client client;
+        User client;
         DateTime date;
         int likeNum;
         int dislikeNum;
@@ -45,7 +45,7 @@ namespace ift585_tp3_library
             set { text = value; }
         }
 
-        public Client Client
+        public User Client
         {
             get { return client; }
             set { client = value; }

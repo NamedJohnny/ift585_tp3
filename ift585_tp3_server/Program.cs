@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ift585_tp3_library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace ift585_tp3_server
     {
         static void Main(string[] args)
         {
+            
         }
     }
 }

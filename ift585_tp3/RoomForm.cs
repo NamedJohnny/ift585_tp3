@@ -56,7 +56,7 @@ namespace ift585_tp3
             {
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
-                    Client selectedClient = listBoxUsers.SelectedItem as Client;
+                    User selectedClient = listBoxUsers.SelectedItem as User;
                     UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
                     profilForm.Show();
                 }

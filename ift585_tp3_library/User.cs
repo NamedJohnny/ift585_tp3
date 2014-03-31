@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ift585_tp3_library
 {
-    public class Client : ICloneable
+    public class User : ICloneable
     {
         #region private properties
         private int id;
@@ -22,7 +22,7 @@ namespace ift585_tp3_library
         private string avatar;
         #endregion private properties
 
-        public Client()
+        public User()
         {
 
         }
@@ -133,9 +133,9 @@ namespace ift585_tp3_library
         {
             return this.Clone();
         }
-        public Client Clone()
+        public User Clone()
         {
-            return (Client)this.MemberwiseClone();
+            return (User)this.MemberwiseClone();
         }
         #endregion public methods
 

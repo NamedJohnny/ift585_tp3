@@ -93,7 +93,7 @@
             // 
             // bindingSourceUser
             // 
-            this.bindingSourceUser.DataSource = typeof(ift585_tp3_library.Client);
+            this.bindingSourceUser.DataSource = typeof(ift585_tp3_library.User);
             // 
             // userProfilFormBindingSource
             // 

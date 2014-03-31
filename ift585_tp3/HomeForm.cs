@@ -14,9 +14,9 @@ namespace ift585_tp3
 {
     public partial class HomeForm : Form
     {
-        Client actualClient = new Client();
+        User actualClient = new User();
 
-        public HomeForm(Client client)
+        public HomeForm(User client)
         {
             client.UserName = "Chalalalala";
             client.Avatar = "homer";
@@ -39,12 +39,12 @@ namespace ift585_tp3
             labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(client.Avatar) ? client.Avatar : "default");
 
             //On va chercher la liste des Client
-            List<Client> clientList = new List<Client>();
-            Client client1 = new Client();
+            List<User> clientList = new List<User>();
+            User client1 = new User();
             client1.UserName = "SteveJobsXXX";
-            Client client2 = new Client();
+            User client2 = new User();
             client2.UserName = "BillGates3";
-            Client client3 = new Client();
+            User client3 = new User();
             client3.UserName = "Mathilde";
             clientList.Add(client1);
             clientList.Add(client2);
@@ -115,7 +115,7 @@ namespace ift585_tp3
             {
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
-                    Client selectedClient = listBoxUsers.SelectedItem as Client;
+                    User selectedClient = listBoxUsers.SelectedItem as User;
                     UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
                     profilForm.Show();
                 }

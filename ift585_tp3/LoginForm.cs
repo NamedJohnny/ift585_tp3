@@ -21,7 +21,7 @@ namespace ift585_tp3
         private void button_Login_Click(object sender, EventArgs e)
         {
             bool connexionValid = true;
-            Client client = new Client();
+            User client = new User();
 
             //Envoi de requete pour vérification
             //Assignation de l'entité client
