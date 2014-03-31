@@ -20,7 +20,9 @@ namespace ift585_tp3
 
         private void button_Login_Click(object sender, EventArgs e)
         {
-            bool connexionValid = true;
+            
+            
+            /*bool connexionValid = true;
             User client = new User();
 
             //Envoi de requete pour vérification
@@ -34,7 +36,7 @@ namespace ift585_tp3
                 HomeForm homeForm = new HomeForm(client);
                 homeForm.ShowDialog();
                 this.Close();
-            }
+            }*/
         }
 
         /// <summary>

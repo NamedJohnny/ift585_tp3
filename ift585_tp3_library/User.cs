@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ift585_tp3_library
 {
+    
     public class User : ICloneable
     {
         #region private properties
