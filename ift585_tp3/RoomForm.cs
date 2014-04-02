@@ -15,26 +15,27 @@ namespace ift585_tp3
     public partial class RoomForm : Form
     {
         User actualUser = null;
+        DiscussionRoom actualRoom;
 
         public RoomForm(DiscussionRoom room, User user)
         {
-            InitializeComponent();
-
             actualUser = user;
+            actualRoom = room;
+            InitializeComponent();
 
             Data data1 = new Data();
             Data data2 = new Data();
             Data data3 = new Data();
 
-            if (!room.ClientList.Contains(user))
+            if (!actualRoom.ClientList.Contains(actualUser))
             {
-                room.ClientList.Add(user);
+                actualRoom.ClientList.Add(actualUser);
             }
-            data1.Client = room.ClientList[0];
+            data1.Client = actualRoom.ClientList[0];
             data1.Date = DateTime.Now;
-            data2.Client = room.ClientList[0];
+            data2.Client = actualRoom.ClientList[0];
             data2.Date = DateTime.Now;
-            data3.Client = room.ClientList[0];
+            data3.Client = actualRoom.ClientList[0];
             data3.Date = DateTime.Now;
 
             data1.Text = "J'aime les tomates";
@@ -43,12 +44,12 @@ namespace ift585_tp3
                          "Oh, oh, oh, get in the action-feel the attraction. Color my hair-do what I dare. Oh, oh, oh, I wanna be free-yeah, to feel the way I feel" +
                          "Man! I feel like a woman!";
 
-            room.MessageList.Add(data1);
-            room.MessageList.Add(data2);
-            room.MessageList.Add(data3);
+            actualRoom.MessageList.Add(data1);
+            actualRoom.MessageList.Add(data2);
+            actualRoom.MessageList.Add(data3);
 
-            this.discussionRoomBindingSource.DataSource = room;
-            this.clientListBindingSource.DataSource = room.ClientList;
+            this.discussionRoomBindingSource.DataSource = actualRoom;
+            this.clientListBindingSource.DataSource = actualRoom.ClientList;
 
         }
 
@@ -64,8 +65,9 @@ namespace ift585_tp3
             {
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
-                    User selectedClient = listBoxUsers.SelectedItem as User;
-                    UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
+                    // TODO GET CLIENT FROM SERVER
+                    User selectedUser = listBoxUsers.SelectedItem as User;
+                    UserProfilForm profilForm = new UserProfilForm(selectedUser, true);
                     profilForm.Show();
                 }
             }
@@ -79,8 +81,14 @@ namespace ift585_tp3
         private void buttonSend_Click(object sender, EventArgs e)
         {
             string text = textBoxMessage.Text.Trim();
-
+            
             //Envoi au serveur
+            Data toSend = new Data();
+            toSend.Command = Data.DataType.SendMessage;
+            toSend.Client = actualUser;
+            toSend.Date = DateTime.Now;
+            toSend.Text = text;
+            // TODO SEND!
         }
 
         /// <summary>
@@ -96,13 +104,19 @@ namespace ift585_tp3
 
                 if (dataGridViewMessage.CurrentCell.ColumnIndex == 3)
                 {
-                    data.LikeNum++;
-                    data.Client.LikeNum++;
+                    Data toSend = new Data();
+                    toSend.Command = Data.DataType.Like;
+                    toSend.Client = data.Client;
+                    toSend.Num = 1;
+                    // TODO SEND!
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 4)
                 {
-                    data.DislikeNum++;
-                    data.Client.DislikeNum++;
+                    Data toSend = new Data();
+                    toSend.Command = Data.DataType.Dislike;
+                    toSend.Client = data.Client;
+                    toSend.Num = -1;
+                    // TODO SEND!
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.Client.UserName))
                 {
@@ -132,7 +146,37 @@ namespace ift585_tp3
                 dataGridView.Cursor = Cursors.Arrow;
         }
 
+        private void MessageRefresh()
+        {
+            // Receive from server
+            Data receive = new Data();
+            do
+            {
+                actualRoom.MessageList.Add(receive);
+            } while (receive.More);
 
+        }
+        
+        private void MessageRefresh()
+        {
+            // Receive from server
+            Data receive = new Data();
+            do
+            {
+                actualRoom.MessageList.Add(receive);
+            } while (receive.More);
+
+        }
+
+        private void refreshTimer_Tick(object sender, EventArgs e)
+        {
+            Data toSend = new Data();
+            toSend.Command = Data.DataType.GetMessages;
+            toSend.Client = actualClient;
+            // TODO SEND TO SERVER
+        }
+
+        
         private void dataGridViewMessage_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (e.RowIndex >= 0 && dataGridViewMessage.Columns[e.ColumnIndex] is DataGridViewImageColumn && e.ColumnIndex == 5)
@@ -152,6 +196,8 @@ namespace ift585_tp3
             }
 
         }
+
+
 
 
     }

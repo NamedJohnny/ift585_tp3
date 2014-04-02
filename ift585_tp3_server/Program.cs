@@ -3,6 +3,7 @@ using ift585_tp3_library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,36 @@ namespace ift585_tp3_server
                 while (!Console.KeyAvailable)
                 {
                     // TODO (vincent) logic here
-                    
+
+                    // TODO receive from client method or whatever
+                    // TODO Get data...
+                    Data received = new Data();
+                    switch (received.Command)
+                    {
+                        case Data.DataType.Login:
+                            break;
+
+                        case Data.DataType.Logout:
+                            break;
+
+                        case Data.DataType.SendMessage:
+                            break;
+
+                        case Data.DataType.GetMessages:
+                            break;
+
+                        case Data.DataType.Like:
+                            break;
+
+                        case Data.DataType.Dislike:
+                            break;
+
+                        case Data.DataType.ViewProfile:
+                            break;
+
+                        case Data.DataType.UpdateProfile:
+                            break;
+                    }
 
 
                 }

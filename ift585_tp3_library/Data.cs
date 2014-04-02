@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ift585_tp3_library
 {
@@ -10,25 +12,33 @@ namespace ift585_tp3_library
     {
 
         #region private members
+        public enum DataType
+        {
+            Login = 0,
+            Logout = 1,
+            SendMessage = 2,
+            GetMessages = 3,
+            Like = 4,
+            Dislike = 5,
+            ViewProfile = 6,
+            UpdateProfile = 7
+        }
+
         int id;
-        string text;
+        DataType command;
         User client;
         DateTime date;
-        int likeNum;
-        int dislikeNum;
-        DataType dataType;
+        string text;
+        int num;
+        bool more;
         #endregion private members
 
         public Data()
         {
-
-        }
-
-        enum DataType
-        {
-            Login = 0,
-            Logout = 1,
-            Message = 2
+            date = DateTime.Now;
+            text = "";
+            num = 0;
+            more = false;
         }
 
         #region public members
@@ -57,22 +67,22 @@ namespace ift585_tp3_library
             set { date = value; }
         }
 
-        public int LikeNum
+        public int Num
         {
-            get { return likeNum; }
-            set { likeNum = value; }
+            get { return num; }
+            set { num = value; }
         }
 
-        public int DislikeNum
+        public DataType Command
         {
-            get { return dislikeNum; }
-            set { dislikeNum = value; }
+            get { return command; }
+            set { command = value; }
         }
 
-        private DataType DataType1
+        public bool More
         {
-            get { return dataType; }
-            set { dataType = value; }
+            get { return more; }
+            set { more = value; }
         }
 
         public string ClientUserName
@@ -82,7 +92,31 @@ namespace ift585_tp3_library
                 return Client.UserName;
             }
         }
-        
+
         #endregion public members
+
+        #region public methods
+
+        public Byte[] ToByteArray()
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                XmlSerializer xmlS = new XmlSerializer(typeof(Data));
+                xmlS.Serialize(ms, this);
+
+                return ms.ToArray();
+            }
+        }
+
+        public static Data FromByteArray(Byte[] bObj)
+        {
+            using (MemoryStream ms = new MemoryStream(bObj))
+            {
+                XmlSerializer xmlS = new XmlSerializer(typeof(Data));
+                return (Data)xmlS.Deserialize(ms);
+            }
+        }
+
+        #endregion public methods
     }
 }
