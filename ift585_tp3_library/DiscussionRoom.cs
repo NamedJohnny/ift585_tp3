@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,7 @@ namespace ift585_tp3_library
         #endregion private properties
 
         #region public properties
+        [DataMember(Name = "id", Order = 0)]
         public int Id
         {
             get { return id; }
@@ -27,15 +29,17 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nom
         /// </summary>
+        [DataMember(Name = "name", Order = 1)]
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        
+
         /// <summary>
         /// Description
         /// </summary>
+        [DataMember(Name = "description", Order = 2)]
         public string Description
         {
             get { return description; }
@@ -54,6 +58,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Date dernier ajout
         /// </summary>
+        [DataMember(Name = "dateTime", Order = 3)]
         public DateTime LastAdded
         {
             get { return lastAdded; }

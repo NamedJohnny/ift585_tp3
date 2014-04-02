@@ -2,8 +2,10 @@
 using ift585_tp3_library;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,10 +13,10 @@ namespace ift585_tp3_server
 {
     class Program
     {
-        const int PORT = 1337;
+		const int PORT = 1337;
 
         static TCPServer server;
-
+	
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -24,10 +26,23 @@ namespace ift585_tp3_server
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Fecthing data...");
             // TODO (roy) Load data from DB (JSON files)
-            // Ex data:
-            User user1 = new User();
-            ///...
-            //var json = new JavaScriptSerializer().Serialize(thing);
+            //  Load data from DB (XML files)
+            string fileName = "Data.xml";
+            if (!File.Exists(fileName))
+            {
+                File.Create(fileName);
+            }
+            FileStream fs = new FileStream(fileName, FileMode.Open);
+            List<GroupeDeData> gdd = new List<GroupeDeData>();
+
+            DataContractSerializer serializer = new DataContractSerializer(gdd.GetType(), null,
+                0x7FFF /*maxItemsInObjectGraph*/,
+                false /*ignoreExtensionDataObject*/,
+                true /*preserveObjectReferences : this is where the magic happens */,
+                null /*dataContractSurrogate*/);
+            //serializer.WriteObject(Console.OpenStandardOutput(), gdd);
+            gdd = serializer.ReadObject(fs) as List<GroupeDeData>;
+            fs.Close();
             Console.WriteLine("DONE");
             //================================
 
@@ -87,7 +102,12 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Storing data...");
-            // TODO (roy) Store data into DB (JSON files)
+            // Sauvegarde en XML les salles de discussions et les utilisateurs
+            // TODO Getter les données du moment et les enregistrer
+            fs = File.Open("Data.xml", FileMode.Create);
+            Console.WriteLine("Testing for type: {0}", typeof(GroupeDeData));
+            serializer.WriteObject(fs, gdd);
+            fs.Close();
             Console.WriteLine("DONE");
             //================================
         }

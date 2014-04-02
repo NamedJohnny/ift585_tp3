@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ift585_tp3_library
 {
-    
+    [DataContract(Name = "user", Namespace = "")]
     public class User : ICloneable
     {
         #region private properties
@@ -29,6 +30,7 @@ namespace ift585_tp3_library
         }
 
         #region public properties
+        [DataMember(Name = "id", Order = 0)]
         public int Id
         {
             get { return id; }
@@ -38,6 +40,8 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nom
         /// </summary>
+
+        [DataMember(Name = "firstName", Order = 1)]
         public string FirstName
         {
             get { return firstName; }
@@ -47,6 +51,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Prénom
         /// </summary>
+        [DataMember(Name = "lastName", Order = 2)]
         public string LastName
         {
             get { return lastName; }
@@ -56,6 +61,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nom usager
         /// </summary>
+        [DataMember(Name = "userName", Order = 3)]
         public string UserName
         {
             get { return userName; }
@@ -65,6 +71,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Mot de passe
         /// </summary>
+        [DataMember(Name = "password", Order = 4)]
         public string Password
         {
             get { return password; }
@@ -74,6 +81,8 @@ namespace ift585_tp3_library
         /// <summary>
         /// Si connecté
         /// </summary>
+
+        [DataMember(Name = "isConnected", Order = 5)]
         public bool IsConnected
         {
             get { return isConnected; }
@@ -83,6 +92,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Adresse IP
         /// </summary>
+        [DataMember(Name = "ipAdress", Order = 6)]
         public string IpAdress
         {
             get { return ipAdress; }
@@ -92,6 +102,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nombre de likes
         /// </summary>
+        [DataMember(Name = "likeNum", Order = 7)]
         public int LikeNum
         {
             get { return likeNum; }
@@ -101,6 +112,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nombre de dislikes
         /// </summary>
+        [DataMember(Name = "dislikeNum", Order = 8)]
         public int DislikeNum
         {
             get { return dislikeNum; }
@@ -110,6 +122,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Nombre de messages
         /// </summary>
+        [DataMember(Name = "numMessages", Order = 9)]
         public int NumMessages
         {
             get { return numMessages; }
@@ -119,6 +132,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Avatar choisi
         /// </summary>
+        [DataMember(Name = "avatar", Order = 10)]
         public string Avatar
         {
             get { return avatar; }
