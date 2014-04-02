@@ -10,7 +10,10 @@ namespace ift585_tp3
 {
     static class Program
     {
-        public static TCPClient client;
+        const string IP = "localhost";
+        const int PORT = 1337;
+
+        public static TCPClient client = new TCPClient(IP, PORT, Receive);
 
         /// <summary>
         /// Point d'entrée principal de l'application.
@@ -18,17 +21,19 @@ namespace ift585_tp3
         [STAThread]
         static void Main()
         {
-            client = new TCPClient(Receive);
-            //TCPClient c2 = new TCPClient();
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
 
-        static int Receive(string msg)
+        static int Receive(Tuple<Socket, string> msg)
         {
-            // TODO when you receive something, react here
+            Socket server = msg.Item1;
+            string data = msg.Item2;
+
+            // If you want, you can send somthing to the server
+            // when he sends you something
+            // client.Send("something else");
 
             return 0;
         }

@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SocketState.cs" />
+    <Compile Include="TCPDevice.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="DiscussionRoom.cs" />

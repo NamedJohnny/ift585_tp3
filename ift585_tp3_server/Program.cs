@@ -11,6 +11,10 @@ namespace ift585_tp3_server
 {
     class Program
     {
+        const int PORT = 1337;
+
+        static TCPServer server;
+
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -28,7 +32,9 @@ namespace ift585_tp3_server
             //================================
 
             //================================
-            TCPServer tcp = new TCPServer(Receive);
+            Console.Write("Opening port ...");
+            server = new TCPServer(PORT, Receive);
+            Console.WriteLine("DONE");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Server ready.");
             //================================
@@ -86,10 +92,18 @@ namespace ift585_tp3_server
             //================================
         }
 
-        static int Receive(string msg)
+        static int Receive(Tuple<Socket, string> msg)
         {
+            Socket client = msg.Item1;
+            string data = msg.Item2;
+
             // WHEN YOU RECEIVE SOMETHING, REACT HERE
-            Console.WriteLine("The server receives : " + msg);
+            Console.WriteLine("The server receives : " + data);
+            
+            server.Send(client, "response");
+            //server.Send(client, "response");
+            //server.Broadcast("response");
+
             return 0;
         }
     }
