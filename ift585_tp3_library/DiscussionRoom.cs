@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ift585_tp3_library
 {
+    [SerializableAttribute]
     public class DiscussionRoom
     {
         #region private properties

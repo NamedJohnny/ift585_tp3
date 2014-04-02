@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace ift585_tp3_library
 {
+    [SerializableAttribute] // remove?
     public class Data
     {
 
@@ -96,8 +98,7 @@ namespace ift585_tp3_library
         #endregion public members
 
         #region public methods
-
-        public Byte[] ToByteArray()
+        /*public Byte[] ToByteArray()
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -115,8 +116,22 @@ namespace ift585_tp3_library
                 XmlSerializer xmlS = new XmlSerializer(typeof(Data));
                 return (Data)xmlS.Deserialize(ms);
             }
+        }*/
+
+        public static byte[] Serialize(Data data)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                (new BinaryFormatter()).Serialize(memoryStream, data);
+                return memoryStream.ToArray();
+            }
         }
 
+        public static Data Deserialize(byte[] message)
+        {
+            using (var memoryStream = new MemoryStream(message))
+                return (new BinaryFormatter()).Deserialize(memoryStream) as Data;
+        }
         #endregion public methods
     }
 }

@@ -13,6 +13,10 @@ namespace ift585_tp3_server
 {
     class Program
     {
+		const int PORT = 1337;
+
+        static TCPServer server;
+	
         static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.White;
@@ -21,29 +25,15 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Fecthing data...");
-            // TODO (roy) Load data from DB (JSON files)
-            //  Load data from DB (XML files)
-            string fileName = "Data.xml";
-            if (!File.Exists(fileName))
-            {
-                File.Create(fileName);
-            }
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            List<GroupeDeData> gdd = new List<GroupeDeData>();
-
-            DataContractSerializer serializer = new DataContractSerializer(gdd.GetType(), null,
-                0x7FFF /*maxItemsInObjectGraph*/,
-                false /*ignoreExtensionDataObject*/,
-                true /*preserveObjectReferences : this is where the magic happens */,
-                null /*dataContractSurrogate*/);
-            //serializer.WriteObject(Console.OpenStandardOutput(), gdd);
-            gdd = serializer.ReadObject(fs) as List<GroupeDeData>;
-            fs.Close();
+            XMLDatabase db = new XMLDatabase();
+            db.Load();
             Console.WriteLine("DONE");
             //================================
 
             //================================
-            TCPServer tcp = new TCPServer(Receive);
+            Console.Write("Opening port ...");
+            server = new TCPServer(PORT, ReceiveCallback);
+            Console.WriteLine("DONE");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Server ready.");
             //================================
@@ -96,20 +86,25 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Storing data...");
-            // Sauvegarde en XML les salles de discussions et les utilisateurs
-            // TODO Getter les données du moment et les enregistrer
-            fs = File.Open("Data.xml", FileMode.Create);
-            Console.WriteLine("Testing for type: {0}", typeof(GroupeDeData));
-            serializer.WriteObject(fs, gdd);
-            fs.Close();
+            db.Save();
             Console.WriteLine("DONE");
             //================================
         }
 
-        static int Receive(string msg)
+        static int ReceiveCallback(Tuple<Socket, Data> msg)
         {
-            // WHEN YOU RECEIVE SOMETHING, REACT HERE
-            Console.WriteLine("The server receives : " + msg);
+            Socket client = msg.Item1;
+            Data data = msg.Item2;
+
+            // TODO (vincent) when you receive a request,
+            // react accordindly here
+            Console.WriteLine("The server received : " + data.Text);
+
+            // TODO (vincent) response
+            Data response = new Data() { Text = "response" };
+            server.Send(client, response);
+            //server.Broadcast("response"); // you can also broadcast
+
             return 0;
         }
     }
