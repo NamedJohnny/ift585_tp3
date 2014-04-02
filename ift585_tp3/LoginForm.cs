@@ -22,7 +22,7 @@ namespace ift585_tp3
         {
             
             
-            /*bool connexionValid = true;
+            bool connexionValid = true;
             User client = new User();
 
             //Envoi de requete pour vérification
@@ -36,7 +36,7 @@ namespace ift585_tp3
                 HomeForm homeForm = new HomeForm(client);
                 homeForm.ShowDialog();
                 this.Close();
-            }*/
+            }
         }
 
         /// <summary>

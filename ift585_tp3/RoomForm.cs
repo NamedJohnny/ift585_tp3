@@ -1,4 +1,5 @@
-﻿using ift585_tp3_library;
+﻿using ift585_tp3.Properties;
+using ift585_tp3_library;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,22 @@ namespace ift585_tp3
 {
     public partial class RoomForm : Form
     {
-        public RoomForm(DiscussionRoom room)
+        User actualUser = null;
+
+        public RoomForm(DiscussionRoom room, User user)
         {
             InitializeComponent();
-           
+
+            actualUser = user;
 
             Data data1 = new Data();
             Data data2 = new Data();
             Data data3 = new Data();
 
+            if (!room.ClientList.Contains(user))
+            {
+                room.ClientList.Add(user);
+            }
             data1.Client = room.ClientList[0];
             data1.Date = DateTime.Now;
             data2.Client = room.ClientList[0];
@@ -96,9 +104,18 @@ namespace ift585_tp3
                     data.DislikeNum++;
                     data.Client.DislikeNum++;
                 }
+                else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.Client.UserName))
+                {
+                    dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
+                }
             }
         }
 
+        /// <summary>
+        /// Lorsqu'on entre avec la souris
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewMessage_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             //Skip the Column and Row headers
@@ -106,13 +123,36 @@ namespace ift585_tp3
                 return;
 
             var dataGridView = (sender as DataGridView);
+            Data data = (dataGridViewMessage.Rows[e.RowIndex].DataBoundItem as Data);
+
             //Check the condition as per the requirement casting the cell value to the appropriate type
-            if (e.ColumnIndex == 3 || e.ColumnIndex == 4)
+            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5 && (actualUser.UserName == data.Client.UserName))
                 dataGridView.Cursor = Cursors.Hand;
             else
                 dataGridView.Cursor = Cursors.Arrow;
         }
 
-        
+
+        private void dataGridViewMessage_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewMessage.Columns[e.ColumnIndex] is DataGridViewImageColumn && e.ColumnIndex == 5)
+            {
+                try
+                {
+                    Data data = (dataGridViewMessage.Rows[e.RowIndex].DataBoundItem as Data);
+
+                    if (!(actualUser.UserName == data.Client.UserName))
+                    {
+                        e.Value = new Bitmap(1, 1);
+                    }
+                }
+                catch
+                {
+                }
+            }
+
+        }
+
+
     }
 }

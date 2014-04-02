@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRoomForm.Designer.cs">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AvatarForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="UserProfilForm.Designer.cs">
       <DependentUpon>UserProfilForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddRoomForm.resx">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AvatarForm.resx">
       <DependentUpon>AvatarForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +149,9 @@
       <Project>{a7b95714-969f-4e3b-8d60-f5b1e25a6c8d}</Project>
       <Name>ift585_tp3_library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DeleteRed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

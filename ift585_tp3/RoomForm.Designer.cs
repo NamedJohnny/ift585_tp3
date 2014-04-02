@@ -47,6 +47,7 @@
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LikeNum = new System.Windows.Forms.DataGridViewImageColumn();
             this.DislikeNum = new System.Windows.Forms.DataGridViewImageColumn();
+            this.DeleteColumn = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -129,7 +130,8 @@
             this.Client,
             this.ColumnMessage,
             this.LikeNum,
-            this.DislikeNum});
+            this.DislikeNum,
+            this.DeleteColumn});
             this.dataGridViewMessage.DataSource = this.messageListBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -146,6 +148,7 @@
             this.dataGridViewMessage.Size = new System.Drawing.Size(562, 296);
             this.dataGridViewMessage.TabIndex = 0;
             this.dataGridViewMessage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellContentClick);
+            this.dataGridViewMessage.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMessage_CellFormatting);
             this.dataGridViewMessage.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellMouseEnter);
             // 
             // messageListBindingSource
@@ -235,6 +238,13 @@
             this.DislikeNum.Name = "DislikeNum";
             this.DislikeNum.Width = 24;
             // 
+            // DeleteColumn
+            // 
+            this.DeleteColumn.HeaderText = "Delete";
+            this.DeleteColumn.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
+            this.DeleteColumn.Name = "DeleteColumn";
+            this.DeleteColumn.Width = 24;
+            // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,5 +291,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
         private System.Windows.Forms.DataGridViewImageColumn LikeNum;
         private System.Windows.Forms.DataGridViewImageColumn DislikeNum;
+        private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
     }
 }

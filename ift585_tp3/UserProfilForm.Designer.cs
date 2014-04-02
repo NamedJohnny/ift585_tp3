@@ -112,11 +112,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(16, 19);
+            this.label4.Location = new System.Drawing.Point(46, 19);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(256, 37);
+            this.label4.Size = new System.Drawing.Size(79, 37);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Modifier votre profil";
+            this.label4.Text = "Profil";
             // 
             // label7
             // 

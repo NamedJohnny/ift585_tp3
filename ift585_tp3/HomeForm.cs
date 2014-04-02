@@ -18,7 +18,7 @@ namespace ift585_tp3
 
         public HomeForm(User client)
         {
-            client.UserName = "Chalalalala";
+            client.UserName = "Mathilde";
             client.Avatar = "homer";
             actualClient = client;
             InitializeComponent();
@@ -52,8 +52,8 @@ namespace ift585_tp3
             listBoxUsers.DataSource = clientList;
             listBoxUsers.DisplayMember = "UserName";
 
-            //On va chercher la liste des salles de discussions
             List<DiscussionRoom> roomList = new List<DiscussionRoom>();
+            //On va chercher la liste des salles de discussions
             DiscussionRoom room1 = new DiscussionRoom();
             room1.Name = "MyPrettyLittleRoom";
             DiscussionRoom room2 = new DiscussionRoom();
@@ -98,7 +98,7 @@ namespace ift585_tp3
                     DiscussionRoom selectedRoom = listBoxChatRooms.SelectedItem as DiscussionRoom;
                     //Se connecter à la salle de discussion
 
-                    RoomForm roomForm = new RoomForm(selectedRoom);
+                    RoomForm roomForm = new RoomForm(selectedRoom, actualClient);
                     roomForm.Show();
                 }
             }
@@ -119,6 +119,23 @@ namespace ift585_tp3
                     UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
                     profilForm.Show();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Ajouter une salle de discussion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonAddRoom_Click(object sender, EventArgs e)
+        {
+            AddRoomForm addRoomForm = new AddRoomForm();
+            if (addRoomForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DiscussionRoom> listRoom = (List<DiscussionRoom>)listBoxChatRooms.DataSource;
+                listRoom.Add(addRoomForm.room);
+                listBoxChatRooms.DataSource = new List<DiscussionRoom>(listRoom);
+                listBoxChatRooms.DisplayMember = "Name";
             }
         }
     }

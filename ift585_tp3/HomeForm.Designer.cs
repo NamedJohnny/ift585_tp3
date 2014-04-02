@@ -40,6 +40,7 @@
             this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.buttonAddRoom = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -96,6 +97,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonAddRoom);
             this.panel1.Controls.Add(this.labelConnected);
             this.panel1.Controls.Add(this.labelUserName);
             this.panel1.Controls.Add(this.label5);
@@ -150,9 +152,9 @@
             // buttonProfil
             // 
             this.buttonProfil.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonProfil.Location = new System.Drawing.Point(378, 26);
+            this.buttonProfil.Location = new System.Drawing.Point(356, 12);
             this.buttonProfil.Name = "buttonProfil";
-            this.buttonProfil.Size = new System.Drawing.Size(101, 55);
+            this.buttonProfil.Size = new System.Drawing.Size(123, 38);
             this.buttonProfil.TabIndex = 1;
             this.buttonProfil.Text = "Profil";
             this.buttonProfil.UseVisualStyleBackColor = true;
@@ -177,6 +179,17 @@
             this.label4.Size = new System.Drawing.Size(79, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "Utilisateurs :";
+            // 
+            // buttonAddRoom
+            // 
+            this.buttonAddRoom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonAddRoom.Location = new System.Drawing.Point(356, 56);
+            this.buttonAddRoom.Name = "buttonAddRoom";
+            this.buttonAddRoom.Size = new System.Drawing.Size(123, 38);
+            this.buttonAddRoom.TabIndex = 6;
+            this.buttonAddRoom.Text = "Ajout d\'une salle";
+            this.buttonAddRoom.UseVisualStyleBackColor = true;
+            this.buttonAddRoom.Click += new System.EventHandler(this.buttonAddRoom_Click);
             // 
             // HomeForm
             // 
@@ -216,5 +229,6 @@
         private System.Windows.Forms.Label labelConnected;
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonAddRoom;
     }
 }

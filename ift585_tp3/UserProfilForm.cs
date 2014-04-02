@@ -78,6 +78,7 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
+            
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }

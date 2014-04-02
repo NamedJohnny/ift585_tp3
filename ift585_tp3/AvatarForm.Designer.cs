@@ -39,13 +39,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonConfirmer
             // 
             this.buttonConfirmer.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonConfirmer.Location = new System.Drawing.Point(159, 353);
+            this.buttonConfirmer.Location = new System.Drawing.Point(176, 394);
             this.buttonConfirmer.Name = "buttonConfirmer";
             this.buttonConfirmer.Size = new System.Drawing.Size(89, 32);
             this.buttonConfirmer.TabIndex = 0;
@@ -56,7 +57,7 @@
             // label2
             // 
             this.label2.Image = global::ift585_tp3.Properties.Resources.ironman;
-            this.label2.Location = new System.Drawing.Point(262, 32);
+            this.label2.Location = new System.Drawing.Point(262, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 101);
             this.label2.TabIndex = 2;
@@ -64,7 +65,7 @@
             // label3
             // 
             this.label3.Image = global::ift585_tp3.Properties.Resources.minion;
-            this.label3.Location = new System.Drawing.Point(63, 189);
+            this.label3.Location = new System.Drawing.Point(63, 234);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 102);
             this.label3.TabIndex = 3;
@@ -72,7 +73,7 @@
             // label4
             // 
             this.label4.Image = global::ift585_tp3.Properties.Resources._default;
-            this.label4.Location = new System.Drawing.Point(262, 189);
+            this.label4.Location = new System.Drawing.Point(262, 234);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(98, 102);
             this.label4.TabIndex = 4;
@@ -81,7 +82,7 @@
             // 
             this.radioButtonHomer.AutoSize = true;
             this.radioButtonHomer.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.radioButtonHomer.Location = new System.Drawing.Point(57, 141);
+            this.radioButtonHomer.Location = new System.Drawing.Point(57, 186);
             this.radioButtonHomer.Name = "radioButtonHomer";
             this.radioButtonHomer.Size = new System.Drawing.Size(120, 21);
             this.radioButtonHomer.TabIndex = 5;
@@ -93,7 +94,7 @@
             // 
             this.radioButtonMinion.AutoSize = true;
             this.radioButtonMinion.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.radioButtonMinion.Location = new System.Drawing.Point(57, 294);
+            this.radioButtonMinion.Location = new System.Drawing.Point(57, 339);
             this.radioButtonMinion.Name = "radioButtonMinion";
             this.radioButtonMinion.Size = new System.Drawing.Size(66, 21);
             this.radioButtonMinion.TabIndex = 6;
@@ -105,7 +106,7 @@
             // 
             this.radioButtonIronMan.AutoSize = true;
             this.radioButtonIronMan.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.radioButtonIronMan.Location = new System.Drawing.Point(265, 141);
+            this.radioButtonIronMan.Location = new System.Drawing.Point(265, 186);
             this.radioButtonIronMan.Name = "radioButtonIronMan";
             this.radioButtonIronMan.Size = new System.Drawing.Size(79, 21);
             this.radioButtonIronMan.TabIndex = 7;
@@ -117,7 +118,7 @@
             // 
             this.radioButtonDefault.AutoSize = true;
             this.radioButtonDefault.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonDefault.Location = new System.Drawing.Point(265, 294);
+            this.radioButtonDefault.Location = new System.Drawing.Point(265, 339);
             this.radioButtonDefault.Name = "radioButtonDefault";
             this.radioButtonDefault.Size = new System.Drawing.Size(64, 21);
             this.radioButtonDefault.TabIndex = 8;
@@ -127,6 +128,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.buttonCancel);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.buttonConfirmer);
@@ -140,13 +142,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(396, 402);
+            this.panel1.Size = new System.Drawing.Size(402, 448);
             this.panel1.TabIndex = 9;
             // 
             // buttonCancel
             // 
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonCancel.Location = new System.Drawing.Point(271, 353);
+            this.buttonCancel.Location = new System.Drawing.Point(283, 394);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(89, 32);
             this.buttonCancel.TabIndex = 9;
@@ -157,16 +159,26 @@
             // label1
             // 
             this.label1.Image = global::ift585_tp3.Properties.Resources.homer;
-            this.label1.Location = new System.Drawing.Point(54, 33);
+            this.label1.Location = new System.Drawing.Point(54, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 100);
             this.label1.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(30, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 37);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Avatar";
             // 
             // AvatarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(396, 402);
+            this.ClientSize = new System.Drawing.Size(402, 448);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -191,5 +203,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
     }
 }
