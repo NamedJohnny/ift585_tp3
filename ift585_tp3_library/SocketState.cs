@@ -15,7 +15,7 @@ namespace ift585_tp3_library
         public const int BufferSize = 256;
         // Receive buffer.
         public byte[] buffer = new byte[BufferSize];
-        // Received data string.
-        public StringBuilder sb = new StringBuilder();
+        // Bytes received so far.
+        public List<byte> received = new List<byte>();
     }
 }

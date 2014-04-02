@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,11 +12,11 @@ namespace ift585_tp3_library
 {
     public abstract class TCPDevice
     {
-        protected Func<Tuple<Socket, string>, int> Receive;
+        protected Func<Tuple<Socket, Data>, int> AllReceiveCallback;
 
-        public TCPDevice(Func<Tuple<Socket, string>, int> receive)
+        public TCPDevice(Func<Tuple<Socket, Data>, int> receive)
         {
-            Receive = receive;
+            AllReceiveCallback = receive;
         }
 
         protected void SendCallback(IAsyncResult ar)
@@ -22,15 +24,9 @@ namespace ift585_tp3_library
             try
             {
                 // Retrieve the socket from the state object.
-                //Socket socket = (Socket) ar.AsyncState;
                 Socket socket = (Socket)ar.AsyncState;
-
                 // Complete sending the data to the remote device.
                 int bytesSent = socket.EndSend(ar);
-                //Console.WriteLine("Sent {0} bytes to server.", bytesSent);
-
-                // Signal that all bytes have been sent.
-                //sendDone.Set();
             }
             catch (Exception e)
             {
@@ -64,29 +60,29 @@ namespace ift585_tp3_library
                 Socket client = state.workSocket;
                 // Read data from the remote device.
                 int bytesRead = client.EndReceive(ar);
-                if (bytesRead > 0)
+
+                // Append to already part of the msg that are already received
+                state.received.AddRange(state.buffer);
+
+                if (bytesRead < SocketState.BufferSize)
                 {
-                    // There might be more data, so store the data received so far.
-                    //state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
-                    //  Get the rest of the data.
-                    //string request = state.sb.ToString();
-                    string response = System.Text.Encoding.Default.GetString(state.buffer);
-                    //Console.WriteLine(response);
-                    Receive(new Tuple<Socket,string>(client, response));
-                    //client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
+                    // All bytes received
+                    byte[] dataBytes = state.received.ToArray();
+                    Data data = Data.Deserialize(dataBytes);
+                    state.received.Clear();
+
+                    // Warn application
+                    AllReceiveCallback(new Tuple<Socket, Data>(client, data));
+
+                    // Restart receiving other msg
+                    BeginReceive(client);
                 }
                 else
                 {
-                    // All the data has arrived; put it in response.
-                    /*if (state.sb.Length > 1)
-                    {
-                        response = state.sb.ToString();
-                        Console.WriteLine(response);
-                    }*/
-                    // Signal that all bytes have been received.
-                    //receiveDone.Set();
+                    // There are bytes remaining to read
+                    // Get the rest of the data.
+                    client.BeginReceive(state.buffer, 0, SocketState.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                 }
-                BeginReceive(client);
             }
             catch (Exception e)
             {

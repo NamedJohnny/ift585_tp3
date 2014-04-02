@@ -32,7 +32,7 @@ namespace ift585_tp3_server
 
             //================================
             Console.Write("Opening port ...");
-            server = new TCPServer(PORT, Receive);
+            server = new TCPServer(PORT, ReceiveCallback);
             Console.WriteLine("DONE");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Server ready.");
@@ -91,16 +91,18 @@ namespace ift585_tp3_server
             //================================
         }
 
-        static int Receive(Tuple<Socket, string> msg)
+        static int ReceiveCallback(Tuple<Socket, Data> msg)
         {
             Socket client = msg.Item1;
-            string data = msg.Item2;
+            Data data = msg.Item2;
 
-            // TODO (viencent) when you receive a request,
+            // TODO (vincent) when you receive a request,
             // react accordindly here
-            Console.WriteLine("The server receives : " + data);
-            
-            //server.Send(client, "response");
+            Console.WriteLine("The server received : " + data.Text);
+
+            // TODO (vincent) response
+            Data response = new Data() { Text = "response" };
+            server.Send(client, response);
             //server.Broadcast("response"); // you can also broadcast
 
             return 0;
