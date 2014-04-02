@@ -25,24 +25,8 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Fecthing data...");
-            // TODO (roy) Load data from DB (JSON files)
-            //  Load data from DB (XML files)
-            string fileName = "Data.xml";
-            if (!File.Exists(fileName))
-            {
-                File.Create(fileName);
-            }
-            FileStream fs = new FileStream(fileName, FileMode.Open);
-            List<XMLData> gdd = new List<XMLData>();
-
-            DataContractSerializer serializer = new DataContractSerializer(gdd.GetType(), null,
-                0x7FFF /*maxItemsInObjectGraph*/,
-                false /*ignoreExtensionDataObject*/,
-                true /*preserveObjectReferences : this is where the magic happens */,
-                null /*dataContractSurrogate*/);
-            //serializer.WriteObject(Console.OpenStandardOutput(), gdd);
-            gdd = serializer.ReadObject(fs) as List<XMLData>;
-            fs.Close();
+            XMLDatabase db = new XMLDatabase();
+            db.Load();
             Console.WriteLine("DONE");
             //================================
 
@@ -102,12 +86,7 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Storing data...");
-            // Sauvegarde en XML les salles de discussions et les utilisateurs
-            // TODO Getter les données du moment et les enregistrer
-            fs = File.Open("Data.xml", FileMode.Create);
-            Console.WriteLine("Testing for type: {0}", typeof(XMLData));
-            serializer.WriteObject(fs, gdd);
-            fs.Close();
+            db.Save();
             Console.WriteLine("DONE");
             //================================
         }
@@ -117,12 +96,12 @@ namespace ift585_tp3_server
             Socket client = msg.Item1;
             string data = msg.Item2;
 
-            // WHEN YOU RECEIVE SOMETHING, REACT HERE
+            // TODO (viencent) when you receive a request,
+            // react accordindly here
             Console.WriteLine("The server receives : " + data);
             
-            server.Send(client, "response");
             //server.Send(client, "response");
-            //server.Broadcast("response");
+            //server.Broadcast("response"); // you can also broadcast
 
             return 0;
         }

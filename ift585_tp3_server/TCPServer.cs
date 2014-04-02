@@ -5,7 +5,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
-using System.Net.Sockets;
 using ift585_tp3_library;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading;
