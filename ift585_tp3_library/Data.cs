@@ -26,7 +26,7 @@ namespace ift585_tp3_library
 
         int id;
         DataType command;
-        User client;
+        User user;
         DateTime date;
         string text;
         int num;
@@ -55,10 +55,10 @@ namespace ift585_tp3_library
             set { text = value; }
         }
 
-        public User Client
+        public User User
         {
-            get { return client; }
-            set { client = value; }
+            get { return user; }
+            set { user = value; }
         }
 
         public DateTime Date
@@ -89,7 +89,7 @@ namespace ift585_tp3_library
         {
             get
             {
-                return Client.UserName;
+                return User.UserName;
             }
         }
 

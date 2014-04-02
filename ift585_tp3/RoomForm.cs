@@ -31,11 +31,11 @@ namespace ift585_tp3
             {
                 actualRoom.ClientList.Add(actualUser);
             }
-            data1.Client = actualRoom.ClientList[0];
+            data1.User = actualRoom.ClientList[0];
             data1.Date = DateTime.Now;
-            data2.Client = actualRoom.ClientList[0];
+            data2.User = actualRoom.ClientList[0];
             data2.Date = DateTime.Now;
-            data3.Client = actualRoom.ClientList[0];
+            data3.User = actualRoom.ClientList[0];
             data3.Date = DateTime.Now;
 
             data1.Text = "J'aime les tomates";
@@ -85,7 +85,7 @@ namespace ift585_tp3
             //Envoi au serveur
             Data toSend = new Data();
             toSend.Command = Data.DataType.SendMessage;
-            toSend.Client = actualUser;
+            toSend.User = actualUser;
             toSend.Date = DateTime.Now;
             toSend.Text = text;
             // TODO SEND!
@@ -106,7 +106,7 @@ namespace ift585_tp3
                 {
                     Data toSend = new Data();
                     toSend.Command = Data.DataType.Like;
-                    toSend.Client = data.Client;
+                    toSend.User = data.User;
                     toSend.Num = 1;
                     // TODO SEND!
                 }
@@ -114,11 +114,11 @@ namespace ift585_tp3
                 {
                     Data toSend = new Data();
                     toSend.Command = Data.DataType.Dislike;
-                    toSend.Client = data.Client;
+                    toSend.User = data.User;
                     toSend.Num = -1;
                     // TODO SEND!
                 }
-                else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.Client.UserName))
+                else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.User.UserName))
                 {
                     dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
                 }
@@ -140,7 +140,7 @@ namespace ift585_tp3
             Data data = (dataGridViewMessage.Rows[e.RowIndex].DataBoundItem as Data);
 
             //Check the condition as per the requirement casting the cell value to the appropriate type
-            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5 && (actualUser.UserName == data.Client.UserName))
+            if (e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5 && (actualUser.UserName == data.User.UserName))
                 dataGridView.Cursor = Cursors.Hand;
             else
                 dataGridView.Cursor = Cursors.Arrow;
@@ -156,23 +156,12 @@ namespace ift585_tp3
             } while (receive.More);
 
         }
-        
-        private void MessageRefresh()
-        {
-            // Receive from server
-            Data receive = new Data();
-            do
-            {
-                actualRoom.MessageList.Add(receive);
-            } while (receive.More);
-
-        }
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
             Data toSend = new Data();
             toSend.Command = Data.DataType.GetMessages;
-            toSend.Client = actualClient;
+            toSend.User = actualUser;
             // TODO SEND TO SERVER
         }
 
@@ -185,7 +174,7 @@ namespace ift585_tp3
                 {
                     Data data = (dataGridViewMessage.Rows[e.RowIndex].DataBoundItem as Data);
 
-                    if (!(actualUser.UserName == data.Client.UserName))
+                    if (!(actualUser.UserName == data.User.UserName))
                     {
                         e.Value = new Bitmap(1, 1);
                     }
@@ -194,11 +183,6 @@ namespace ift585_tp3
                 {
                 }
             }
-
         }
-
-
-
-
     }
 }
