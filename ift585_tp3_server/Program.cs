@@ -33,7 +33,7 @@ namespace ift585_tp3_server
                 File.Create(fileName);
             }
             FileStream fs = new FileStream(fileName, FileMode.Open);
-            List<GroupeDeData> gdd = new List<GroupeDeData>();
+            List<XMLData> gdd = new List<XMLData>();
 
             DataContractSerializer serializer = new DataContractSerializer(gdd.GetType(), null,
                 0x7FFF /*maxItemsInObjectGraph*/,
@@ -41,7 +41,7 @@ namespace ift585_tp3_server
                 true /*preserveObjectReferences : this is where the magic happens */,
                 null /*dataContractSurrogate*/);
             //serializer.WriteObject(Console.OpenStandardOutput(), gdd);
-            gdd = serializer.ReadObject(fs) as List<GroupeDeData>;
+            gdd = serializer.ReadObject(fs) as List<XMLData>;
             fs.Close();
             Console.WriteLine("DONE");
             //================================
@@ -105,7 +105,7 @@ namespace ift585_tp3_server
             // Sauvegarde en XML les salles de discussions et les utilisateurs
             // TODO Getter les données du moment et les enregistrer
             fs = File.Open("Data.xml", FileMode.Create);
-            Console.WriteLine("Testing for type: {0}", typeof(GroupeDeData));
+            Console.WriteLine("Testing for type: {0}", typeof(XMLData));
             serializer.WriteObject(fs, gdd);
             fs.Close();
             Console.WriteLine("DONE");
