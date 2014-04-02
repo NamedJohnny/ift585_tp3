@@ -33,6 +33,7 @@
             this.listBoxChatRooms = new System.Windows.Forms.ListBox();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonAddRoom = new System.Windows.Forms.Button();
             this.labelConnected = new System.Windows.Forms.Label();
             this.labelUserName = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonAddRoom = new System.Windows.Forms.Button();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -97,6 +98,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.buttonDisconnect);
             this.panel1.Controls.Add(this.buttonAddRoom);
             this.panel1.Controls.Add(this.labelConnected);
             this.panel1.Controls.Add(this.labelUserName);
@@ -109,6 +111,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(502, 114);
             this.panel1.TabIndex = 2;
+            // 
+            // buttonAddRoom
+            // 
+            this.buttonAddRoom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonAddRoom.Location = new System.Drawing.Point(356, 56);
+            this.buttonAddRoom.Name = "buttonAddRoom";
+            this.buttonAddRoom.Size = new System.Drawing.Size(123, 38);
+            this.buttonAddRoom.TabIndex = 6;
+            this.buttonAddRoom.Text = "Ajout d\'une salle";
+            this.buttonAddRoom.UseVisualStyleBackColor = true;
+            this.buttonAddRoom.Click += new System.EventHandler(this.buttonAddRoom_Click);
             // 
             // labelConnected
             // 
@@ -180,16 +193,16 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Utilisateurs :";
             // 
-            // buttonAddRoom
+            // buttonDisconnect
             // 
-            this.buttonAddRoom.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonAddRoom.Location = new System.Drawing.Point(356, 56);
-            this.buttonAddRoom.Name = "buttonAddRoom";
-            this.buttonAddRoom.Size = new System.Drawing.Size(123, 38);
-            this.buttonAddRoom.TabIndex = 6;
-            this.buttonAddRoom.Text = "Ajout d\'une salle";
-            this.buttonAddRoom.UseVisualStyleBackColor = true;
-            this.buttonAddRoom.Click += new System.EventHandler(this.buttonAddRoom_Click);
+            this.buttonDisconnect.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonDisconnect.Location = new System.Drawing.Point(131, 80);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(118, 26);
+            this.buttonDisconnect.TabIndex = 7;
+            this.buttonDisconnect.Text = "Déconnexion";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
             // 
             // HomeForm
             // 
@@ -230,5 +243,6 @@
         private System.Windows.Forms.Label labelUserName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonAddRoom;
+        private System.Windows.Forms.Button buttonDisconnect;
     }
 }

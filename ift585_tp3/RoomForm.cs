@@ -21,16 +21,14 @@ namespace ift585_tp3
         {
             actualUser = user;
             actualRoom = room;
+
             InitializeComponent();
 
+            //Exemple ---
             Data data1 = new Data();
             Data data2 = new Data();
             Data data3 = new Data();
 
-            if (!actualRoom.ClientList.Contains(actualUser))
-            {
-                actualRoom.ClientList.Add(actualUser);
-            }
             data1.User = actualRoom.ClientList[0];
             data1.Date = DateTime.Now;
             data2.User = actualRoom.ClientList[0];
@@ -47,6 +45,8 @@ namespace ift585_tp3
             actualRoom.MessageList.Add(data1);
             actualRoom.MessageList.Add(data2);
             actualRoom.MessageList.Add(data3);
+            //Exemple---
+
 
             this.discussionRoomBindingSource.DataSource = actualRoom;
             this.clientListBindingSource.DataSource = actualRoom.ClientList;
@@ -121,6 +121,7 @@ namespace ift585_tp3
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.User.UserName))
                 {
                     dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
+                    dataGridViewMessage.Cursor = Cursors.Arrow;
                 }
             }
         }
@@ -183,6 +184,16 @@ namespace ift585_tp3
                 {
                 }
             }
+        }
+
+        /// <summary>
+        /// Lorsque la fenêtre se ferme on enlève l'usager
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RoomForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            actualRoom.ClientList.Remove(actualUser);
         }
     }
 }

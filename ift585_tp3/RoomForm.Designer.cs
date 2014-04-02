@@ -37,26 +37,18 @@
             this.clientListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewMessage = new System.Windows.Forms.DataGridView();
+            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LikeNum = new System.Windows.Forms.DataGridViewImageColumn();
             this.DislikeNum = new System.Windows.Forms.DataGridViewImageColumn();
             this.DeleteColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.commandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.moreDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.clientUserNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -140,15 +132,8 @@
             this.ColumnMessage,
             this.LikeNum,
             this.DislikeNum,
-            this.DeleteColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.textDataGridViewTextBoxColumn,
-            this.clientDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn,
-            this.numDataGridViewTextBoxColumn,
-            this.commandDataGridViewTextBoxColumn,
-            this.moreDataGridViewCheckBoxColumn,
-            this.clientUserNameDataGridViewTextBoxColumn});
+            this.DeleteColumn});
+            this.dataGridViewMessage.AutoGenerateColumns = false;
             this.dataGridViewMessage.DataSource = this.messageListBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -167,53 +152,6 @@
             this.dataGridViewMessage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellContentClick);
             this.dataGridViewMessage.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMessage_CellFormatting);
             this.dataGridViewMessage.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellMouseEnter);
-            // 
-            // Date
-            // 
-            this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle1.NullValue = "0000-00-00";
-            this.Date.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            // 
-            // Client
-            // 
-            this.Client.DataPropertyName = "ClientUserName";
-            this.Client.HeaderText = "Client";
-            this.Client.Name = "Client";
-            this.Client.ReadOnly = true;
-            // 
-            // ColumnMessage
-            // 
-            this.ColumnMessage.DataPropertyName = "Text";
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnMessage.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnMessage.HeaderText = "Message";
-            this.ColumnMessage.Name = "ColumnMessage";
-            this.ColumnMessage.ReadOnly = true;
-            this.ColumnMessage.Width = 700;
-            // 
-            // LikeNum
-            // 
-            this.LikeNum.HeaderText = "LikeNum";
-            this.LikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
-            this.LikeNum.Name = "LikeNum";
-            this.LikeNum.Width = 24;
-            // 
-            // DislikeNum
-            // 
-            this.DislikeNum.HeaderText = "DislikeNum";
-            this.DislikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
-            this.DislikeNum.Name = "DislikeNum";
-            this.DislikeNum.Width = 24;
-            // 
-            // DeleteColumn
-            // 
-            this.DeleteColumn.HeaderText = "Delete";
-            this.DeleteColumn.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
-            this.DeleteColumn.Name = "DeleteColumn";
-            this.DeleteColumn.Width = 24;
             // 
             // messageListBindingSource
             // 
@@ -262,59 +200,57 @@
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // textDataGridViewTextBoxColumn
-            // 
-            this.textDataGridViewTextBoxColumn.DataPropertyName = "Text";
-            this.textDataGridViewTextBoxColumn.HeaderText = "Text";
-            this.textDataGridViewTextBoxColumn.Name = "textDataGridViewTextBoxColumn";
-            // 
-            // clientDataGridViewTextBoxColumn
-            // 
-            this.clientDataGridViewTextBoxColumn.DataPropertyName = "Client";
-            this.clientDataGridViewTextBoxColumn.HeaderText = "Client";
-            this.clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // numDataGridViewTextBoxColumn
-            // 
-            this.numDataGridViewTextBoxColumn.DataPropertyName = "Num";
-            this.numDataGridViewTextBoxColumn.HeaderText = "Num";
-            this.numDataGridViewTextBoxColumn.Name = "numDataGridViewTextBoxColumn";
-            // 
-            // commandDataGridViewTextBoxColumn
-            // 
-            this.commandDataGridViewTextBoxColumn.DataPropertyName = "Command";
-            this.commandDataGridViewTextBoxColumn.HeaderText = "Command";
-            this.commandDataGridViewTextBoxColumn.Name = "commandDataGridViewTextBoxColumn";
-            // 
-            // moreDataGridViewCheckBoxColumn
-            // 
-            this.moreDataGridViewCheckBoxColumn.DataPropertyName = "More";
-            this.moreDataGridViewCheckBoxColumn.HeaderText = "More";
-            this.moreDataGridViewCheckBoxColumn.Name = "moreDataGridViewCheckBoxColumn";
-            // 
-            // clientUserNameDataGridViewTextBoxColumn
-            // 
-            this.clientUserNameDataGridViewTextBoxColumn.DataPropertyName = "ClientUserName";
-            this.clientUserNameDataGridViewTextBoxColumn.HeaderText = "ClientUserName";
-            this.clientUserNameDataGridViewTextBoxColumn.Name = "clientUserNameDataGridViewTextBoxColumn";
-            this.clientUserNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
             // refreshTimer
             // 
             this.refreshTimer.Interval = 10000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // Date
+            // 
+            this.Date.DataPropertyName = "Date";
+            dataGridViewCellStyle1.NullValue = "0000-00-00";
+            this.Date.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            // 
+            // Client
+            // 
+            this.Client.DataPropertyName = "ClientUserName";
+            this.Client.HeaderText = "Client";
+            this.Client.Name = "Client";
+            this.Client.ReadOnly = true;
+            // 
+            // ColumnMessage
+            // 
+            this.ColumnMessage.DataPropertyName = "Text";
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnMessage.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnMessage.HeaderText = "Message";
+            this.ColumnMessage.Name = "ColumnMessage";
+            this.ColumnMessage.ReadOnly = true;
+            this.ColumnMessage.Width = 700;
+            // 
+            // LikeNum
+            // 
+            this.LikeNum.HeaderText = "LikeNum";
+            this.LikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
+            this.LikeNum.Name = "LikeNum";
+            this.LikeNum.Width = 24;
+            // 
+            // DislikeNum
+            // 
+            this.DislikeNum.HeaderText = "DislikeNum";
+            this.DislikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
+            this.DislikeNum.Name = "DislikeNum";
+            this.DislikeNum.Width = 24;
+            // 
+            // DeleteColumn
+            // 
+            this.DeleteColumn.HeaderText = "Delete";
+            this.DeleteColumn.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
+            this.DeleteColumn.Name = "DeleteColumn";
+            this.DeleteColumn.Width = 24;
             // 
             // RoomForm
             // 
@@ -324,6 +260,7 @@
             this.Controls.Add(this.splitContainer1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.discussionRoomBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, "Salle de discussion", "Salle de discussion - 0"));
             this.Name = "RoomForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RoomForm_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -357,20 +294,12 @@
         private System.Windows.Forms.BindingSource clientListBindingSource;
         private System.Windows.Forms.BindingSource discussionRoomBindingSource;
         private System.Windows.Forms.BindingSource messageListBindingSource;
+        private System.Windows.Forms.Timer refreshTimer;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Client;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
         private System.Windows.Forms.DataGridViewImageColumn LikeNum;
         private System.Windows.Forms.DataGridViewImageColumn DislikeNum;
         private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn commandDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn moreDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clientUserNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Timer refreshTimer;
     }
 }

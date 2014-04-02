@@ -15,6 +15,7 @@ namespace ift585_tp3
     public partial class HomeForm : Form
     {
         User actualClient = new User();
+        RoomForm roomForm = null;
 
         public HomeForm(User client)
         {
@@ -24,20 +25,12 @@ namespace ift585_tp3
             InitializeComponent();
 
             labelUserName.Text = client.UserName;
-            
-            if (client.IsConnected)
-            {
-                labelConnected.Text = "CONNECTÉ";
-                labelConnected.ForeColor = Color.Lime;
-            }
-            else
-            {
-                labelConnected.Text = "DÉCONNECTÉ";
-                labelConnected.ForeColor = Color.Red;
-            }
+
+            DisplayConnect(client.IsConnected);
 
             labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(client.Avatar) ? client.Avatar : "default");
 
+            //Exemple ---
             //On va chercher la liste des Client
             List<User> clientList = new List<User>();
             User client1 = new User();
@@ -49,9 +42,12 @@ namespace ift585_tp3
             clientList.Add(client1);
             clientList.Add(client2);
             clientList.Add(client3);
+            //Exemple ---
+
             listBoxUsers.DataSource = clientList;
             listBoxUsers.DisplayMember = "UserName";
 
+            //Exemple ---
             List<DiscussionRoom> roomList = new List<DiscussionRoom>();
             //On va chercher la liste des salles de discussions
             DiscussionRoom room1 = new DiscussionRoom();
@@ -63,8 +59,29 @@ namespace ift585_tp3
             room1.ClientList.Add(client1);
             room1.ClientList.Add(client2);
             room2.ClientList.Add(client3);
+            //Exemple ---
+
             listBoxChatRooms.DataSource = roomList;
             listBoxChatRooms.DisplayMember = "Name";
+        }
+
+        /// <summary>
+        /// Afiche l'état de connexion
+        /// </summary>
+        /// <param name="connected"></param>
+        public void DisplayConnect(bool connected)
+        {
+            if (connected)
+            {
+                labelConnected.Text = "CONNECTÉ";
+                labelConnected.ForeColor = Color.Lime;
+            }
+            else
+            {
+                labelConnected.Text = "DÉCONNECTÉ";
+                labelConnected.ForeColor = Color.Red;
+            }
+
         }
 
         /// <summary>
@@ -91,14 +108,16 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void listBoxChatRooms_DoubleClick(object sender, EventArgs e)
         {
-            if (listBoxChatRooms.SelectedItem != null)
+            if (listBoxChatRooms.SelectedItem != null && (roomForm == null || !roomForm.Visible))
             {
                 if (listBoxChatRooms.SelectedItem.ToString().Length != 0)
                 {
                     DiscussionRoom selectedRoom = listBoxChatRooms.SelectedItem as DiscussionRoom;
-                    //Se connecter à la salle de discussion
-
-                    RoomForm roomForm = new RoomForm(selectedRoom, actualClient);
+                    
+                    //Se connecter à la salle de discussion (donc on l,ajout a la salle)
+                    selectedRoom.ClientList.Add(actualClient);
+                    
+                    roomForm = new RoomForm(selectedRoom, actualClient);
                     roomForm.Show();
                 }
             }
@@ -137,6 +156,20 @@ namespace ift585_tp3
                 listBoxChatRooms.DataSource = new List<DiscussionRoom>(listRoom);
                 listBoxChatRooms.DisplayMember = "Name";
             }
+        }
+
+        /// <summary>
+        /// Se déconnecter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDisconnect_Click(object sender, EventArgs e)
+        {
+            actualClient.IsConnected = false;
+            this.Hide();
+            LoginForm homeForm = new LoginForm();
+            homeForm.ShowDialog();
+            this.Close();
         }
     }
 }

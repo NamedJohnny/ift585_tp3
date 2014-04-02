@@ -32,7 +32,20 @@ namespace ift585_tp3
             this.userProfilFormBindingSource.DataSource = this;
 
             labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(ActualClient.Avatar) ? ActualClient.Avatar : "default");
+
+            if (client.IsConnected)
+            {
+                labelConnected.Text = "CONNECTÉ";
+                labelConnected.ForeColor = Color.Lime;
+            }
+            else
+            {
+                labelConnected.Text = "DÉCONNECTÉ";
+                labelConnected.ForeColor = Color.Red;
+            }
         }
+
+
 
         /// <summary>
         /// Lecture seule
@@ -78,9 +91,16 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Close();
+            //***Vérifier si le nom d'utilisateur n'existe pas déja
+            if (!String.IsNullOrEmpty(textBoxUserName.Text))
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Le nom d'utilisateur est déjà pris ou invalide","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>

@@ -20,8 +20,6 @@ namespace ift585_tp3
 
         private void button_Login_Click(object sender, EventArgs e)
         {
-            
-            
             bool connexionValid = true;
             User client = new User();
 

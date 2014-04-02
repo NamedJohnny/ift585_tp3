@@ -33,7 +33,7 @@ namespace ift585_tp3
 
             if (String.IsNullOrEmpty(room.Name + room.Description))
             {
-                MessageBox.Show("Il est nécessaire d'avoir un nom et une description");
+                MessageBox.Show("Il est nécessaire d'avoir un nom et une description", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

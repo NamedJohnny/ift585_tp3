@@ -48,6 +48,8 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelDislike = new System.Windows.Forms.Label();
             this.labelLike = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelConnected = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userProfilFormBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +78,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label3.Location = new System.Drawing.Point(50, 183);
+            this.label3.Location = new System.Drawing.Point(50, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
             this.label3.TabIndex = 2;
@@ -122,7 +124,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.label7.Location = new System.Drawing.Point(50, 343);
+            this.label7.Location = new System.Drawing.Point(50, 398);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 17);
             this.label7.TabIndex = 9;
@@ -150,7 +152,7 @@
             // label9
             // 
             this.label9.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
-            this.label9.Location = new System.Drawing.Point(260, 343);
+            this.label9.Location = new System.Drawing.Point(257, 398);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 26);
             this.label9.TabIndex = 15;
@@ -158,7 +160,7 @@
             // label8
             // 
             this.label8.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
-            this.label8.Location = new System.Drawing.Point(179, 343);
+            this.label8.Location = new System.Drawing.Point(176, 398);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(31, 26);
             this.label8.TabIndex = 14;
@@ -166,7 +168,7 @@
             // labelAvatar
             // 
             this.labelAvatar.Image = global::ift585_tp3.Properties.Resources._default;
-            this.labelAvatar.Location = new System.Drawing.Point(147, 183);
+            this.labelAvatar.Location = new System.Drawing.Point(144, 238);
             this.labelAvatar.Name = "labelAvatar";
             this.labelAvatar.Size = new System.Drawing.Size(100, 101);
             this.labelAvatar.TabIndex = 7;
@@ -174,7 +176,7 @@
             // buttonEditAvatar
             // 
             this.buttonEditAvatar.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonEditAvatar.Location = new System.Drawing.Point(150, 288);
+            this.buttonEditAvatar.Location = new System.Drawing.Point(147, 342);
             this.buttonEditAvatar.Name = "buttonEditAvatar";
             this.buttonEditAvatar.Size = new System.Drawing.Size(97, 33);
             this.buttonEditAvatar.TabIndex = 16;
@@ -185,7 +187,7 @@
             // buttonConfirm
             // 
             this.buttonConfirm.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonConfirm.Location = new System.Drawing.Point(147, 408);
+            this.buttonConfirm.Location = new System.Drawing.Point(157, 457);
             this.buttonConfirm.Name = "buttonConfirm";
             this.buttonConfirm.Size = new System.Drawing.Size(97, 33);
             this.buttonConfirm.TabIndex = 17;
@@ -196,7 +198,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonCancel.Location = new System.Drawing.Point(256, 408);
+            this.buttonCancel.Location = new System.Drawing.Point(260, 457);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(97, 33);
             this.buttonCancel.TabIndex = 18;
@@ -209,7 +211,7 @@
             this.labelDislike.AutoSize = true;
             this.labelDislike.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "DislikeNum", true));
             this.labelDislike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelDislike.Location = new System.Drawing.Point(216, 343);
+            this.labelDislike.Location = new System.Drawing.Point(213, 398);
             this.labelDislike.Name = "labelDislike";
             this.labelDislike.Size = new System.Drawing.Size(15, 17);
             this.labelDislike.TabIndex = 20;
@@ -220,17 +222,39 @@
             this.labelLike.AutoSize = true;
             this.labelLike.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUser, "LikeNum", true));
             this.labelLike.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.labelLike.Location = new System.Drawing.Point(141, 343);
+            this.labelLike.Location = new System.Drawing.Point(138, 398);
             this.labelLike.Name = "labelLike";
             this.labelLike.Size = new System.Drawing.Size(15, 17);
             this.labelLike.TabIndex = 21;
             this.labelLike.Text = "0";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.label5.Location = new System.Drawing.Point(50, 196);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 17);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "État : ";
+            // 
+            // labelConnected
+            // 
+            this.labelConnected.AutoSize = true;
+            this.labelConnected.Font = new System.Drawing.Font("Segoe UI", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.labelConnected.Location = new System.Drawing.Point(144, 196);
+            this.labelConnected.Name = "labelConnected";
+            this.labelConnected.Size = new System.Drawing.Size(76, 17);
+            this.labelConnected.TabIndex = 23;
+            this.labelConnected.Text = "CONNECTÉ";
+            // 
             // UserProfilForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 453);
+            this.ClientSize = new System.Drawing.Size(370, 502);
+            this.Controls.Add(this.labelConnected);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.labelLike);
             this.Controls.Add(this.labelDislike);
             this.Controls.Add(this.buttonCancel);
@@ -280,5 +304,7 @@
         public System.Windows.Forms.Button buttonConfirm;
         private System.Windows.Forms.BindingSource bindingSourceUser;
         private System.Windows.Forms.BindingSource userProfilFormBindingSource;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelConnected;
     }
 }
