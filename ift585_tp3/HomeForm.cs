@@ -136,7 +136,7 @@ namespace ift585_tp3
                 {
                     User selectedClient = listBoxUsers.SelectedItem as User;
                     UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
-                    profilForm.Show();
+                    profilForm.ShowDialog();
                 }
             }
         }
@@ -167,9 +167,13 @@ namespace ift585_tp3
         {
             actualClient.IsConnected = false;
             this.Hide();
+            if(roomForm!=null)
+                roomForm.Hide();
             LoginForm homeForm = new LoginForm();
             homeForm.ShowDialog();
             this.Close();
+            if (roomForm != null)
+                roomForm.Close();
         }
     }
 }
