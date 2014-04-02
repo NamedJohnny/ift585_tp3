@@ -81,6 +81,7 @@
     <Compile Include="RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TCPClient.cs" />
     <Compile Include="UserProfilForm.cs">
       <SubType>Form</SubType>
     </Compile>

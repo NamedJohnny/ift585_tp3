@@ -28,7 +28,7 @@ namespace ift585_tp3_server
             //================================
 
             //================================
-            TCPServer tcp = new TCPServer();
+            TCPServer tcp = new TCPServer(Receive);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Server ready.");
             //================================
@@ -36,6 +36,7 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(">Press ESC to stop server.");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             do
             {
                 while (!Console.KeyAvailable)
@@ -78,11 +79,18 @@ namespace ift585_tp3_server
             //================================
 
             //================================
-            Console.ForegroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Storing data...");
             // TODO (roy) Store data into DB (JSON files)
             Console.WriteLine("DONE");
             //================================
+        }
+
+        static int Receive(string msg)
+        {
+            // WHEN YOU RECEIVE SOMETHING, REACT HERE
+            Console.WriteLine("The server receives : " + msg);
+            return 0;
         }
     }
 }

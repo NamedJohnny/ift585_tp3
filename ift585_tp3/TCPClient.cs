@@ -1,54 +1,47 @@
-﻿using System;
+﻿using ift585_tp3_library;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using System.Net.Sockets;
-using ift585_tp3_library;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Threading;
-using System.IO;
+using System.Threading.Tasks;
 
 namespace ift585_tp3
 {
-    class TCPServer
+    class TCPClient
     {
-        protected TcpListener listener;
-
-        protected List<Client> clients;
+        protected TcpClient client;
 
         protected Func<string, int> Receive;
 
-        public TCPServer(Func<string, int> receive)
+        public TCPClient(Func<string, int> receive)
         {
-            clients = new List<Client>();
             Receive = receive;
 
-            listener = new TcpListener(IPAddress.Any, 1337);
-            listener.Start();
-            //Receive(listener.);
-            listener.BeginAcceptTcpClient(ClientConnectedCallback, null);
+            client = new TcpClient();
+            //client.BeginConnect("localhost", 1337, new AsyncCallback(ConnectCallback), client);
+            client.Connect("localhost", 1337);
+            //client.BeginConnect
+            BeginReceive(client.Client);
+            Send("penis hahaha");
+            Send("vagin huehuehue");
+
+            Thread.Sleep(500);
+            Send("a slap in the face");
         }
 
-
-        private void ClientConnectedCallback(IAsyncResult result)
-        {
-            TcpClient tcpClient = listener.EndAcceptTcpClient(result);
-            Console.WriteLine("Client connected.");
-            clients.Add(new Client(tcpClient));
-            BeginReceive(tcpClient.Client);
-            listener.BeginAcceptTcpClient(ClientConnectedCallback, null);
-        }
-
-        public void Send(Socket socket, string msg)
+        public void Send(string msg)
         {
             // Convert the string data to byte data using ASCII encoding.
+            //byte[] byteData = Encoding.ASCII.GetBytes(msg);
             byte[] byteData = Encoding.ASCII.GetBytes(msg);
 
+            // TODO send truc pas concatener avec autre truc
             // Begin sending the data to the remote device.
-            socket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(SendCallback), socket);
+            client.Client.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(SendCallback), client);
         }
         private void SendCallback(IAsyncResult ar)
         {
@@ -56,10 +49,10 @@ namespace ift585_tp3
             {
                 // Retrieve the socket from the state object.
                 //Socket socket = (Socket) ar.AsyncState;
-                Socket socket = (Socket)ar.AsyncState;
+                TcpClient _client = (TcpClient)ar.AsyncState;
 
                 // Complete sending the data to the remote device.
-                int bytesSent = socket.EndSend(ar);
+                int bytesSent = _client.Client.EndSend(ar);
                 //Console.WriteLine("Sent {0} bytes to server.", bytesSent);
 
                 // Signal that all bytes have been sent.
@@ -71,7 +64,7 @@ namespace ift585_tp3
             }
         }
 
-        public void BeginReceive(Socket client)
+        private void BeginReceive(Socket client)
         {
             try
             {
@@ -103,10 +96,9 @@ namespace ift585_tp3
                     //state.sb.Append(Encoding.ASCII.GetString(state.buffer, 0, bytesRead));
                     //  Get the rest of the data.
                     //string request = state.sb.ToString();
-                    string request = System.Text.Encoding.Default.GetString(state.buffer);
-                    Receive(request);
-                    //Console.WriteLine(request);
-                    Send(client, "response");
+                    string response = System.Text.Encoding.Default.GetString(state.buffer);
+                    //Console.WriteLine(response);
+                    Receive(response);
                     //client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                 }
                 else
@@ -128,6 +120,7 @@ namespace ift585_tp3
             }
         }
     }
+
     public class StateObject
     {
         // Client socket.
@@ -138,15 +131,5 @@ namespace ift585_tp3
         public byte[] buffer = new byte[BufferSize];
         // Received data string.
         public StringBuilder sb = new StringBuilder();
-    }
-
-    public class Client
-    {
-        public TcpClient socket;
-
-        public Client(TcpClient _socket)
-        {
-            socket = _socket;
-        }
     }
 }
