@@ -115,7 +115,8 @@ namespace ift585_tp3
                     DiscussionRoom selectedRoom = listBoxChatRooms.SelectedItem as DiscussionRoom;
                     
                     //Se connecter à la salle de discussion (donc on l,ajout a la salle)
-                    selectedRoom.ClientList.Add(actualClient);
+                    if(!selectedRoom.ClientList.Contains(actualClient))
+                        selectedRoom.ClientList.Add(actualClient);
                     
                     roomForm = new RoomForm(selectedRoom, actualClient);
                     roomForm.Show();
