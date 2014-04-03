@@ -29,6 +29,7 @@ namespace ift585_tp3
             //test.User.Id = 3;
             //test.Text = "a slap in the face.";
             //Send(test);
+            //Send(test);
         }
 
         public void Send(Data msg)

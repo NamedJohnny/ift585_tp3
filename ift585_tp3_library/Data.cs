@@ -26,7 +26,8 @@ namespace ift585_tp3_library
             ViewProfile = 7,
             UpdateProfile = 8,
             AcceptLogin = 9,
-            DeclineLogin = 10
+            DeclineLogin = 10,
+            ListClientOnline = 11
         }
 
         int id;
@@ -37,6 +38,7 @@ namespace ift585_tp3_library
         int num;
         bool more;
         string pass;
+        Object other;
         #endregion private members
 
         public Data()
@@ -97,6 +99,12 @@ namespace ift585_tp3_library
         {
             get { return pass; }
             set { pass = value; }
+        }
+
+        public Object Other
+        {
+            get { return other; }
+            set { other = value; }
         }
 
         public string ClientUserName

@@ -118,6 +118,11 @@ namespace ift585_tp3_server
 
                 case Data.DataType.UpdateProfile:
                     break;
+
+                case Data.DataType.ListClientOnline:
+                    response.Command = Data.DataType.ListClientOnline;
+                    response.Other = users.Where(x => x.IsConnected).ToList();
+                    break;
             }
 
             // TODO (vincent) when you receive a request,

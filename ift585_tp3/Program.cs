@@ -15,7 +15,8 @@ namespace ift585_tp3
         const int PORT = 1337;
 
         public static TCPClient client = new TCPClient(IP, PORT, ReceiveCallback);
-        public static Func<Data, int> callBackOnReceive;
+        public delegate int CallBackFunction(Data data);
+        public static CallBackFunction callBackOnReceive;
 
         /// <summary>
         /// Point d'entrée principal de l'application.
@@ -33,7 +34,7 @@ namespace ift585_tp3
             Socket server = msg.Item1;
             Data data = msg.Item2;
 
-            callBackOnReceive(data);
+            callBackOnReceive.BeginInvoke(data, null, null);
 
             return 0;
         }

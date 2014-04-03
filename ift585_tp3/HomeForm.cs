@@ -16,6 +16,7 @@ namespace ift585_tp3
     {
         User actualClient = new User();
         RoomForm roomForm = null;
+        List<User> clientList;
 
         public HomeForm(User client)
         {
@@ -30,16 +31,22 @@ namespace ift585_tp3
 
             //Exemple ---
             //On va chercher la liste des Client
-            List<User> clientList = new List<User>();
+            clientList = new List<User>();
+            
+            Data listUserRequest = new Data();
+            listUserRequest.Command = Data.DataType.ListClientOnline;
+            Program.callBackOnReceive = CallBackListClientOnline;
+            Program.client.Send(listUserRequest);
+            
             User client1 = new User();
             client1.UserName = "SteveJobsXXX";
             User client2 = new User();
             client2.UserName = "BillGates3";
             User client3 = new User();
             client3.UserName = "Mathilde";
-            clientList.Add(client1);
+            /*clientList.Add(client1);
             clientList.Add(client2);
-            clientList.Add(client3);
+            clientList.Add(client3);*/
             //Exemple ---
 
             listBoxUsers.DataSource = clientList;
@@ -173,6 +180,24 @@ namespace ift585_tp3
             this.Close();
             if (roomForm != null)
                 roomForm.Close();
+        }
+
+        private int CallBackListClientOnline(Data received)
+        {
+            if (received.Command == Data.DataType.ListClientOnline)
+            {
+                List<User> receivedList = (List<User>)received.Other;
+                foreach(User u in receivedList)
+                {
+                    clientList.Add(u);
+                }
+                //this.Invoke((MethodInvoker)delegate() { clientList = (List<User>)received.Other; });
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
         }
     }
 }
