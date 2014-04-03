@@ -10,12 +10,12 @@ namespace ift585_tp3_server
 {
     public class XMLData
     {
-        public DiscussionRoom room { get; set; }
+        public List<DiscussionRoom> rooms { get; set; }
 
         public List<User> users { get; set; }
         public XMLData()
         { }
-        public XMLData(DiscussionRoom r, List<User> u)
-        { room = r; users = u; }
+        public XMLData(List<DiscussionRoom> r, List<User> u)
+        { rooms = r; users = u; }
     }
 }
