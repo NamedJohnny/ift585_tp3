@@ -19,8 +19,6 @@ namespace ift585_tp3
 
         public HomeForm(User client)
         {
-            client.UserName = "Mathilde";
-            client.Avatar = "homer";
             actualClient = client;
             InitializeComponent();
 

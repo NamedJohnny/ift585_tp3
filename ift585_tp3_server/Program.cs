@@ -80,11 +80,22 @@ namespace ift585_tp3_server
         {
             Socket client = msg.Item1;
             Data received = msg.Item2;
-            Data response = new Data() { Text = "response" };
+            Data response = new Data();
 
             switch (received.Command)
             {
                 case Data.DataType.Login:
+                    User remoteUser = users.FirstOrDefault(x => x.UserName == received.Text && x.Password == received.Pass);
+                    if (remoteUser != null)
+                    {
+                        response.Command = Data.DataType.AcceptLogin;
+                        remoteUser.IsConnected = true;
+                        response.User = remoteUser;
+                    }
+                    else
+                    {
+                        response.Command = Data.DataType.DeclineLogin;
+                    }
                     break;
 
                 case Data.DataType.Logout:
@@ -109,17 +120,11 @@ namespace ift585_tp3_server
                     break;
             }
 
-            db.Save();
-            xmlData = new XMLData(rooms, users);
-            XMLDatabase.Save(xmlData);
             // TODO (vincent) when you receive a request,
             // react accordindly here
             Console.WriteLine("The server received : " + received.Text);
-
-            // TODO (vincent) response
             
             server.Send(client, response);
-            //server.Broadcast("response"); // you can also broadcast
 
             return 0;
         }

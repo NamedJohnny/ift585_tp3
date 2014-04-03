@@ -35,13 +35,6 @@ namespace ift585_tp3
 
             callBackOnReceive(data);
 
-            // TODO (vincent)
-            // If you want, you can send somthing to the server
-            // when he sends you something
-            // Data newRequest = new Data() { Text = "another request!" };
-            // client.Send(newRequest);
-            // *** Warning, infinite loop possibility
-
             return 0;
         }
     }

@@ -43,10 +43,10 @@ namespace ift585_tp3
         {
             if (received.Command == Data.DataType.AcceptLogin)
             {
-                this.Hide();
+                this.Invoke((MethodInvoker)delegate() { this.Hide(); });
                 HomeForm homeForm = new HomeForm(received.User);
                 homeForm.ShowDialog();
-                this.Close();
+                this.Invoke((MethodInvoker)delegate() { this.Close(); });
             }
             else
             {

@@ -16,16 +16,17 @@ namespace ift585_tp3_library
         #region private members
         public enum DataType
         {
-            Login = 0,
-            Logout = 1,
-            SendMessage = 2,
-            GetMessages = 3,
-            Like = 4,
-            Dislike = 5,
-            ViewProfile = 6,
-            UpdateProfile = 7,
-            AcceptLogin = 8,
-            DeclineLogin = 9
+            Invalid = 0,
+            Login = 1,
+            Logout = 2,
+            SendMessage = 3,
+            GetMessages = 4,
+            Like = 5,
+            Dislike = 6,
+            ViewProfile = 7,
+            UpdateProfile = 8,
+            AcceptLogin = 9,
+            DeclineLogin = 10
         }
 
         int id;
@@ -40,10 +41,12 @@ namespace ift585_tp3_library
 
         public Data()
         {
+            command = DataType.Invalid;
             date = DateTime.Now;
             text = "";
             num = 0;
             more = false;
+            pass = "";
         }
 
         #region public members
