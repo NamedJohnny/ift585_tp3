@@ -20,21 +20,13 @@ namespace ift585_tp3
 
         private void button_Login_Click(object sender, EventArgs e)
         {
-            bool connexionValid = true;
-            User client = new User();
+            Data loginRequest = new Data();
+            loginRequest.Command = Data.DataType.Login;
+            loginRequest.Text = txtUsername.Text;
+            loginRequest.Pass = txtPassword.Text;
 
-            //Envoi de requete pour vérification
-            //Assignation de l'entité client
-
-            //Si la connexion est bonne on affiche le menu d'accueil
-            if (connexionValid)
-            {
-                client.IsConnected = true;
-                this.Hide();
-                HomeForm homeForm = new HomeForm(client);
-                homeForm.ShowDialog();
-                this.Close();
-            }
+            Program.callBackOnReceive = CallBackOnLogin;
+            Program.client.Send(loginRequest);
         }
 
         /// <summary>
@@ -45,6 +37,22 @@ namespace ift585_tp3
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private int CallBackOnLogin(Data received)
+        {
+            if (received.Command == Data.DataType.AcceptLogin)
+            {
+                this.Hide();
+                HomeForm homeForm = new HomeForm(received.User);
+                homeForm.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Le pseudo ou le mot de passe est erroné.");
+            }
+            return 0;
         }
     }
 }

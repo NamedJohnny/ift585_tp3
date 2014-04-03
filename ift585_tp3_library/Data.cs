@@ -23,7 +23,9 @@ namespace ift585_tp3_library
             Like = 4,
             Dislike = 5,
             ViewProfile = 6,
-            UpdateProfile = 7
+            UpdateProfile = 7,
+            AcceptLogin = 8,
+            DeclineLogin = 9
         }
 
         int id;
@@ -33,6 +35,7 @@ namespace ift585_tp3_library
         string text;
         int num;
         bool more;
+        string pass;
         #endregion private members
 
         public Data()
@@ -85,6 +88,12 @@ namespace ift585_tp3_library
         {
             get { return more; }
             set { more = value; }
+        }
+
+        public string Pass
+        {
+            get { return pass; }
+            set { pass = value; }
         }
 
         public string ClientUserName

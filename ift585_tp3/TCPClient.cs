@@ -24,11 +24,11 @@ namespace ift585_tp3
             //client.BeginConnect
             BeginReceive(client.Client);
 
-            Data test = new Data();
-            test.User = new User();
-            test.User.Id = 3;
-            test.Text = "a slap in the face.";
-            Send(test);
+            //Data test = new Data();
+            //test.User = new User();
+            //test.User.Id = 3;
+            //test.Text = "a slap in the face.";
+            //Send(test);
         }
 
         public void Send(Data msg)

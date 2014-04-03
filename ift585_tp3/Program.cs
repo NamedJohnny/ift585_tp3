@@ -15,6 +15,7 @@ namespace ift585_tp3
         const int PORT = 1337;
 
         public static TCPClient client = new TCPClient(IP, PORT, ReceiveCallback);
+        public static Func<Data, int> callBackOnReceive;
 
         /// <summary>
         /// Point d'entrée principal de l'application.
@@ -31,6 +32,8 @@ namespace ift585_tp3
         {
             Socket server = msg.Item1;
             Data data = msg.Item2;
+
+            callBackOnReceive(data);
 
             // TODO (vincent)
             // If you want, you can send somthing to the server

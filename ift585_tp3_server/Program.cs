@@ -24,7 +24,7 @@ namespace ift585_tp3_server
 
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("Fecthing data...");
+            Console.Write("Ftecthing data...");
             XMLDatabase db = new XMLDatabase();
             db.Load();
             Console.WriteLine("DONE");
@@ -46,38 +46,7 @@ namespace ift585_tp3_server
             {
                 while (!Console.KeyAvailable)
                 {
-                    // TODO (vincent) logic here
-
-                    // TODO receive from client method or whatever
-                    // TODO Get data...
-                    Data received = new Data();
-                    switch (received.Command)
-                    {
-                        case Data.DataType.Login:
-                            break;
-
-                        case Data.DataType.Logout:
-                            break;
-
-                        case Data.DataType.SendMessage:
-                            break;
-
-                        case Data.DataType.GetMessages:
-                            break;
-
-                        case Data.DataType.Like:
-                            break;
-
-                        case Data.DataType.Dislike:
-                            break;
-
-                        case Data.DataType.ViewProfile:
-                            break;
-
-                        case Data.DataType.UpdateProfile:
-                            break;
-                    }
-
+                    // TODO What?
 
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
@@ -94,14 +63,42 @@ namespace ift585_tp3_server
         static int ReceiveCallback(Tuple<Socket, Data> msg)
         {
             Socket client = msg.Item1;
-            Data data = msg.Item2;
+            Data received = msg.Item2;
+            Data response = new Data() { Text = "response" };
+
+            switch (received.Command)
+            {
+                case Data.DataType.Login:
+                    break;
+
+                case Data.DataType.Logout:
+                    break;
+
+                case Data.DataType.SendMessage:
+                    break;
+
+                case Data.DataType.GetMessages:
+                    break;
+
+                case Data.DataType.Like:
+                    break;
+
+                case Data.DataType.Dislike:
+                    break;
+
+                case Data.DataType.ViewProfile:
+                    break;
+
+                case Data.DataType.UpdateProfile:
+                    break;
+            }
 
             // TODO (vincent) when you receive a request,
             // react accordindly here
-            Console.WriteLine("The server received : " + data.Text);
+            Console.WriteLine("The server received : " + received.Text);
 
             // TODO (vincent) response
-            Data response = new Data() { Text = "response" };
+            
             server.Send(client, response);
             //server.Broadcast("response"); // you can also broadcast
 
