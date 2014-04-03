@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace ift585_tp3_library
 {
     [SerializableAttribute]
+    [DataContract(Name = "discussionRoom", Namespace = "")]
     public class DiscussionRoom
     {
         #region private properties
@@ -50,6 +51,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Liste des clients associés
         /// </summary>
+        [DataMember(Name = "clientList", Order = 3)]
         public List<User> ClientList
         {
             get { return clientList; }
@@ -69,6 +71,7 @@ namespace ift585_tp3_library
         /// <summary>
         /// Liste des messages textuels
         /// </summary>
+        [DataMember(Name = "messageListe", Order = 3)]
         public List<Data> MessageList
         {
             get { return messageList; }

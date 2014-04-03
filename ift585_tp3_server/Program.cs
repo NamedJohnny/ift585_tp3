@@ -15,6 +15,9 @@ namespace ift585_tp3_server
     {
 		const int PORT = 1337;
 
+         static List<User> users = new List<User>();
+         static List<DiscussionRoom> rooms = new List<DiscussionRoom>();
+
         static TCPServer server;
 	
         static void Main(string[] args)
@@ -25,8 +28,20 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Ftecthing data...");
-            XMLDatabase db = new XMLDatabase();
-            db.Load();
+            //XMLDatabase db = new XMLDatabase();
+            //Pour ajouter de nouveau clients/salles
+            //db.Add();
+            XMLData xmlData = XMLDatabase.Load();
+          
+            foreach (DiscussionRoom room in xmlData.rooms)
+            {
+                rooms.Add(room);
+            }
+            foreach (User user in xmlData.users)
+            {
+                users.Add(user);
+            }
+
             Console.WriteLine("DONE");
             //================================
 
@@ -55,7 +70,8 @@ namespace ift585_tp3_server
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.Write("Storing data...");
-            db.Save();
+            xmlData = new XMLData(rooms, users);
+            XMLDatabase.Save(xmlData);
             Console.WriteLine("DONE");
             //================================
         }
@@ -93,6 +109,9 @@ namespace ift585_tp3_server
                     break;
             }
 
+            db.Save();
+            xmlData = new XMLData(rooms, users);
+            XMLDatabase.Save(xmlData);
             // TODO (vincent) when you receive a request,
             // react accordindly here
             Console.WriteLine("The server received : " + received.Text);
