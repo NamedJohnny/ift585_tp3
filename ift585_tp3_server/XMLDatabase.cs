@@ -175,17 +175,17 @@ namespace ift585_tp3_server
             // Sauvegarde en XML les salles de discussions et les utilisateurs
             // TODO Getter les données du moment et les enregistrer
             string fileName = "Data.xml";
-            if (!File.Exists(fileName))
-            {
-                File.Create(fileName);
-            }
+            //if (!File.Exists(fileName))
+            //{
+            //    File.Create(fileName);
+            //}
             DataContractSerializer serializer = new DataContractSerializer(xmlData.GetType(), null,
                 0x7FFF, // maxItemsInObjectGraph
                 false, // ignoreExtensionDataObject
                 true, // preserveObjectReferences
                 null // dataContractSurrogate
             );
-            FileStream fs = new FileStream(fileName, FileMode.Open);
+            FileStream fs = new FileStream(fileName, FileMode.Create);
             Console.WriteLine("Testing for type: {0}", typeof(XMLData));
             serializer.WriteObject(fs, xmlData);
             fs.Close();
