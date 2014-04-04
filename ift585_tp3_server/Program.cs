@@ -82,15 +82,20 @@ namespace ift585_tp3_server
             Data received = msg.Item2;
             Data response = new Data();
 
+            User user;
+            DiscussionRoom room;
+            User updatedUser;
+
             switch (received.Command)
             {
                 case Data.DataType.Login:
-                    User remoteUser = users.FirstOrDefault(x => x.UserName == received.Text && x.Password == received.Pass);
-                    if (remoteUser != null)
+                    user = users.FirstOrDefault(x => x.UserName == received.Text 
+                                                      && x.Password == (string)received.Other);
+                    if (user != null)
                     {
                         response.Command = Data.DataType.AcceptLogin;
-                        remoteUser.IsConnected = true;
-                        response.User = remoteUser;
+                        user.IsConnected = true;
+                        response.User = user;
                     }
                     else
                     {
@@ -102,34 +107,78 @@ namespace ift585_tp3_server
                     break;
 
                 case Data.DataType.SendMessage:
+                    user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
+                    room.MessageList.Add(received);
+                    room.LastModified = DateTime.Now;
+                    user.NumMessages++;
                     break;
 
-                case Data.DataType.GetMessages:
+                case Data.DataType.GetDiscussionRoom:
+                    response.Command = Data.DataType.GetDiscussionRoom;
+                    user = users.FirstOrDefault(x => x.UserName == received.Text);
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
+                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    if(room.LastModified > received.Date)
+                    {
+                        response.Other = room;
+                    }
                     break;
 
                 case Data.DataType.Like:
+                    user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
+                    user.LikeNum++;
                     break;
 
                 case Data.DataType.Dislike:
+                    user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
+                    user.DislikeNum++;
                     break;
 
                 case Data.DataType.ViewProfile:
+                    response.Command = Data.DataType.ViewProfile;
+                    response.Other = users.FirstOrDefault(x => x.UserName == received.Text);
                     break;
 
                 case Data.DataType.UpdateProfile:
+                    user = users.FirstOrDefault(x => x.UserName == received.Text);
+                    updatedUser = received.User;
+                    user.FirstName = updatedUser.FirstName;
+                    user.LastName = updatedUser.LastName;
+                    user.UserName = updatedUser.UserName;
+                    user.Avatar = updatedUser.Avatar;
                     break;
 
                 case Data.DataType.ListClientOnline:
                     response.Command = Data.DataType.ListClientOnline;
                     response.Other = users.Where(x => x.IsConnected).ToList();
                     break;
+
+                case Data.DataType.ListDiscussionRoom:
+                    response.Command = Data.DataType.ListDiscussionRoom;
+                    response.Other = rooms;
+                    break;
+
+                case Data.DataType.EnterRoom:
+                    response.Command = Data.DataType.EnterRoom;
+                    user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
+                    room = rooms.FirstOrDefault(x => x.Name == received.Text);
+                    room.ClientList.Add(user);
+                    response.Other = room;
+                    break;
+
+                case Data.DataType.AddRoom:
+                    room = (DiscussionRoom)received.Other;
+                    rooms.Add(room);
+                    break;
             }
 
-            // TODO (vincent) when you receive a request,
-            // react accordindly here
             Console.WriteLine("The server received : " + received.Text);
-            
-            server.Send(client, response);
+
+            if (response.Command != Data.DataType.Invalid)
+            {
+                server.Send(client, response);
+            }
 
             return 0;
         }

@@ -16,41 +16,22 @@ namespace ift585_tp3
     {
         User actualUser = null;
         DiscussionRoom actualRoom;
+        DateTime lastRefresh;
 
         public RoomForm(DiscussionRoom room, User user)
         {
+            lastRefresh = DateTime.Now;
             actualUser = user;
             actualRoom = room;
 
             InitializeComponent();
+        }
 
-            //Exemple ---
-            Data data1 = new Data();
-            Data data2 = new Data();
-            Data data3 = new Data();
-
-            data1.User = actualRoom.ClientList[0];
-            data1.Date = DateTime.Now;
-            data2.User = actualRoom.ClientList[0];
-            data2.Date = DateTime.Now;
-            data3.User = actualRoom.ClientList[0];
-            data3.Date = DateTime.Now;
-
-            data1.Text = "J'aime les tomates";
-            data2.Text = "I ain't gonna act politically correct. I only wanna have a good time. The best thing about being a woman. Is the prerogative to have a little fun";
-            data3.Text = "Oh, oh, oh, go totally crazy-forget I'm a lady. Men's shirts-short skirts. Oh, oh, oh, really go wild-yeah, doin' it in style. " +
-                         "Oh, oh, oh, get in the action-feel the attraction. Color my hair-do what I dare. Oh, oh, oh, I wanna be free-yeah, to feel the way I feel" +
-                         "Man! I feel like a woman!";
-
-            actualRoom.MessageList.Add(data1);
-            actualRoom.MessageList.Add(data2);
-            actualRoom.MessageList.Add(data3);
-            //Exemple---
-
-
+        private void RoomForm_Load(object sender, EventArgs e)
+        {
             this.discussionRoomBindingSource.DataSource = actualRoom;
             this.clientListBindingSource.DataSource = actualRoom.ClientList;
-
+            refreshTimer.Start();
         }
 
 
@@ -65,10 +46,12 @@ namespace ift585_tp3
             {
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
-                    // TODO GET CLIENT FROM SERVER
                     User selectedUser = listBoxUsers.SelectedItem as User;
-                    UserProfilForm profilForm = new UserProfilForm(selectedUser, true);
-                    profilForm.Show();
+                    Data viewProfileRequest = new Data();
+                    viewProfileRequest.Command = Data.DataType.ViewProfile;
+                    viewProfileRequest.Text = selectedUser.UserName;
+                    Program.callBackOnReceive.Enqueue(CallBackViewProfile);
+                    Program.client.Send(viewProfileRequest);
                 }
             }
         }
@@ -83,12 +66,13 @@ namespace ift585_tp3
             string text = textBoxMessage.Text.Trim();
             
             //Envoi au serveur
-            Data toSend = new Data();
-            toSend.Command = Data.DataType.SendMessage;
-            toSend.User = actualUser;
-            toSend.Date = DateTime.Now;
-            toSend.Text = text;
-            // TODO SEND!
+            Data messageSendRequest = new Data();
+            messageSendRequest.Command = Data.DataType.SendMessage;
+            messageSendRequest.User = actualUser;
+            messageSendRequest.Text = text;
+            Program.client.Send(messageSendRequest);
+
+            textBoxMessage.Clear();
         }
 
         /// <summary>
@@ -104,19 +88,17 @@ namespace ift585_tp3
 
                 if (dataGridViewMessage.CurrentCell.ColumnIndex == 3)
                 {
-                    Data toSend = new Data();
-                    toSend.Command = Data.DataType.Like;
-                    toSend.User = data.User;
-                    toSend.Num = 1;
-                    // TODO SEND!
+                    Data likeRequest = new Data();
+                    likeRequest.Command = Data.DataType.Like;
+                    likeRequest.User = data.User;
+                    Program.client.Send(likeRequest);
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 4)
                 {
-                    Data toSend = new Data();
-                    toSend.Command = Data.DataType.Dislike;
-                    toSend.User = data.User;
-                    toSend.Num = -1;
-                    // TODO SEND!
+                    Data dislikeRequest = new Data();
+                    dislikeRequest.Command = Data.DataType.Dislike;
+                    dislikeRequest.User = data.User;
+                    Program.client.Send(dislikeRequest);
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.User.UserName))
                 {
@@ -147,23 +129,16 @@ namespace ift585_tp3
                 dataGridView.Cursor = Cursors.Arrow;
         }
 
-        private void MessageRefresh()
-        {
-            // Receive from server
-            Data receive = new Data();
-            do
-            {
-                actualRoom.MessageList.Add(receive);
-            } while (receive.More);
-
-        }
 
         private void refreshTimer_Tick(object sender, EventArgs e)
         {
-            Data toSend = new Data();
-            toSend.Command = Data.DataType.GetMessages;
-            toSend.User = actualUser;
-            // TODO SEND TO SERVER
+            Data refreshRequest = new Data();
+            refreshRequest.Command = Data.DataType.GetDiscussionRoom;
+            refreshRequest.Text = actualUser.UserName;
+            refreshRequest.Date = lastRefresh;
+
+            Program.callBackOnReceive.Enqueue(CallBackRoomRefresh);
+            Program.client.Send(refreshRequest);
         }
 
         
@@ -194,6 +169,44 @@ namespace ift585_tp3
         private void RoomForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             actualRoom.ClientList.Remove(actualUser);
+        }
+
+        private int CallBackRoomRefresh(Data receive)
+        {
+            if (receive.Command == Data.DataType.GetDiscussionRoom)
+            {
+                DiscussionRoom room = (DiscussionRoom)receive.Other;
+                if (room != null)
+                {
+                    lastRefresh = DateTime.Now;
+                    actualRoom = room;
+                    this.Invoke((MethodInvoker)delegate() 
+                    {
+                        this.discussionRoomBindingSource.DataSource = actualRoom;
+                        this.clientListBindingSource.DataSource = actualRoom.ClientList;
+                    });
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
+        }
+
+        private int CallBackViewProfile(Data received)
+        {
+            if (received.Command == Data.DataType.ViewProfile)
+            {
+                User user = (User)received.Other;
+                UserProfilForm profilForm = new UserProfilForm(user, true);
+                this.Invoke((MethodInvoker)delegate() { profilForm.ShowDialog(); });
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
         }
     }
 }

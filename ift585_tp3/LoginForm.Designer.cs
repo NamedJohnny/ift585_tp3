@@ -87,6 +87,7 @@
             // buttonCancel
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.buttonCancel.Location = new System.Drawing.Point(246, 161);
             this.buttonCancel.Name = "buttonCancel";
@@ -124,6 +125,7 @@
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Authentification";
+            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

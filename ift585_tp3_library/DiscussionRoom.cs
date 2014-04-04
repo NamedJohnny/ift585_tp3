@@ -17,7 +17,7 @@ namespace ift585_tp3_library
         string description;
         List<User> clientList = new List<User>();
         List<Data> messageList = new List<Data>();
-        DateTime lastAdded;
+        DateTime lastModified;
         #endregion private properties
 
         #region public properties
@@ -62,10 +62,10 @@ namespace ift585_tp3_library
         /// Date dernier ajout
         /// </summary>
         [DataMember(Name = "dateTime", Order = 3)]
-        public DateTime LastAdded
+        public DateTime LastModified
         {
-            get { return lastAdded; }
-            set { lastAdded = value; }
+            get { return lastModified; }
+            set { lastModified = value; }
         }
 
         /// <summary>

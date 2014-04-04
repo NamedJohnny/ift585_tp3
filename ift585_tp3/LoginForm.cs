@@ -18,14 +18,19 @@ namespace ift585_tp3
             InitializeComponent();
         }
 
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = txtUsername;
+        }
+
         private void button_Login_Click(object sender, EventArgs e)
         {
             Data loginRequest = new Data();
             loginRequest.Command = Data.DataType.Login;
             loginRequest.Text = txtUsername.Text;
-            loginRequest.Pass = txtPassword.Text;
+            loginRequest.Other = txtPassword.Text;
 
-            Program.callBackOnReceive = CallBackOnLogin;
+            Program.callBackOnReceive.Enqueue(CallBackOnLogin);
             Program.client.Send(loginRequest);
         }
 

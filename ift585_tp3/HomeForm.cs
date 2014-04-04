@@ -16,7 +16,6 @@ namespace ift585_tp3
     {
         User actualClient = new User();
         RoomForm roomForm = null;
-        List<User> clientList;
 
         public HomeForm(User client)
         {
@@ -28,46 +27,29 @@ namespace ift585_tp3
             DisplayConnect(client.IsConnected);
 
             labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(!String.IsNullOrEmpty(client.Avatar) ? client.Avatar : "default");
+        }
 
-            //Exemple ---
+        private void HomeForm_Load(object sender, EventArgs e)
+        {
             //On va chercher la liste des Client
-            clientList = new List<User>();
-            
-            Data listUserRequest = new Data();
-            listUserRequest.Command = Data.DataType.ListClientOnline;
-            Program.callBackOnReceive = CallBackListClientOnline;
-            Program.client.Send(listUserRequest);
-            
-            User client1 = new User();
-            client1.UserName = "SteveJobsXXX";
-            User client2 = new User();
-            client2.UserName = "BillGates3";
-            User client3 = new User();
-            client3.UserName = "Mathilde";
-            /*clientList.Add(client1);
-            clientList.Add(client2);
-            clientList.Add(client3);*/
-            //Exemple ---
-
+            List<User> clientList = new List<User>();
             listBoxUsers.DataSource = clientList;
             listBoxUsers.DisplayMember = "UserName";
 
-            //Exemple ---
-            List<DiscussionRoom> roomList = new List<DiscussionRoom>();
-            //On va chercher la liste des salles de discussions
-            DiscussionRoom room1 = new DiscussionRoom();
-            room1.Name = "MyPrettyLittleRoom";
-            DiscussionRoom room2 = new DiscussionRoom();
-            room2.Name = "Come..WeHaveCandies";
-            roomList.Add(room1);
-            roomList.Add(room2);
-            room1.ClientList.Add(client1);
-            room1.ClientList.Add(client2);
-            room2.ClientList.Add(client3);
-            //Exemple ---
+            Data listUserRequest = new Data();
+            listUserRequest.Command = Data.DataType.ListClientOnline;
+            Program.callBackOnReceive.Enqueue(CallBackListClientOnline);
+            Program.client.Send(listUserRequest);
 
+            // On va chercher la liste des salles
+            List<DiscussionRoom> roomList = new List<DiscussionRoom>();
             listBoxChatRooms.DataSource = roomList;
             listBoxChatRooms.DisplayMember = "Name";
+
+            Data listRoomRequest = new Data();
+            listRoomRequest.Command = Data.DataType.ListDiscussionRoom;
+            Program.callBackOnReceive.Enqueue(CallBackListDiscussionRoom);
+            Program.client.Send(listRoomRequest);
         }
 
         /// <summary>
@@ -86,7 +68,6 @@ namespace ift585_tp3
                 labelConnected.Text = "DÉCONNECTÉ";
                 labelConnected.ForeColor = Color.Red;
             }
-
         }
 
         /// <summary>
@@ -96,14 +77,11 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonProfil_Click(object sender, EventArgs e)
         {
-            UserProfilForm profilForm = new UserProfilForm(actualClient, false);
-            if (profilForm.ShowDialog() == DialogResult.OK)
-            {
-                labelUserName.Text = actualClient.UserName;
-                labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(actualClient.Avatar);
-            }
-            else
-                actualClient = profilForm.oldClient;
+            Data viewProfileRequest = new Data();
+            viewProfileRequest.Command = Data.DataType.ViewProfile;
+            viewProfileRequest.Text = actualClient.UserName;
+            Program.callBackOnReceive.Enqueue(CallBackViewProfile);
+            Program.client.Send(viewProfileRequest);
         }
 
         /// <summary>
@@ -118,13 +96,12 @@ namespace ift585_tp3
                 if (listBoxChatRooms.SelectedItem.ToString().Length != 0)
                 {
                     DiscussionRoom selectedRoom = listBoxChatRooms.SelectedItem as DiscussionRoom;
-                    
-                    //Se connecter à la salle de discussion (donc on l,ajout a la salle)
-                    if(!selectedRoom.ClientList.Contains(actualClient))
-                        selectedRoom.ClientList.Add(actualClient);
-                    
-                    roomForm = new RoomForm(selectedRoom, actualClient);
-                    roomForm.Show();
+                    Data getRoomRequest = new Data();
+                    getRoomRequest.Command = Data.DataType.EnterRoom;
+                    getRoomRequest.User = actualClient;
+                    getRoomRequest.Text = selectedRoom.Name;
+                    Program.callBackOnReceive.Enqueue(CallBackEnterRoom);
+                    Program.client.Send(getRoomRequest);
                 }
             }
         }
@@ -141,8 +118,11 @@ namespace ift585_tp3
                 if (listBoxUsers.SelectedItem.ToString().Length != 0)
                 {
                     User selectedClient = listBoxUsers.SelectedItem as User;
-                    UserProfilForm profilForm = new UserProfilForm(selectedClient, true);
-                    profilForm.ShowDialog();
+                    Data viewProfileRequest = new Data();
+                    viewProfileRequest.Command = Data.DataType.ViewProfile;
+                    viewProfileRequest.Text = selectedClient.UserName;
+                    Program.callBackOnReceive.Enqueue(CallBackViewProfile);
+                    Program.client.Send(viewProfileRequest);
                 }
             }
         }
@@ -161,6 +141,11 @@ namespace ift585_tp3
                 listRoom.Add(addRoomForm.room);
                 listBoxChatRooms.DataSource = new List<DiscussionRoom>(listRoom);
                 listBoxChatRooms.DisplayMember = "Name";
+                Data addRoomRequest = new Data();
+                addRoomRequest.Command = Data.DataType.AddRoom;
+                addRoomRequest.Other = addRoomForm.room;
+                Program.client.Send(addRoomRequest);
+                // TODO VALIDATION!
             }
         }
 
@@ -180,18 +165,113 @@ namespace ift585_tp3
             this.Close();
             if (roomForm != null)
                 roomForm.Close();
+            // TODO SERVER STUFF
         }
 
         private int CallBackListClientOnline(Data received)
         {
             if (received.Command == Data.DataType.ListClientOnline)
             {
-                List<User> receivedList = (List<User>)received.Other;
-                foreach(User u in receivedList)
+                this.Invoke((MethodInvoker)delegate() 
+                { 
+                    listBoxUsers.DataSource = new List<User>((List<User>)received.Other); 
+                });
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
+        }
+
+        private int CallBackListDiscussionRoom(Data received)
+        {
+            if (received.Command == Data.DataType.ListDiscussionRoom)
+            {
+                this.Invoke((MethodInvoker)delegate() 
+                { 
+                    listBoxChatRooms.DataSource = new List<DiscussionRoom>((List<DiscussionRoom>)received.Other); 
+                });
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
+        }
+
+        private int CallBackEnterRoom(Data received)
+        {
+            if (received.Command == Data.DataType.EnterRoom)
+            {
+                DiscussionRoom room = (DiscussionRoom)received.Other;
+                if (room == null)
                 {
-                    clientList.Add(u);
+                    MessageBox.Show("Cet salle n'existe plus sous ce nom.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                //this.Invoke((MethodInvoker)delegate() { clientList = (List<User>)received.Other; });
+                else
+                {
+                    roomForm = new RoomForm(room, actualClient);
+                    this.Invoke((MethodInvoker)delegate() { roomForm.Show(); });
+                }
+
+                Data listRoomRequest = new Data();
+                listRoomRequest.Command = Data.DataType.ListDiscussionRoom;
+                Program.callBackOnReceive.Enqueue(CallBackListDiscussionRoom);
+                Program.client.Send(listRoomRequest);
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
+        }
+
+        private int CallBackViewProfile(Data received)
+        {
+            if (received.Command == Data.DataType.ViewProfile)
+            {
+                User user = (User)received.Other;
+                if (user == null)
+                {
+                    MessageBox.Show("Cet utilisateur n'existe plus sous ce nom.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    bool readOnly = user.UserName != actualClient.UserName;
+                    UserProfilForm profilForm = new UserProfilForm(user, readOnly);
+                    DialogResult result = DialogResult.None;
+                    this.Invoke((MethodInvoker)delegate() { result = profilForm.ShowDialog(); });
+
+                    if (!readOnly)
+                    {
+                        if (result == DialogResult.OK)
+                        {
+                            actualClient = user;
+
+                            Data updateProfilRequest = new Data();
+                            updateProfilRequest.Command = Data.DataType.UpdateProfile;
+                            updateProfilRequest.User = actualClient;
+                            updateProfilRequest.Text = profilForm.oldClient.UserName;
+                            Program.client.Send(updateProfilRequest);
+                        }
+                        else
+                        {
+                            actualClient = profilForm.oldClient;
+                        }
+
+                        this.Invoke((MethodInvoker)delegate()
+                        {
+                            labelUserName.Text = actualClient.UserName;
+                            labelAvatar.Image = (Bitmap)Resources.ResourceManager.GetObject(actualClient.Avatar);
+                        });
+                    }
+                }
+
+                Data listUserRequest = new Data();
+                listUserRequest.Command = Data.DataType.ListClientOnline;
+                Program.callBackOnReceive.Enqueue(CallBackListClientOnline);
+                Program.client.Send(listUserRequest);
             }
             else
             {

@@ -9,35 +9,35 @@ using System.Xml.Serialization;
 
 namespace ift585_tp3_library
 {
-    [SerializableAttribute] // remove?
+    [SerializableAttribute]
     public class Data
     {
 
-        #region private members
         public enum DataType
         {
             Invalid = 0,
             Login = 1,
             Logout = 2,
             SendMessage = 3,
-            GetMessages = 4,
+            GetDiscussionRoom = 4,
             Like = 5,
             Dislike = 6,
             ViewProfile = 7,
             UpdateProfile = 8,
             AcceptLogin = 9,
             DeclineLogin = 10,
-            ListClientOnline = 11
+            ListClientOnline = 11,
+            ListDiscussionRoom = 12,
+            EnterRoom = 13,
+            AddRoom = 14
         }
 
+        #region private members
         int id;
         DataType command;
         User user;
         DateTime date;
         string text;
-        int num;
-        bool more;
-        string pass;
         Object other;
         #endregion private members
 
@@ -46,9 +46,7 @@ namespace ift585_tp3_library
             command = DataType.Invalid;
             date = DateTime.Now;
             text = "";
-            num = 0;
-            more = false;
-            pass = "";
+            other = null;
         }
 
         #region public members
@@ -57,6 +55,12 @@ namespace ift585_tp3_library
         {
             get { return id; }
             set { id = value; }
+        }
+
+        public DataType Command
+        {
+            get { return command; }
+            set { command = value; }
         }
 
         public string Text
@@ -75,30 +79,6 @@ namespace ift585_tp3_library
         {
             get { return date; }
             set { date = value; }
-        }
-
-        public int Num
-        {
-            get { return num; }
-            set { num = value; }
-        }
-
-        public DataType Command
-        {
-            get { return command; }
-            set { command = value; }
-        }
-
-        public bool More
-        {
-            get { return more; }
-            set { more = value; }
-        }
-
-        public string Pass
-        {
-            get { return pass; }
-            set { pass = value; }
         }
 
         public Object Other

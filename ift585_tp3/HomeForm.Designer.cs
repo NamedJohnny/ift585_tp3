@@ -33,6 +33,7 @@
             this.listBoxChatRooms = new System.Windows.Forms.ListBox();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDisconnect = new System.Windows.Forms.Button();
             this.buttonAddRoom = new System.Windows.Forms.Button();
             this.labelConnected = new System.Windows.Forms.Label();
             this.labelUserName = new System.Windows.Forms.Label();
@@ -41,7 +42,6 @@
             this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonDisconnect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -111,6 +111,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(502, 114);
             this.panel1.TabIndex = 2;
+            // 
+            // buttonDisconnect
+            // 
+            this.buttonDisconnect.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.buttonDisconnect.Location = new System.Drawing.Point(131, 80);
+            this.buttonDisconnect.Name = "buttonDisconnect";
+            this.buttonDisconnect.Size = new System.Drawing.Size(118, 26);
+            this.buttonDisconnect.TabIndex = 7;
+            this.buttonDisconnect.Text = "Déconnexion";
+            this.buttonDisconnect.UseVisualStyleBackColor = true;
+            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
             // 
             // buttonAddRoom
             // 
@@ -193,17 +204,6 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Utilisateurs :";
             // 
-            // buttonDisconnect
-            // 
-            this.buttonDisconnect.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.buttonDisconnect.Location = new System.Drawing.Point(131, 80);
-            this.buttonDisconnect.Name = "buttonDisconnect";
-            this.buttonDisconnect.Size = new System.Drawing.Size(118, 26);
-            this.buttonDisconnect.TabIndex = 7;
-            this.buttonDisconnect.Text = "Déconnexion";
-            this.buttonDisconnect.UseVisualStyleBackColor = true;
-            this.buttonDisconnect.Click += new System.EventHandler(this.buttonDisconnect_Click);
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,6 +217,7 @@
             this.MaximizeBox = false;
             this.Name = "HomeForm";
             this.Text = "Windows Live Messenger";
+            this.Load += new System.EventHandler(this.HomeForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
