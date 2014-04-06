@@ -39,7 +39,7 @@ namespace ift585_tp3_server
             return xmlData;
         }
 
-        public void Add()
+        static public void Add()
         {
             //  Load data from DB (XML files)
             string fileName = "Data.xml";

@@ -13,10 +13,10 @@ namespace ift585_tp3_server
 {
     class Program
     {
-		const int PORT = 1337;
+        const int PORT = 1337;
 
-         static List<User> users = new List<User>();
-         static List<DiscussionRoom> rooms = new List<DiscussionRoom>();
+        static List<User> users = new List<User>();
+        static List<DiscussionRoom> rooms = new List<DiscussionRoom>();
 
         static TCPServer server;
 	
