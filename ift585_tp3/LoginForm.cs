@@ -46,16 +46,23 @@ namespace ift585_tp3
 
         private int CallBackOnLogin(Data received)
         {
-            if (received.Command == Data.DataType.AcceptLogin)
+            if (received.Command == Data.DataType.Login)
             {
-                this.Invoke((MethodInvoker)delegate() { this.Hide(); });
-                HomeForm homeForm = new HomeForm(received.User);
-                homeForm.ShowDialog();
-                this.Invoke((MethodInvoker)delegate() { this.Close(); });
+                if (received.Text == "ok")
+                {
+                    this.Invoke((MethodInvoker)delegate() { this.Hide(); });
+                    HomeForm homeForm = new HomeForm(received.User);
+                    homeForm.ShowDialog();
+                    this.Invoke((MethodInvoker)delegate() { this.Close(); });
+                }
+                else
+                {
+                    MessageBox.Show("Le pseudo ou le mot de passe est erroné.");
+                }
             }
             else
             {
-                MessageBox.Show("Le pseudo ou le mot de passe est erroné.");
+                MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }

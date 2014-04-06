@@ -34,7 +34,6 @@ namespace ift585_tp3
             refreshTimer.Start();
         }
 
-
         /// <summary>
         /// Double clique sur un utilisateur
         /// </summary>
@@ -70,6 +69,8 @@ namespace ift585_tp3
             messageSendRequest.Command = Data.DataType.SendMessage;
             messageSendRequest.User = actualUser;
             messageSendRequest.Text = text;
+    
+            actualRoom.MessageList.Add(messageSendRequest);
             Program.client.Send(messageSendRequest);
 
             textBoxMessage.Clear();
@@ -168,7 +169,11 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void RoomForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            actualRoom.ClientList.Remove(actualUser);
+            Data leaveRoomRequest = new Data();
+            leaveRoomRequest.Command = Data.DataType.LeaveRoom;
+            leaveRoomRequest.Text = actualUser.UserName;
+
+            Program.client.Send(leaveRoomRequest);
         }
 
         private int CallBackRoomRefresh(Data receive)

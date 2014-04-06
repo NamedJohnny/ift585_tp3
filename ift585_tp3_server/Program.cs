@@ -61,7 +61,7 @@ namespace ift585_tp3_server
             {
                 while (!Console.KeyAvailable)
                 {
-                    // TODO What?
+                    // Boucle d'attente de <ESC>
 
                 }
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
@@ -89,17 +89,18 @@ namespace ift585_tp3_server
             switch (received.Command)
             {
                 case Data.DataType.Login:
+                    response.Command = Data.DataType.Login;
                     user = users.FirstOrDefault(x => x.UserName == received.Text 
                                                       && x.Password == (string)received.Other);
                     if (user != null)
                     {
-                        response.Command = Data.DataType.AcceptLogin;
+                        response.Text = "ok";
                         user.IsConnected = true;
                         response.User = user;
                     }
                     else
                     {
-                        response.Command = Data.DataType.DeclineLogin;
+                        response.Text = "reject";
                     }
                     break;
 
@@ -141,12 +142,22 @@ namespace ift585_tp3_server
                     break;
 
                 case Data.DataType.UpdateProfile:
+                    response.Command = Data.DataType.UpdateProfile;
                     user = users.FirstOrDefault(x => x.UserName == received.Text);
                     updatedUser = received.User;
-                    user.FirstName = updatedUser.FirstName;
-                    user.LastName = updatedUser.LastName;
-                    user.UserName = updatedUser.UserName;
-                    user.Avatar = updatedUser.Avatar;
+                    if (user.UserName != updatedUser.UserName
+                        && users.Any(x => x.UserName == updatedUser.UserName))
+                    {
+                        response.Text = "reject";
+                    }
+                    else
+                    {
+                        user.FirstName = updatedUser.FirstName;
+                        user.LastName = updatedUser.LastName;
+                        user.UserName = updatedUser.UserName;
+                        user.Avatar = updatedUser.Avatar;
+                        response.Text = "ok";
+                    }
                     break;
 
                 case Data.DataType.ListClientOnline:
@@ -168,8 +179,25 @@ namespace ift585_tp3_server
                     break;
 
                 case Data.DataType.AddRoom:
+                    response.Command = Data.DataType.AddRoom;
                     room = (DiscussionRoom)received.Other;
-                    rooms.Add(room);
+                    if (rooms.Any(x => x.Name == room.Name))
+                    {
+                        response.Text = "reject";
+                    }
+                    else
+                    {
+                        response.Text = "ok";
+                        rooms.Add(room);
+                    }
+                    break;
+
+                case Data.DataType.LeaveRoom:
+                    user = users.FirstOrDefault(x => x.UserName == received.Text);
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
+                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    room.ClientList.Remove(user);
+                    room.LastModified = DateTime.Now;
                     break;
             }
 

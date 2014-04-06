@@ -141,11 +141,7 @@ namespace ift585_tp3
                 listRoom.Add(addRoomForm.room);
                 listBoxChatRooms.DataSource = new List<DiscussionRoom>(listRoom);
                 listBoxChatRooms.DisplayMember = "Name";
-                Data addRoomRequest = new Data();
-                addRoomRequest.Command = Data.DataType.AddRoom;
-                addRoomRequest.Other = addRoomForm.room;
-                Program.client.Send(addRoomRequest);
-                // TODO VALIDATION!
+
             }
         }
 
@@ -248,12 +244,6 @@ namespace ift585_tp3
                         if (result == DialogResult.OK)
                         {
                             actualClient = user;
-
-                            Data updateProfilRequest = new Data();
-                            updateProfilRequest.Command = Data.DataType.UpdateProfile;
-                            updateProfilRequest.User = actualClient;
-                            updateProfilRequest.Text = profilForm.oldClient.UserName;
-                            Program.client.Send(updateProfilRequest);
                         }
                         else
                         {

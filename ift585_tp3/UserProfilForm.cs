@@ -91,15 +91,18 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonConfirm_Click(object sender, EventArgs e)
         {
-            //***Vérifier si le nom d'utilisateur n'existe pas déja
             if (!String.IsNullOrEmpty(textBoxUserName.Text))
             {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
+                Data updateProfilRequest = new Data();
+                updateProfilRequest.Command = Data.DataType.UpdateProfile;
+                updateProfilRequest.User = this.ActualClient;
+                updateProfilRequest.Text = oldClient.UserName;
+                Program.callBackOnReceive.Enqueue(CallBackUpdateProfil);
+                Program.client.Send(updateProfilRequest);
             }
             else
             {
-                MessageBox.Show("Le nom d'utilisateur est déjà pris ou invalide","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Le nom d'utilisateur ne doit pas être vide.","Erreur",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 
@@ -111,6 +114,31 @@ namespace ift585_tp3
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private int CallBackUpdateProfil(Data received)
+        {
+            if (received.Command == Data.DataType.UpdateProfile)
+            {
+                if (received.Text == "ok")
+                {
+                    this.Invoke((MethodInvoker)delegate()
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        this.Close();
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Le nom d'utilisateur est déjà prit.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Invoke((MethodInvoker)delegate() { this.textBoxUserName.Text = oldClient.UserName; });
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
         }
     }
 }

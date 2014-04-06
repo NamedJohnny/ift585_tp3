@@ -33,13 +33,15 @@ namespace ift585_tp3
 
             if (String.IsNullOrEmpty(room.Name + room.Description))
             {
-                MessageBox.Show("Il est nécessaire d'avoir un nom et une description", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Il est nécessaire d'avoir un nom et une description.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-
-            this.Close();
+            Data addRoomRequest = new Data();
+            addRoomRequest.Command = Data.DataType.AddRoom;
+            addRoomRequest.Other = room;
+            Program.callBackOnReceive.Enqueue(CallBackAddRoom);
+            Program.client.Send(addRoomRequest);
         }
 
         /// <summary>
@@ -52,6 +54,28 @@ namespace ift585_tp3
             this.Close();
         }
 
-
+        private int CallBackAddRoom(Data received)
+        {
+            if (received.Command == Data.DataType.AddRoom)
+            {
+                if (received.Text == "ok")
+                {
+                    this.Invoke((MethodInvoker)delegate() 
+                    {
+                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                        this.Close();
+                    });
+                }
+                else
+                {
+                    MessageBox.Show("Une salle existe déjà avec ce nom.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("ERROR!!!.");
+            }
+            return 0;
+        }
     }
 }

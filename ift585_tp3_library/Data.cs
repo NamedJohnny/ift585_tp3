@@ -24,12 +24,11 @@ namespace ift585_tp3_library
             Dislike = 6,
             ViewProfile = 7,
             UpdateProfile = 8,
-            AcceptLogin = 9,
-            DeclineLogin = 10,
-            ListClientOnline = 11,
-            ListDiscussionRoom = 12,
-            EnterRoom = 13,
-            AddRoom = 14
+            ListClientOnline = 9,
+            ListDiscussionRoom = 10,
+            EnterRoom = 11,
+            AddRoom = 12,
+            LeaveRoom = 13
         }
 
         #region private members
