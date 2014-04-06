@@ -140,7 +140,6 @@ namespace ift585_tp3
                 listRoom.Add(addRoomForm.room);
                 listBoxChatRooms.DataSource = new List<DiscussionRoom>(listRoom);
                 listBoxChatRooms.DisplayMember = "Name";
-
             }
         }
 
@@ -151,17 +150,37 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
-            actualClient.IsConnected = false;
-            this.Hide();
-            if(roomForm!=null)
-                roomForm.Hide();
-            LoginForm homeForm = new LoginForm();
-            homeForm.ShowDialog();
-            this.Close();
-            if (roomForm != null)
-                roomForm.Close();
-            // TODO SERVER STUFF
+            Data disconnectRequest = new Data();
+            disconnectRequest.Command = Data.DataType.Logout;
+            disconnectRequest.Text = actualClient.UserName;
+            Program.callBackOnReceive.Enqueue(CallBackDisconnect);
+            Program.client.Send(disconnectRequest);
         }
+
+        private int CallBackDisconnect(Data received)
+        {
+            if (received.Command == Data.DataType.Logout)
+            {
+                this.Invoke((MethodInvoker)delegate()
+                {
+                    actualClient.IsConnected = false;
+                    this.Hide();
+                    if (roomForm != null)
+                        roomForm.Hide();
+                    LoginForm homeForm = new LoginForm();
+                    homeForm.ShowDialog();
+                    this.Close();
+                    if (roomForm != null)
+                        roomForm.Close();
+                });
+            }
+            else
+            {
+                MessageBox.Show("Disconnect callback error!");
+            }
+            return 0;
+        }
+
 
         private int CallBackListClient(Data received)
         {

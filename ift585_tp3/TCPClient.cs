@@ -43,5 +43,11 @@ namespace ift585_tp3
             // Begin sending the data to the remote device.
             client.Client.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(SendCallback), client.Client);
         }
+
+        public void Close()
+        {
+            client.GetStream().Close();
+            client.Close();
+        }
     }
 }

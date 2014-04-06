@@ -17,13 +17,11 @@ namespace ift585_tp3
     {
         protected TcpListener listener;
 
-        protected List<Client> clients;
-
         //protected Func<string, int> Receive;
 
         public TCPServer(int port, Func<Tuple<Socket, Data>, int> receive) : base (receive)
         {
-            clients = new List<Client>();
+            //clients = new List<Client>();
 
             listener = new TcpListener(IPAddress.Any, port);
             listener.Start();
@@ -34,7 +32,7 @@ namespace ift585_tp3
         {
             TcpClient tcpClient = listener.EndAcceptTcpClient(result);
             Console.WriteLine("Client connected.");
-            clients.Add(new Client(tcpClient));
+            //clients.Add(new Client(tcpClient));
             BeginReceive(tcpClient.Client);
             listener.BeginAcceptTcpClient(ClientConnectedCallback, null);
         }
@@ -50,12 +48,12 @@ namespace ift585_tp3
             socket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(this.SendCallback), socket);
         }
 
-        public void Broadcast(Data msg)
-        {
-            foreach (Client client in clients)
-            {
-                Send(client.socket.Client, msg);
-            }
-        }
+        //public void Broadcast(Data msg)
+        //{
+        //    foreach (Client client in clients)
+        //    {
+        //        Send(client.socket.Client, msg);
+        //    }
+        //}
     }
 }

@@ -49,3 +49,6 @@ ift585_tp3_server/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.suo
 ift585_tp3_server/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.suo
+*.xml
+ift585_tp3_server/bin/Debug/Data.xml
+*.suo

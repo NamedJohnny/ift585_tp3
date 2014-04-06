@@ -27,6 +27,9 @@ namespace ift585_tp3
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+
+            // When closing application
+            client.Close();
         }
 
         static int ReceiveCallback(Tuple<Socket, Data> msg)
