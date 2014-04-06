@@ -27,10 +27,11 @@ namespace ift585_tp3_server
 
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("Ftecthing data...");
+            Console.Write("Fetching data...");
             //XMLDatabase db = new XMLDatabase();
             //Pour ajouter de nouveau clients/salles
             //db.Add();
+            //XMLDatabase.Add();
             XMLData xmlData = XMLDatabase.Load();
           
             foreach (DiscussionRoom room in xmlData.rooms)
@@ -94,8 +95,8 @@ namespace ift585_tp3_server
                                                       && x.Password == (string)received.Other);
                     if (user != null)
                     {
-                        response.Text = "ok";
                         user.IsConnected = true;
+                        response.Text = "ok";
                         response.User = user;
                     }
                     else
@@ -105,6 +106,21 @@ namespace ift585_tp3_server
                     break;
 
                 case Data.DataType.Logout:
+                    response.Command = Data.DataType.Logout;
+                    user = users.FirstOrDefault(x => x.UserName == received.Text);
+                    if (user != null)
+                    {
+                        foreach (DiscussionRoom r in rooms)
+                            if (r.ClientList.Contains(user))
+                                r.ClientList.Remove(user);
+                        user.IsConnected = false;
+                        response.Text = "ok";
+                        response.User = user;
+                    }
+                    else
+                    {
+                        response.Text = "reject";
+                    }
                     break;
 
                 case Data.DataType.SendMessage:

@@ -64,7 +64,17 @@ namespace ift585_tp3_library
                 // Append to already part of the msg that are already received
                 state.received.AddRange(state.buffer);
 
-                if (bytesRead < SocketState.BufferSize)
+                if (bytesRead == 0)
+                {
+                    // Nothing
+                }
+                else if (bytesRead >= SocketState.BufferSize)
+                {
+                    // There are bytes remaining to read
+                    // Get the rest of the data.
+                    client.BeginReceive(state.buffer, 0, SocketState.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);    
+                }
+                else // byte between 0 and SocketState.BufferSize
                 {
                     // All bytes received
                     byte[] dataBytes = state.received.ToArray();
@@ -76,12 +86,6 @@ namespace ift585_tp3_library
 
                     // Restart receiving other msg
                     BeginReceive(client);
-                }
-                else
-                {
-                    // There are bytes remaining to read
-                    // Get the rest of the data.
-                    client.BeginReceive(state.buffer, 0, SocketState.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                 }
             }
             catch (Exception e)
