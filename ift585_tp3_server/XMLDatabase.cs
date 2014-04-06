@@ -43,11 +43,11 @@ namespace ift585_tp3_server
         {
             //  Load data from DB (XML files)
             string fileName = "Data.xml";
-            if (!File.Exists(fileName))
+            if (File.Exists(fileName))
             {
-                File.Create(fileName);
+                File.Delete(fileName);
             }
-            FileStream fs = new FileStream(fileName, FileMode.Open);
+            FileStream fs = new FileStream(fileName, FileMode.Create);
             User user1 = new User();
             User user2 = new User();
             User user3 = new User();
@@ -122,26 +122,16 @@ namespace ift585_tp3_server
             room1.Id = 1;
             room1.Name = "Salle1";
             room1.Description = "Premiere salle de discussion dans le monde!";
-            room1.ClientList.Add(user5);
-            room1.ClientList.Add(user6);
+
 
             room2.Id = 2;
             room2.Name = "Salle2";
             room2.Description = "Deuxieme salle de discussion dans le monde!";
-            room2.ClientList.Add(user1);
-            room2.ClientList.Add(user2);
-            room2.ClientList.Add(user3);
-            room2.ClientList.Add(user4);
+
 
             room3.Id = 3;
             room3.Name = "Salle3";
             room3.Description = "Troisieme salle de discussion dans le monde!";
-            room3.ClientList.Add(user1);
-            room3.ClientList.Add(user2);
-            room3.ClientList.Add(user3);
-            room3.ClientList.Add(user4);
-            room3.ClientList.Add(user5);
-            room3.ClientList.Add(user6);
 
             List<DiscussionRoom> rooms = new List<DiscussionRoom>();
             rooms.Add(room1);
@@ -175,10 +165,10 @@ namespace ift585_tp3_server
             // Sauvegarde en XML les salles de discussions et les utilisateurs
             // TODO Getter les données du moment et les enregistrer
             string fileName = "Data.xml";
-            //if (!File.Exists(fileName))
-            //{
-            //    File.Create(fileName);
-            //}
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
             DataContractSerializer serializer = new DataContractSerializer(xmlData.GetType(), null,
                 0x7FFF, // maxItemsInObjectGraph
                 false, // ignoreExtensionDataObject
