@@ -29,6 +29,7 @@ namespace ift585_tp3
 
         private void RoomForm_Load(object sender, EventArgs e)
         {
+            dataGridViewMessage.AutoGenerateColumns = false;
             textBoxMessage.Focus();
             this.discussionRoomBindingSource.DataSource = actualRoom;
             this.clientListBindingSource.DataSource = actualRoom.ClientList;

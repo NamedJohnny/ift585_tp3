@@ -239,7 +239,7 @@
             this.ColumnMessage.HeaderText = "Message";
             this.ColumnMessage.Name = "ColumnMessage";
             this.ColumnMessage.ReadOnly = true;
-            this.ColumnMessage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnMessage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // Like
             // 
