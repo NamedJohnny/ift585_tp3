@@ -29,6 +29,7 @@ namespace ift585_tp3
 
         private void RoomForm_Load(object sender, EventArgs e)
         {
+            textBoxMessage.Focus();
             this.discussionRoomBindingSource.DataSource = actualRoom;
             this.clientListBindingSource.DataSource = actualRoom.ClientList;
             refreshTimer.Start();
@@ -70,7 +71,6 @@ namespace ift585_tp3
             messageSendRequest.User = actualUser;
             messageSendRequest.Text = text;
     
-            actualRoom.MessageList.Add(messageSendRequest);
             Program.client.Send(messageSendRequest);
 
             textBoxMessage.Clear();
@@ -89,6 +89,7 @@ namespace ift585_tp3
 
                 if (dataGridViewMessage.CurrentCell.ColumnIndex == 3)
                 {
+                    MessageBox.Show("Vous avez indiqué votre appréciation pour ce message.");
                     Data likeRequest = new Data();
                     likeRequest.Command = Data.DataType.Like;
                     likeRequest.User = data.User;
@@ -96,6 +97,9 @@ namespace ift585_tp3
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 4)
                 {
+                    MessageBox.Show("Vous avez indiqué votre mécontentement pour ce message.");
+                    dataGridViewMessage.CurrentCell.Style.BackColor = Color.Red;
+                    dataGridViewMessage.Refresh();
                     Data dislikeRequest = new Data();
                     dislikeRequest.Command = Data.DataType.Dislike;
                     dislikeRequest.User = data.User;
@@ -103,6 +107,12 @@ namespace ift585_tp3
                 }
                 else if (dataGridViewMessage.CurrentCell.ColumnIndex == 5 && (actualUser.UserName == data.User.UserName))
                 {
+                    Data deleteMessageRequest = new Data();
+                    deleteMessageRequest.Command = Data.DataType.DeleteMessage;
+                    deleteMessageRequest.Text = actualUser.UserName;
+                    deleteMessageRequest.Other = data.Id;
+                    Program.client.Send(deleteMessageRequest);
+
                     dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
                     dataGridViewMessage.Cursor = Cursors.Arrow;
                 }

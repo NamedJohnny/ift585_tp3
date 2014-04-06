@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.clientListBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -40,9 +41,15 @@
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LikeNum = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DislikeNum = new System.Windows.Forms.DataGridViewImageColumn();
-            this.DeleteColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Like = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Dislike = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.commandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,12 +57,6 @@
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.otherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientUserNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -128,18 +129,18 @@
             this.dataGridViewMessage.AllowUserToResizeColumns = false;
             this.dataGridViewMessage.AllowUserToResizeRows = false;
             this.dataGridViewMessage.AutoGenerateColumns = false;
+            this.dataGridViewMessage.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridViewMessage.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewMessage.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewMessage.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dataGridViewMessage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMessage.ColumnHeadersVisible = false;
             this.dataGridViewMessage.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Date,
             this.Client,
             this.ColumnMessage,
-            this.LikeNum,
-            this.DislikeNum,
-            this.DeleteColumn,
+            this.Like,
+            this.Dislike,
+            this.Delete,
             this.idDataGridViewTextBoxColumn,
             this.commandDataGridViewTextBoxColumn,
             this.textDataGridViewTextBoxColumn,
@@ -148,17 +149,20 @@
             this.otherDataGridViewTextBoxColumn,
             this.clientUserNameDataGridViewTextBoxColumn});
             this.dataGridViewMessage.DataSource = this.messageListBindingSource;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewMessage.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewMessage.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewMessage.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewMessage.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewMessage.MultiSelect = false;
             this.dataGridViewMessage.Name = "dataGridViewMessage";
+            this.dataGridViewMessage.ReadOnly = true;
             this.dataGridViewMessage.RowHeadersVisible = false;
             this.dataGridViewMessage.Size = new System.Drawing.Size(562, 296);
             this.dataGridViewMessage.TabIndex = 0;
@@ -168,93 +172,63 @@
             // 
             // Date
             // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Date.DataPropertyName = "Date";
-            dataGridViewCellStyle13.NullValue = "0000-00-00";
-            this.Date.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.NullValue = "0000-00-00";
+            this.Date.DefaultCellStyle = dataGridViewCellStyle1;
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
+            this.Date.Width = 55;
             // 
             // Client
             // 
+            this.Client.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Client.DataPropertyName = "ClientUserName";
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Client.DefaultCellStyle = dataGridViewCellStyle2;
             this.Client.HeaderText = "Client";
             this.Client.Name = "Client";
             this.Client.ReadOnly = true;
+            this.Client.Width = 58;
             // 
             // ColumnMessage
             // 
+            this.ColumnMessage.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnMessage.DataPropertyName = "Text";
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnMessage.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnMessage.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnMessage.HeaderText = "Message";
             this.ColumnMessage.Name = "ColumnMessage";
             this.ColumnMessage.ReadOnly = true;
-            this.ColumnMessage.Width = 700;
+            this.ColumnMessage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // LikeNum
+            // Like
             // 
-            this.LikeNum.HeaderText = "LikeNum";
-            this.LikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
-            this.LikeNum.Name = "LikeNum";
-            this.LikeNum.Width = 24;
+            this.Like.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Like.HeaderText = "Aime";
+            this.Like.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
+            this.Like.Name = "Like";
+            this.Like.ReadOnly = true;
+            this.Like.Width = 36;
             // 
-            // DislikeNum
+            // Dislike
             // 
-            this.DislikeNum.HeaderText = "DislikeNum";
-            this.DislikeNum.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
-            this.DislikeNum.Name = "DislikeNum";
-            this.DislikeNum.Width = 24;
+            this.Dislike.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Dislike.HeaderText = "N\'aime pas";
+            this.Dislike.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
+            this.Dislike.Name = "Dislike";
+            this.Dislike.ReadOnly = true;
+            this.Dislike.Width = 65;
             // 
-            // DeleteColumn
+            // Delete
             // 
-            this.DeleteColumn.HeaderText = "Delete";
-            this.DeleteColumn.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
-            this.DeleteColumn.Name = "DeleteColumn";
-            this.DeleteColumn.Width = 24;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // commandDataGridViewTextBoxColumn
-            // 
-            this.commandDataGridViewTextBoxColumn.DataPropertyName = "Command";
-            this.commandDataGridViewTextBoxColumn.HeaderText = "Command";
-            this.commandDataGridViewTextBoxColumn.Name = "commandDataGridViewTextBoxColumn";
-            // 
-            // textDataGridViewTextBoxColumn
-            // 
-            this.textDataGridViewTextBoxColumn.DataPropertyName = "Text";
-            this.textDataGridViewTextBoxColumn.HeaderText = "Text";
-            this.textDataGridViewTextBoxColumn.Name = "textDataGridViewTextBoxColumn";
-            // 
-            // userDataGridViewTextBoxColumn
-            // 
-            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
-            this.userDataGridViewTextBoxColumn.HeaderText = "User";
-            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // otherDataGridViewTextBoxColumn
-            // 
-            this.otherDataGridViewTextBoxColumn.DataPropertyName = "Other";
-            this.otherDataGridViewTextBoxColumn.HeaderText = "Other";
-            this.otherDataGridViewTextBoxColumn.Name = "otherDataGridViewTextBoxColumn";
-            // 
-            // clientUserNameDataGridViewTextBoxColumn
-            // 
-            this.clientUserNameDataGridViewTextBoxColumn.DataPropertyName = "ClientUserName";
-            this.clientUserNameDataGridViewTextBoxColumn.HeaderText = "ClientUserName";
-            this.clientUserNameDataGridViewTextBoxColumn.Name = "clientUserNameDataGridViewTextBoxColumn";
-            this.clientUserNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.Delete.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Delete.HeaderText = "Supprimer";
+            this.Delete.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
+            this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
+            this.Delete.Width = 60;
             // 
             // messageListBindingSource
             // 
@@ -298,18 +272,75 @@
             this.buttonSend.Location = new System.Drawing.Point(0, 0);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(153, 96);
-            this.buttonSend.TabIndex = 1;
+            this.buttonSend.TabIndex = 0;
             this.buttonSend.Text = "Envoyer";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
             // 
             // refreshTimer
             // 
-            this.refreshTimer.Interval = 10000;
+            this.refreshTimer.Interval = 2000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 41;
+            // 
+            // commandDataGridViewTextBoxColumn
+            // 
+            this.commandDataGridViewTextBoxColumn.DataPropertyName = "Command";
+            this.commandDataGridViewTextBoxColumn.HeaderText = "Command";
+            this.commandDataGridViewTextBoxColumn.Name = "commandDataGridViewTextBoxColumn";
+            this.commandDataGridViewTextBoxColumn.ReadOnly = true;
+            this.commandDataGridViewTextBoxColumn.Width = 79;
+            // 
+            // textDataGridViewTextBoxColumn
+            // 
+            this.textDataGridViewTextBoxColumn.DataPropertyName = "Text";
+            this.textDataGridViewTextBoxColumn.HeaderText = "Text";
+            this.textDataGridViewTextBoxColumn.Name = "textDataGridViewTextBoxColumn";
+            this.textDataGridViewTextBoxColumn.ReadOnly = true;
+            this.textDataGridViewTextBoxColumn.Width = 53;
+            // 
+            // userDataGridViewTextBoxColumn
+            // 
+            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
+            this.userDataGridViewTextBoxColumn.HeaderText = "User";
+            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
+            this.userDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateDataGridViewTextBoxColumn.Width = 55;
+            // 
+            // otherDataGridViewTextBoxColumn
+            // 
+            this.otherDataGridViewTextBoxColumn.DataPropertyName = "Other";
+            this.otherDataGridViewTextBoxColumn.HeaderText = "Other";
+            this.otherDataGridViewTextBoxColumn.Name = "otherDataGridViewTextBoxColumn";
+            this.otherDataGridViewTextBoxColumn.ReadOnly = true;
+            this.otherDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // clientUserNameDataGridViewTextBoxColumn
+            // 
+            this.clientUserNameDataGridViewTextBoxColumn.DataPropertyName = "ClientUserName";
+            this.clientUserNameDataGridViewTextBoxColumn.HeaderText = "ClientUserName";
+            this.clientUserNameDataGridViewTextBoxColumn.Name = "clientUserNameDataGridViewTextBoxColumn";
+            this.clientUserNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.clientUserNameDataGridViewTextBoxColumn.Width = 108;
             // 
             // RoomForm
             // 
+            this.AcceptButton = this.buttonSend;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 396);
@@ -355,9 +386,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
         private System.Windows.Forms.DataGridViewTextBoxColumn Client;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMessage;
-        private System.Windows.Forms.DataGridViewImageColumn LikeNum;
-        private System.Windows.Forms.DataGridViewImageColumn DislikeNum;
-        private System.Windows.Forms.DataGridViewImageColumn DeleteColumn;
+        private System.Windows.Forms.DataGridViewImageColumn Like;
+        private System.Windows.Forms.DataGridViewImageColumn Dislike;
+        private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn commandDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;

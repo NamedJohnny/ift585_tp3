@@ -155,6 +155,11 @@ namespace ift585_tp3_library
         }
         #endregion public methods
 
+        public override string ToString()
+        {
+            return userName + (IsConnected ? " - En ligne" : " - Hors ligne");
+        }
+
         
     }
 }

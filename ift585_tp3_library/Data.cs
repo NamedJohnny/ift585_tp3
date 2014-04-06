@@ -12,7 +12,7 @@ namespace ift585_tp3_library
     [SerializableAttribute]
     public class Data
     {
-
+        static int currentId = 0;
         public enum DataType
         {
             Invalid = 0,
@@ -24,11 +24,12 @@ namespace ift585_tp3_library
             Dislike = 6,
             ViewProfile = 7,
             UpdateProfile = 8,
-            ListClientOnline = 9,
+            ListClient = 9,
             ListDiscussionRoom = 10,
             EnterRoom = 11,
             AddRoom = 12,
-            LeaveRoom = 13
+            LeaveRoom = 13,
+            DeleteMessage = 14
         }
 
         #region private members
@@ -42,6 +43,7 @@ namespace ift585_tp3_library
 
         public Data()
         {
+            id = currentId++;
             command = DataType.Invalid;
             date = DateTime.Now;
             text = "";

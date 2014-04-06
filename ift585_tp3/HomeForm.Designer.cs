@@ -56,7 +56,7 @@
             this.label1.Location = new System.Drawing.Point(128, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 17);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Usager : ";
             // 
             // splitContainer1
@@ -142,7 +142,7 @@
             this.labelConnected.Location = new System.Drawing.Point(164, 48);
             this.labelConnected.Name = "labelConnected";
             this.labelConnected.Size = new System.Drawing.Size(76, 17);
-            this.labelConnected.TabIndex = 5;
+            this.labelConnected.TabIndex = 4;
             this.labelConnected.Text = "CONNECTÉ";
             // 
             // labelUserName
@@ -152,7 +152,7 @@
             this.labelUserName.Location = new System.Drawing.Point(182, 20);
             this.labelUserName.Name = "labelUserName";
             this.labelUserName.Size = new System.Drawing.Size(49, 17);
-            this.labelUserName.TabIndex = 4;
+            this.labelUserName.TabIndex = 2;
             this.labelUserName.Text = "Default";
             // 
             // label5
@@ -171,7 +171,7 @@
             this.labelAvatar.Location = new System.Drawing.Point(12, 9);
             this.labelAvatar.Name = "labelAvatar";
             this.labelAvatar.Size = new System.Drawing.Size(100, 97);
-            this.labelAvatar.TabIndex = 2;
+            this.labelAvatar.TabIndex = 0;
             // 
             // buttonProfil
             // 
@@ -179,7 +179,7 @@
             this.buttonProfil.Location = new System.Drawing.Point(356, 12);
             this.buttonProfil.Name = "buttonProfil";
             this.buttonProfil.Size = new System.Drawing.Size(123, 38);
-            this.buttonProfil.TabIndex = 1;
+            this.buttonProfil.TabIndex = 5;
             this.buttonProfil.Text = "Profil";
             this.buttonProfil.UseVisualStyleBackColor = true;
             this.buttonProfil.Click += new System.EventHandler(this.buttonProfil_Click);
@@ -191,7 +191,7 @@
             this.label3.Location = new System.Drawing.Point(12, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(137, 17);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Salles de discussions :";
             // 
             // label4
@@ -201,7 +201,7 @@
             this.label4.Location = new System.Drawing.Point(232, 121);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 17);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 1;
             this.label4.Text = "Utilisateurs :";
             // 
             // HomeForm

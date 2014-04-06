@@ -27,10 +27,8 @@ namespace ift585_tp3_server
 
             //================================
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("Ftecthing data...");
-            //XMLDatabase db = new XMLDatabase();
-            //Pour ajouter de nouveau clients/salles
-            //db.Add();
+            Console.Write("Fetcthing data...");
+            //XMLDatabase.Add(); // Uncomment to reset XML (Debug purpose)
             XMLData xmlData = XMLDatabase.Load();
           
             foreach (DiscussionRoom room in xmlData.rooms)
@@ -160,9 +158,9 @@ namespace ift585_tp3_server
                     }
                     break;
 
-                case Data.DataType.ListClientOnline:
-                    response.Command = Data.DataType.ListClientOnline;
-                    response.Other = users.Where(x => x.IsConnected).ToList();
+                case Data.DataType.ListClient:
+                    response.Command = Data.DataType.ListClient;
+                    response.Other = users;
                     break;
 
                 case Data.DataType.ListDiscussionRoom:
@@ -176,6 +174,7 @@ namespace ift585_tp3_server
                     room = rooms.FirstOrDefault(x => x.Name == received.Text);
                     room.ClientList.Add(user);
                     response.Other = room;
+                    room.LastModified = DateTime.Now;
                     break;
 
                 case Data.DataType.AddRoom:
@@ -197,6 +196,14 @@ namespace ift585_tp3_server
                     room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
                     // TODO Temp IsConnected to get the right room, since some have DC people.
                     room.ClientList.Remove(user);
+                    room.LastModified = DateTime.Now;
+                    break;
+
+                case Data.DataType.DeleteMessage:
+                    user = users.FirstOrDefault(x => x.UserName == received.Text);
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
+                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    room.MessageList.RemoveAll(x => x.Id == (int)received.Other);
                     room.LastModified = DateTime.Now;
                     break;
             }

@@ -34,11 +34,10 @@ namespace ift585_tp3
             //On va chercher la liste des Client
             List<User> clientList = new List<User>();
             listBoxUsers.DataSource = clientList;
-            listBoxUsers.DisplayMember = "UserName";
 
             Data listUserRequest = new Data();
-            listUserRequest.Command = Data.DataType.ListClientOnline;
-            Program.callBackOnReceive.Enqueue(CallBackListClientOnline);
+            listUserRequest.Command = Data.DataType.ListClient;
+            Program.callBackOnReceive.Enqueue(CallBackListClient);
             Program.client.Send(listUserRequest);
 
             // On va chercher la liste des salles
@@ -164,9 +163,9 @@ namespace ift585_tp3
             // TODO SERVER STUFF
         }
 
-        private int CallBackListClientOnline(Data received)
+        private int CallBackListClient(Data received)
         {
-            if (received.Command == Data.DataType.ListClientOnline)
+            if (received.Command == Data.DataType.ListClient)
             {
                 this.Invoke((MethodInvoker)delegate() 
                 { 
@@ -259,8 +258,8 @@ namespace ift585_tp3
                 }
 
                 Data listUserRequest = new Data();
-                listUserRequest.Command = Data.DataType.ListClientOnline;
-                Program.callBackOnReceive.Enqueue(CallBackListClientOnline);
+                listUserRequest.Command = Data.DataType.ListClient;
+                Program.callBackOnReceive.Enqueue(CallBackListClient);
                 Program.client.Send(listUserRequest);
             }
             else

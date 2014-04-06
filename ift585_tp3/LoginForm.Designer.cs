@@ -44,7 +44,7 @@
             this.button_Login.Location = new System.Drawing.Point(157, 161);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(83, 29);
-            this.button_Login.TabIndex = 0;
+            this.button_Login.TabIndex = 5;
             this.button_Login.Text = "Connexion";
             this.button_Login.UseVisualStyleBackColor = true;
             this.button_Login.Click += new System.EventHandler(this.button_Login_Click);
@@ -66,7 +66,7 @@
             this.label2.Location = new System.Drawing.Point(26, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 3;
             this.label2.Text = "Mot de passe :";
             // 
             // txtUsername
@@ -74,7 +74,7 @@
             this.txtUsername.Location = new System.Drawing.Point(127, 75);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(197, 20);
-            this.txtUsername.TabIndex = 3;
+            this.txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
@@ -92,7 +92,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(246, 161);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(78, 29);
-            this.buttonCancel.TabIndex = 5;
+            this.buttonCancel.TabIndex = 6;
             this.buttonCancel.Text = "Annuler";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -104,7 +104,7 @@
             this.label4.Location = new System.Drawing.Point(22, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(206, 37);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Authentification";
             // 
             // LoginForm
@@ -125,7 +125,6 @@
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Text = "Authentification";
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

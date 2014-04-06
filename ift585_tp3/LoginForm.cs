@@ -18,11 +18,6 @@ namespace ift585_tp3
             InitializeComponent();
         }
 
-        private void LoginForm_Load(object sender, EventArgs e)
-        {
-            this.ActiveControl = txtUsername;
-        }
-
         private void button_Login_Click(object sender, EventArgs e)
         {
             Data loginRequest = new Data();

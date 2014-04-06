@@ -61,7 +61,7 @@
             this.label1.Location = new System.Drawing.Point(50, 118);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(48, 17);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Nom : ";
             // 
             // label2
@@ -81,7 +81,7 @@
             this.label3.Location = new System.Drawing.Point(50, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 17);
-            this.label3.TabIndex = 2;
+            this.label3.TabIndex = 9;
             this.label3.Text = "Avatar : ";
             // 
             // textBoxLastName
@@ -91,7 +91,7 @@
             this.textBoxLastName.Location = new System.Drawing.Point(147, 118);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(148, 20);
-            this.textBoxLastName.TabIndex = 3;
+            this.textBoxLastName.TabIndex = 4;
             // 
             // bindingSourceUser
             // 
@@ -108,7 +108,7 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(147, 83);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(148, 20);
-            this.textBoxFirstName.TabIndex = 4;
+            this.textBoxFirstName.TabIndex = 2;
             // 
             // label4
             // 
@@ -117,7 +117,7 @@
             this.label4.Location = new System.Drawing.Point(46, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 37);
-            this.label4.TabIndex = 6;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Profil";
             // 
             // label7
@@ -127,7 +127,7 @@
             this.label7.Location = new System.Drawing.Point(50, 398);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(85, 17);
-            this.label7.TabIndex = 9;
+            this.label7.TabIndex = 12;
             this.label7.Text = "Statistiques : ";
             // 
             // textBoxUserName
@@ -137,7 +137,7 @@
             this.textBoxUserName.Location = new System.Drawing.Point(147, 152);
             this.textBoxUserName.Name = "textBoxUserName";
             this.textBoxUserName.Size = new System.Drawing.Size(148, 20);
-            this.textBoxUserName.TabIndex = 12;
+            this.textBoxUserName.TabIndex = 6;
             // 
             // label6
             // 
@@ -146,7 +146,7 @@
             this.label6.Location = new System.Drawing.Point(50, 152);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 17);
-            this.label6.TabIndex = 11;
+            this.label6.TabIndex = 5;
             this.label6.Text = "Pseudo : ";
             // 
             // label9
@@ -155,7 +155,7 @@
             this.label9.Location = new System.Drawing.Point(257, 398);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 26);
-            this.label9.TabIndex = 15;
+            this.label9.TabIndex = 16;
             // 
             // label8
             // 
@@ -171,7 +171,7 @@
             this.labelAvatar.Location = new System.Drawing.Point(144, 238);
             this.labelAvatar.Name = "labelAvatar";
             this.labelAvatar.Size = new System.Drawing.Size(100, 101);
-            this.labelAvatar.TabIndex = 7;
+            this.labelAvatar.TabIndex = 10;
             // 
             // buttonEditAvatar
             // 
@@ -179,7 +179,7 @@
             this.buttonEditAvatar.Location = new System.Drawing.Point(147, 342);
             this.buttonEditAvatar.Name = "buttonEditAvatar";
             this.buttonEditAvatar.Size = new System.Drawing.Size(97, 33);
-            this.buttonEditAvatar.TabIndex = 16;
+            this.buttonEditAvatar.TabIndex = 11;
             this.buttonEditAvatar.Text = "Modifier...";
             this.buttonEditAvatar.UseVisualStyleBackColor = true;
             this.buttonEditAvatar.Click += new System.EventHandler(this.buttonEditAvatar_Click);
@@ -214,7 +214,7 @@
             this.labelDislike.Location = new System.Drawing.Point(213, 398);
             this.labelDislike.Name = "labelDislike";
             this.labelDislike.Size = new System.Drawing.Size(15, 17);
-            this.labelDislike.TabIndex = 20;
+            this.labelDislike.TabIndex = 15;
             this.labelDislike.Text = "0";
             // 
             // labelLike
@@ -225,7 +225,7 @@
             this.labelLike.Location = new System.Drawing.Point(138, 398);
             this.labelLike.Name = "labelLike";
             this.labelLike.Size = new System.Drawing.Size(15, 17);
-            this.labelLike.TabIndex = 21;
+            this.labelLike.TabIndex = 13;
             this.labelLike.Text = "0";
             // 
             // label5
@@ -235,7 +235,7 @@
             this.label5.Location = new System.Drawing.Point(50, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 17);
-            this.label5.TabIndex = 22;
+            this.label5.TabIndex = 7;
             this.label5.Text = "État : ";
             // 
             // labelConnected
@@ -245,13 +245,15 @@
             this.labelConnected.Location = new System.Drawing.Point(144, 196);
             this.labelConnected.Name = "labelConnected";
             this.labelConnected.Size = new System.Drawing.Size(76, 17);
-            this.labelConnected.TabIndex = 23;
+            this.labelConnected.TabIndex = 8;
             this.labelConnected.Text = "CONNECTÉ";
             // 
             // UserProfilForm
             // 
+            this.AcceptButton = this.buttonConfirm;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(370, 502);
             this.Controls.Add(this.labelConnected);
             this.Controls.Add(this.label5);

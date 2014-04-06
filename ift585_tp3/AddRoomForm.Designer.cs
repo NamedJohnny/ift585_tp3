@@ -43,18 +43,19 @@
             this.buttonAdd.Location = new System.Drawing.Point(211, 260);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(81, 34);
-            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.TabIndex = 5;
             this.buttonAdd.Text = "Ajouter";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // buttonQuit
             // 
+            this.buttonQuit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonQuit.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.buttonQuit.Location = new System.Drawing.Point(306, 260);
             this.buttonQuit.Name = "buttonQuit";
             this.buttonQuit.Size = new System.Drawing.Size(80, 34);
-            this.buttonQuit.TabIndex = 1;
+            this.buttonQuit.TabIndex = 6;
             this.buttonQuit.Text = "Quitter";
             this.buttonQuit.UseVisualStyleBackColor = true;
             this.buttonQuit.Click += new System.EventHandler(this.buttonQuit_Click);
@@ -76,7 +77,7 @@
             this.label3.Location = new System.Drawing.Point(26, 86);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 17);
-            this.label3.TabIndex = 4;
+            this.label3.TabIndex = 1;
             this.label3.Text = "Nom :";
             // 
             // textBoxName
@@ -84,7 +85,7 @@
             this.textBoxName.Location = new System.Drawing.Point(113, 86);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(273, 20);
-            this.textBoxName.TabIndex = 5;
+            this.textBoxName.TabIndex = 2;
             // 
             // textBoxDescription
             // 
@@ -92,7 +93,7 @@
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(273, 109);
-            this.textBoxDescription.TabIndex = 6;
+            this.textBoxDescription.TabIndex = 4;
             // 
             // label4
             // 
@@ -101,13 +102,15 @@
             this.label4.Location = new System.Drawing.Point(22, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(214, 37);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Ajout d\'une salle";
             // 
             // AddRoomForm
             // 
+            this.AcceptButton = this.buttonAdd;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonQuit;
             this.ClientSize = new System.Drawing.Size(417, 306);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBoxDescription);
