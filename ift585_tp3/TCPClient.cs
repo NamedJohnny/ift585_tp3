@@ -46,8 +46,11 @@ namespace ift585_tp3
 
         public void Close()
         {
-            client.GetStream().Close();
-            client.Close();
+            if (client.Connected)
+            {
+                client.GetStream().Close();
+                client.Close();
+            }
         }
     }
 }
