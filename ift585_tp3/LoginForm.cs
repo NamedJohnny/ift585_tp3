@@ -43,17 +43,17 @@ namespace ift585_tp3
         {
             if (received.Command == Data.DataType.Login)
             {
-                if (received.Text == "ok")
+                if (received.Text == "200")
                 {
                     this.Invoke((MethodInvoker)delegate() { this.Hide(); });
                     HomeForm homeForm = new HomeForm(received.User);
                     homeForm.ShowDialog();
-                    this.Invoke((MethodInvoker)delegate() { this.Close(); });
+                    //this.Invoke((MethodInvoker)delegate() { this.Close(); });
                 }
-                else
-                {
-                    MessageBox.Show("Le pseudo ou le mot de passe est erroné.");
-                }
+                else if (received.Text == "401")
+                    MessageBox.Show("This user is already connected.");
+                else if (received.Text == "404")
+                    MessageBox.Show("The username or password is incorrect.");
             }
             else
             {

@@ -15,21 +15,21 @@ namespace ift585_tp3_library
         static int currentId = 0;
         public enum DataType
         {
-            Invalid = 0,
-            Login = 1,
-            Logout = 2,
-            SendMessage = 3,
-            GetDiscussionRoom = 4,
-            Like = 5,
-            Dislike = 6,
-            ViewProfile = 7,
-            UpdateProfile = 8,
-            ListClient = 9,
-            ListDiscussionRoom = 10,
-            EnterRoom = 11,
-            AddRoom = 12,
-            LeaveRoom = 13,
-            DeleteMessage = 14
+            Invalid,
+            Login,
+            Logout,
+            SendMessage,
+            GetDiscussionRoom,
+            Like,
+            Dislike,
+            ViewProfile,
+            UpdateProfile,
+            ListClient,
+            ListDiscussionRoom,
+            EnterRoom,
+            AddRoom,
+            LeaveRoom,
+            DeleteMessage
         }
 
         #region private members

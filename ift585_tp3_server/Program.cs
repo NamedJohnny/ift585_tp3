@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,59 +20,18 @@ namespace ift585_tp3_server
         static List<DiscussionRoom> rooms = new List<DiscussionRoom>();
 
         static TCPServer server;
-	
+
+        private static bool isclosing = false;
+
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Server initiating...");
+            SetConsoleCtrlHandler(new HandlerRoutine(ConsoleCtrlCheck), true);
 
-            //================================
+            StartChatServer();
+
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("Fetcthing data...");
-            //XMLDatabase.Add(); // Uncomment to reset XML (Debug purpose)
-            XMLData xmlData = XMLDatabase.Load();
-          
-            foreach (DiscussionRoom room in xmlData.rooms)
-            {
-                rooms.Add(room);
-            }
-            foreach (User user in xmlData.users)
-            {
-                users.Add(user);
-            }
-
-            Console.WriteLine("DONE");
-            //================================
-
-            //================================
-            Console.Write("Opening port ...");
-            server = new TCPServer(PORT, ReceiveCallback);
-            Console.WriteLine("DONE");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Server ready.");
-            //================================
-
-            //================================
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(">Press ESC to stop server.");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            do
-            {
-                while (!Console.KeyAvailable)
-                {
-                    // Boucle d'attente de <ESC>
-
-                }
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
-            //================================
-
-            //================================
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.Write("Storing data...");
-            xmlData = new XMLData(rooms, users);
-            XMLDatabase.Save(xmlData);
-            Console.WriteLine("DONE");
-            //================================
+            
+            while (!isclosing);
         }
 
         static int ReceiveCallback(Tuple<Socket, Data> msg)
@@ -92,13 +52,23 @@ namespace ift585_tp3_server
                                                       && x.Password == (string)received.Other);
                     if (user != null)
                     {
-                        user.IsConnected = true;
-                        response.Text = "ok";
-                        response.User = user;
+                        if (!user.IsConnected)
+                        {
+                            user.IsConnected = true;
+                            response.Text = "200";
+                            response.User = user;
+                        }
+                        else
+                        {
+                            // User already connected
+                            response.Text = "401";
+                            response.User = user;
+                        }
                     }
                     else
                     {
-                        response.Text = "reject";
+                        // Could not find user according to username + pwd
+                        response.Text = "404";
                     }
                     break;
 
@@ -232,5 +202,75 @@ namespace ift585_tp3_server
 
             return 0;
         }
+
+        static void StartChatServer()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Server initiating...");
+
+            //================================
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("Fetcthing data...");
+            //XMLDatabase.Add(); // Uncomment to reset XML (Debug purpose)
+            XMLData xmlData = XMLDatabase.Load();
+            xmlData.rooms.ForEach(x => rooms.Add(x));
+            xmlData.users.ForEach(x => users.Add(x));
+            Console.WriteLine("DONE");
+            //================================
+
+            //================================
+            Console.Write("Opening port ...");
+            server = new TCPServer(PORT, ReceiveCallback);
+            Console.WriteLine("DONE");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Server ready.");
+            //================================
+        }
+
+        static void CloseChatServer()
+        {
+            // Disconnect all users and clear users from rooms
+            users.ForEach(x => x.IsConnected = false);
+            rooms.ForEach(x => x.ClientList.Clear());
+
+            //================================
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.Write("Storing data...");
+            XMLDatabase.Save(new XMLData(rooms, users));
+            Console.WriteLine("DONE");
+            //================================
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Server closed.");
+            System.Threading.Thread.Sleep(1000);
+        }
+
+        private static bool ConsoleCtrlCheck(CtrlTypes ctrlType)
+        {
+            switch (ctrlType)
+            {
+                case CtrlTypes.CTRL_CLOSE_EVENT:
+                    isclosing = true;
+                    CloseChatServer();
+                    break;
+            }
+            return true;
+        }
+
+        #region unmanaged
+        // When pressing console X button
+        // http://stackoverflow.com/questions/9897247/run-code-on-console-close
+        [DllImport("Kernel32")]
+        public static extern bool SetConsoleCtrlHandler(HandlerRoutine Handler, bool Add);
+        public delegate bool HandlerRoutine(CtrlTypes CtrlType);
+        public enum CtrlTypes
+        {
+            CTRL_C_EVENT = 0,
+            CTRL_BREAK_EVENT,
+            CTRL_CLOSE_EVENT,
+            CTRL_LOGOFF_EVENT = 5,
+            CTRL_SHUTDOWN_EVENT
+        }
+        #endregion
     }
 }

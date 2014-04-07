@@ -176,7 +176,7 @@ namespace ift585_tp3_server
                 null // dataContractSurrogate
             );
             FileStream fs = new FileStream(fileName, FileMode.Create);
-            Console.WriteLine("Testing for type: {0}", typeof(XMLData));
+            //Console.WriteLine("Testing for type: {0}", typeof(XMLData));
             serializer.WriteObject(fs, xmlData);
             fs.Close();
         }
