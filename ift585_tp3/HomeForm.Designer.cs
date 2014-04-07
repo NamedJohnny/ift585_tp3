@@ -42,6 +42,7 @@
             this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -98,6 +99,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.buttonDisconnect);
             this.panel1.Controls.Add(this.buttonAddRoom);
             this.panel1.Controls.Add(this.labelConnected);
@@ -204,6 +206,17 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Utilisateurs :";
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnRefresh.Location = new System.Drawing.Point(255, 80);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(95, 26);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "Actualiser";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,5 +258,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonAddRoom;
         private System.Windows.Forms.Button buttonDisconnect;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

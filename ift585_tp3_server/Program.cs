@@ -49,7 +49,7 @@ namespace ift585_tp3_server
                 case Data.DataType.Login:
                     response.Command = Data.DataType.Login;
                     user = users.FirstOrDefault(x => x.UserName == received.Text 
-                                                      && x.Password == (string)received.Other);
+                                                && x.Password == (string)received.Other);
                     if (user != null)
                     {
                         if (!user.IsConnected)
@@ -73,7 +73,7 @@ namespace ift585_tp3_server
                     break;
 
                 case Data.DataType.Logout:
-                    response.Command = Data.DataType.Logout;
+                    //response.Command = Data.DataType.Logout;
                     user = users.FirstOrDefault(x => x.UserName == received.Text);
                     if (user != null)
                     {
@@ -81,18 +81,18 @@ namespace ift585_tp3_server
                             if (r.ClientList.Contains(user))
                                 r.ClientList.Remove(user);
                         user.IsConnected = false;
-                        response.Text = "ok";
-                        response.User = user;
+                        //response.Text = "ok";
+                        //response.User = user;
                     }
-                    else
-                    {
-                        response.Text = "reject";
-                    }
+                    //else
+                    //{
+                    //    response.Text = "reject";
+                    //}
                     break;
 
                 case Data.DataType.SendMessage:
                     user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
-                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     room.MessageList.Add(received);
                     room.LastModified = DateTime.Now;
                     user.NumMessages++;
@@ -101,8 +101,7 @@ namespace ift585_tp3_server
                 case Data.DataType.GetDiscussionRoom:
                     response.Command = Data.DataType.GetDiscussionRoom;
                     user = users.FirstOrDefault(x => x.UserName == received.Text);
-                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
-                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     if(room.LastModified > received.Date)
                     {
                         response.Other = room;
@@ -178,16 +177,14 @@ namespace ift585_tp3_server
 
                 case Data.DataType.LeaveRoom:
                     user = users.FirstOrDefault(x => x.UserName == received.Text);
-                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
-                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     room.ClientList.Remove(user);
                     room.LastModified = DateTime.Now;
                     break;
 
                 case Data.DataType.DeleteMessage:
                     user = users.FirstOrDefault(x => x.UserName == received.Text);
-                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName && y.IsConnected));
-                    // TODO Temp IsConnected to get the right room, since some have DC people.
+                    room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     room.MessageList.RemoveAll(x => x.Id == (int)received.Other);
                     room.LastModified = DateTime.Now;
                     break;

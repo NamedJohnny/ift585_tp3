@@ -29,10 +29,9 @@ namespace ift585_tp3
 
         private void RoomForm_Load(object sender, EventArgs e)
         {
-            dataGridViewMessage.AutoGenerateColumns = false;
             textBoxMessage.Focus();
             this.discussionRoomBindingSource.DataSource = actualRoom;
-            this.clientListBindingSource.DataSource = actualRoom.ClientList;
+            dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
             refreshTimer.Start();
         }
 
@@ -199,7 +198,7 @@ namespace ift585_tp3
                     this.Invoke((MethodInvoker)delegate() 
                     {
                         this.discussionRoomBindingSource.DataSource = actualRoom;
-                        this.clientListBindingSource.DataSource = actualRoom.ClientList;
+                        dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
                     });
                 }
             }

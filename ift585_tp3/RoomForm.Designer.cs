@@ -36,10 +36,10 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.clientListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewMessage = new System.Windows.Forms.DataGridView();
             this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.buttonSend = new System.Windows.Forms.Button();
@@ -55,13 +55,13 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clientListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discussionRoomBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMessage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.messageListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discussionRoomBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
@@ -96,6 +96,15 @@
             this.listBoxUsers.Size = new System.Drawing.Size(109, 396);
             this.listBoxUsers.TabIndex = 0;
             this.listBoxUsers.DoubleClick += new System.EventHandler(this.listBoxUsers_DoubleClick);
+            // 
+            // clientListBindingSource
+            // 
+            this.clientListBindingSource.DataMember = "ClientList";
+            this.clientListBindingSource.DataSource = this.discussionRoomBindingSource;
+            // 
+            // discussionRoomBindingSource
+            // 
+            this.discussionRoomBindingSource.DataSource = typeof(ift585_tp3_library.DiscussionRoom);
             // 
             // splitContainer2
             // 
@@ -161,10 +170,6 @@
             this.messageListBindingSource.DataMember = "MessageList";
             this.messageListBindingSource.DataSource = this.discussionRoomBindingSource;
             // 
-            // discussionRoomBindingSource
-            // 
-            this.discussionRoomBindingSource.DataSource = typeof(ift585_tp3_library.DiscussionRoom);
-            // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -205,7 +210,7 @@
             // 
             // refreshTimer
             // 
-            this.refreshTimer.Interval = 2000;
+            this.refreshTimer.Interval = 4000;
             this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // Date
@@ -284,13 +289,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.clientListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.discussionRoomBindingSource)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMessage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.messageListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.discussionRoomBindingSource)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);

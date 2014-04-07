@@ -14,7 +14,7 @@ namespace ift585_tp3
 {
     public partial class HomeForm : Form
     {
-        User actualClient = new User();
+        public User actualClient = new User();
         RoomForm roomForm = null;
 
         public HomeForm(User client)
@@ -143,6 +143,19 @@ namespace ift585_tp3
             }
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            Data listUserRequest = new Data();
+            listUserRequest.Command = Data.DataType.ListClient;
+            Program.callBackOnReceive.Enqueue(CallBackListClient);
+            Program.client.Send(listUserRequest);
+
+            Data listRoomRequest = new Data();
+            listRoomRequest.Command = Data.DataType.ListDiscussionRoom;
+            Program.callBackOnReceive.Enqueue(CallBackListDiscussionRoom);
+            Program.client.Send(listRoomRequest);
+        }
+
         /// <summary>
         /// Se déconnecter
         /// </summary>
@@ -150,29 +163,9 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
-            Data disconnectRequest = new Data();
-            disconnectRequest.Command = Data.DataType.Logout;
-            disconnectRequest.Text = actualClient.UserName;
-            Program.callBackOnReceive.Enqueue(CallBackDisconnect);
-            Program.client.Send(disconnectRequest);
-        }
-
-        private int CallBackDisconnect(Data received)
-        {
-            if (received.Command == Data.DataType.Logout)
-            {
-                this.Invoke((MethodInvoker)delegate()
-                {
-                    if (roomForm != null)
-                        roomForm.Close();
-                    this.Close();
-                });
-            }
-            else
-            {
-                MessageBox.Show("Disconnect callback error!");
-            }
-            return 0;
+            if (roomForm != null)
+                roomForm.Close();
+            this.Close();
         }
 
 

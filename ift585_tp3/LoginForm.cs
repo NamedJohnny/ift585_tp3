@@ -48,6 +48,12 @@ namespace ift585_tp3
                     this.Invoke((MethodInvoker)delegate() { this.Hide(); });
                     HomeForm homeForm = new HomeForm(received.User);
                     homeForm.ShowDialog();
+
+                    Data disconnectRequest = new Data();
+                    disconnectRequest.Command = Data.DataType.Logout;
+                    disconnectRequest.Text = homeForm.actualClient.UserName;
+                    Program.client.Send(disconnectRequest);
+
                     this.Invoke((MethodInvoker)delegate() { this.Show(); });
                 }
                 else if (received.Text == "401")
