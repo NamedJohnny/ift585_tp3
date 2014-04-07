@@ -163,15 +163,9 @@ namespace ift585_tp3
             {
                 this.Invoke((MethodInvoker)delegate()
                 {
-                    actualClient.IsConnected = false;
-                    this.Hide();
-                    if (roomForm != null)
-                        roomForm.Hide();
-                    LoginForm homeForm = new LoginForm();
-                    homeForm.ShowDialog();
-                    this.Close();
                     if (roomForm != null)
                         roomForm.Close();
+                    this.Close();
                 });
             }
             else

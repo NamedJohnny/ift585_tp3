@@ -48,7 +48,7 @@ namespace ift585_tp3
                     this.Invoke((MethodInvoker)delegate() { this.Hide(); });
                     HomeForm homeForm = new HomeForm(received.User);
                     homeForm.ShowDialog();
-                    //this.Invoke((MethodInvoker)delegate() { this.Close(); });
+                    this.Invoke((MethodInvoker)delegate() { this.Show(); });
                 }
                 else if (received.Text == "401")
                     MessageBox.Show("This user is already connected.");
