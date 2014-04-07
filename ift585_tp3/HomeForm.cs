@@ -188,7 +188,7 @@ namespace ift585_tp3
             }
             else
             {
-                MessageBox.Show("ERROR!!!.");
+                //MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }
@@ -204,7 +204,7 @@ namespace ift585_tp3
             }
             else
             {
-                MessageBox.Show("ERROR!!!.");
+                //MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }
@@ -231,7 +231,7 @@ namespace ift585_tp3
             }
             else
             {
-                MessageBox.Show("ERROR!!!.");
+                //MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }
@@ -278,7 +278,7 @@ namespace ift585_tp3
             }
             else
             {
-                MessageBox.Show("ERROR!!!.");
+                //MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }

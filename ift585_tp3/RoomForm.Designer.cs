@@ -188,7 +188,7 @@
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             this.Date.ReadOnly = true;
-            this.Date.Width = 55;
+            this.Date.Width = 53;
             // 
             // Client
             // 
@@ -199,7 +199,7 @@
             this.Client.HeaderText = "Client";
             this.Client.Name = "Client";
             this.Client.ReadOnly = true;
-            this.Client.Width = 58;
+            this.Client.Width = 56;
             // 
             // ColumnMessage
             // 
@@ -219,7 +219,7 @@
             this.Like.Image = global::ift585_tp3.Properties.Resources.thumbs_up_24;
             this.Like.Name = "Like";
             this.Like.ReadOnly = true;
-            this.Like.Width = 36;
+            this.Like.Width = 34;
             // 
             // Dislike
             // 
@@ -228,7 +228,7 @@
             this.Dislike.Image = global::ift585_tp3.Properties.Resources.thumbs_down_24;
             this.Dislike.Name = "Dislike";
             this.Dislike.ReadOnly = true;
-            this.Dislike.Width = 65;
+            this.Dislike.Width = 63;
             // 
             // Delete
             // 
@@ -237,7 +237,7 @@
             this.Delete.Image = global::ift585_tp3.Properties.Resources.DeleteRed;
             this.Delete.Name = "Delete";
             this.Delete.ReadOnly = true;
-            this.Delete.Width = 60;
+            this.Delete.Width = 58;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -328,6 +328,7 @@
             // 
             this.textBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxMessage.Location = new System.Drawing.Point(0, 0);
+            this.textBoxMessage.MaxLength = 140;
             this.textBoxMessage.Multiline = true;
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(405, 96);

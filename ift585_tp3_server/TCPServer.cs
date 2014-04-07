@@ -35,7 +35,17 @@ namespace ift585_tp3
         public void Send(Socket socket, Data msg)
         {
             byte[] byteData = Data.Serialize(msg);
-            socket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(this.SendCallback), socket);
+
+            if (byteData.Length == SocketState.BufferSize)
+                Console.WriteLine("Won't be able to make difference between end of byte array and end of message.");
+            else if (byteData.Length > SocketState.BufferSize)
+            {
+                Console.WriteLine("Message is too long. It is currently not supported.");
+            }
+            else
+            {
+                socket.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(this.SendCallback), socket);
+            }
         }
     }
 }

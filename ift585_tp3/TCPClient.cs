@@ -19,17 +19,8 @@ namespace ift585_tp3
             : base(receive)
         {
             client = new TcpClient();
-            //client.BeginConnect("localhost", 1337, new AsyncCallback(ConnectCallback), client);
             client.Connect(ip, port);
-            //client.BeginConnect
             BeginReceive(client.Client);
-
-            //Data test = new Data();
-            //test.User = new User();
-            //test.User.Id = 3;
-            //test.Text = "a slap in the face.";
-            //Send(test);
-            //Send(test);
         }
 
         public void Send(Data msg)
@@ -39,6 +30,10 @@ namespace ift585_tp3
             // TODO try adding a null byte
             if (byteData.Length == SocketState.BufferSize)
                 throw new Exception("Won't be able to make difference between end of byte array and end of message.");
+            else if (byteData.Length > SocketState.BufferSize)
+            {
+                throw new Exception("Message is too long. It is currently not supported.");
+            }
 
             // Begin sending the data to the remote device.
             client.Client.BeginSend(byteData, 0, byteData.Length, SocketFlags.None, new AsyncCallback(SendCallback), client.Client);
@@ -48,7 +43,7 @@ namespace ift585_tp3
         {
             if (client.Connected)
             {
-                client.GetStream().Close();
+                client.Client.Shutdown(SocketShutdown.Both);
                 client.Close();
             }
         }

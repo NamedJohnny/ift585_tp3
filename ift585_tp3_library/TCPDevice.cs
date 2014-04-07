@@ -66,7 +66,7 @@ namespace ift585_tp3_library
 
                 if (bytesRead == 0)
                 {
-                    // Nothing
+                    BeginReceive(client);
                 }
                 else if (bytesRead >= SocketState.BufferSize)
                 {

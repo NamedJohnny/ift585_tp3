@@ -99,26 +99,6 @@ namespace ift585_tp3_library
         #endregion public members
 
         #region public methods
-        /*public Byte[] ToByteArray()
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                XmlSerializer xmlS = new XmlSerializer(typeof(Data));
-                xmlS.Serialize(ms, this);
-
-                return ms.ToArray();
-            }
-        }
-
-        public static Data FromByteArray(Byte[] bObj)
-        {
-            using (MemoryStream ms = new MemoryStream(bObj))
-            {
-                XmlSerializer xmlS = new XmlSerializer(typeof(Data));
-                return (Data)xmlS.Deserialize(ms);
-            }
-        }*/
-
         public static byte[] Serialize(Data data)
         {
             using (var memoryStream = new MemoryStream())

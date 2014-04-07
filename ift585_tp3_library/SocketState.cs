@@ -12,7 +12,7 @@ namespace ift585_tp3_library
         // Client socket.
         public Socket workSocket = null;
         // Size of receive buffer.
-        public const int BufferSize = 32768; // Message spliting doesn't work
+        public const int BufferSize = 1024 * 64; // = 64k // TODO Message spliting doesn't work //32768
         // Receive buffer.
         public byte[] buffer = new byte[BufferSize];
         // Bytes received so far.

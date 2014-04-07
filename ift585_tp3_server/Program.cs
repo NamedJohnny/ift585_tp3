@@ -57,18 +57,21 @@ namespace ift585_tp3_server
                             user.IsConnected = true;
                             response.Text = "200";
                             response.User = user;
+                            Console.WriteLine("User " + user.UserName + " logged in.");
                         }
                         else
                         {
                             // User already connected
                             response.Text = "401";
                             response.User = user;
+                            Console.WriteLine("User " + user.UserName + " is already logged in.");
                         }
                     }
                     else
                     {
                         // Could not find user according to username + pwd
                         response.Text = "404";
+                        Console.WriteLine("User " + user.UserName + " doesn't exist with provided password.");
                     }
                     break;
 
@@ -81,6 +84,7 @@ namespace ift585_tp3_server
                             if (r.ClientList.Contains(user))
                                 r.ClientList.Remove(user);
                         user.IsConnected = false;
+                        Console.WriteLine("User " + user.UserName + " logged out.");
                         //response.Text = "ok";
                         //response.User = user;
                     }
@@ -96,6 +100,7 @@ namespace ift585_tp3_server
                     room.MessageList.Add(received);
                     room.LastModified = DateTime.Now;
                     user.NumMessages++;
+                    Console.WriteLine("User " + user.UserName + " sent a message.");
                     break;
 
                 case Data.DataType.GetDiscussionRoom:
@@ -111,16 +116,19 @@ namespace ift585_tp3_server
                 case Data.DataType.Like:
                     user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
                     user.LikeNum++;
+                    Console.WriteLine("User " + user.UserName + " gets a Like.");
                     break;
 
                 case Data.DataType.Dislike:
                     user = users.FirstOrDefault(x => x.UserName == received.ClientUserName);
                     user.DislikeNum++;
+                    Console.WriteLine("User " + user.UserName + " gets a Dislike.");
                     break;
 
                 case Data.DataType.ViewProfile:
                     response.Command = Data.DataType.ViewProfile;
                     response.Other = users.FirstOrDefault(x => x.UserName == received.Text);
+                    Console.WriteLine("GET " + received.Text + "'s profile.");
                     break;
 
                 case Data.DataType.UpdateProfile:
@@ -130,7 +138,8 @@ namespace ift585_tp3_server
                     if (user.UserName != updatedUser.UserName
                         && users.Any(x => x.UserName == updatedUser.UserName))
                     {
-                        response.Text = "reject";
+                        response.Text = "401";
+                        Console.WriteLine("User " + user.UserName + " profile modification refused.");
                     }
                     else
                     {
@@ -138,18 +147,21 @@ namespace ift585_tp3_server
                         user.LastName = updatedUser.LastName;
                         user.UserName = updatedUser.UserName;
                         user.Avatar = updatedUser.Avatar;
-                        response.Text = "ok";
+                        response.Text = "200";
+                        Console.WriteLine("User " + user.UserName + "'s profile updated.");
                     }
                     break;
 
                 case Data.DataType.ListClient:
                     response.Command = Data.DataType.ListClient;
                     response.Other = users;
+                    Console.WriteLine("GET users list.");
                     break;
 
                 case Data.DataType.ListDiscussionRoom:
                     response.Command = Data.DataType.ListDiscussionRoom;
                     response.Other = rooms;
+                    Console.WriteLine("GET rooms list.");
                     break;
 
                 case Data.DataType.EnterRoom:
@@ -159,6 +171,7 @@ namespace ift585_tp3_server
                     room.ClientList.Add(user);
                     response.Other = room;
                     room.LastModified = DateTime.Now;
+                    Console.WriteLine("User " + user.UserName + " enters a room.");
                     break;
 
                 case Data.DataType.AddRoom:
@@ -166,12 +179,14 @@ namespace ift585_tp3_server
                     room = (DiscussionRoom)received.Other;
                     if (rooms.Any(x => x.Name == room.Name))
                     {
-                        response.Text = "reject";
+                        response.Text = "400";
+                        Console.WriteLine("Room creation canceled.");
                     }
                     else
                     {
-                        response.Text = "ok";
+                        response.Text = "201";
                         rooms.Add(room);
+                        Console.WriteLine("Room '" + room.Name + "' created.");
                     }
                     break;
 
@@ -180,6 +195,7 @@ namespace ift585_tp3_server
                     room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     room.ClientList.Remove(user);
                     room.LastModified = DateTime.Now;
+                    Console.WriteLine("User " + user.UserName + " leaves room.");
                     break;
 
                 case Data.DataType.DeleteMessage:
@@ -187,10 +203,9 @@ namespace ift585_tp3_server
                     room = rooms.FirstOrDefault(x => x.ClientList.Any(y => y.UserName == user.UserName));
                     room.MessageList.RemoveAll(x => x.Id == (int)received.Other);
                     room.LastModified = DateTime.Now;
+                    Console.WriteLine("User " + user.UserName + " deletes a message.");
                     break;
             }
-
-            Console.WriteLine("The server received : " + received.Text);
 
             if (response.Command != Data.DataType.Invalid)
             {

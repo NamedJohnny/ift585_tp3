@@ -58,7 +58,7 @@ namespace ift585_tp3
         {
             if (received.Command == Data.DataType.AddRoom)
             {
-                if (received.Text == "ok")
+                if (received.Text == "201")
                 {
                     this.Invoke((MethodInvoker)delegate() 
                     {
@@ -73,7 +73,7 @@ namespace ift585_tp3
             }
             else
             {
-                MessageBox.Show("ERROR!!!.");
+                //MessageBox.Show("ERROR!!!.");
             }
             return 0;
         }
