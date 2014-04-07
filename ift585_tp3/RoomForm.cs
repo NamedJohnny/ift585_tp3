@@ -31,7 +31,10 @@ namespace ift585_tp3
         {
             textBoxMessage.Focus();
             this.discussionRoomBindingSource.DataSource = actualRoom;
-            dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
+            if (dataGridViewMessage.RowCount != 0)
+            {
+                dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
+            }
             refreshTimer.Start();
         }
 
@@ -113,7 +116,7 @@ namespace ift585_tp3
                     deleteMessageRequest.Other = data.Id;
                     Program.client.Send(deleteMessageRequest);
 
-                    dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
+                    //dataGridViewMessage.Rows.RemoveAt(e.RowIndex);
                     dataGridViewMessage.Cursor = Cursors.Arrow;
                 }
             }
@@ -198,7 +201,10 @@ namespace ift585_tp3
                     this.Invoke((MethodInvoker)delegate() 
                     {
                         this.discussionRoomBindingSource.DataSource = actualRoom;
-                        dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
+                        if (dataGridViewMessage.RowCount != 0)
+                        {
+                            dataGridViewMessage.CurrentCell = dataGridViewMessage.Rows[dataGridViewMessage.RowCount - 1].Cells[0];
+                        }
                     });
                 }
             }

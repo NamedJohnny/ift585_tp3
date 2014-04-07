@@ -163,9 +163,17 @@ namespace ift585_tp3
         /// <param name="e"></param>
         private void buttonDisconnect_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
             if (roomForm != null)
                 roomForm.Close();
-            this.Close();
+            Data disconnectRequest = new Data();
+            disconnectRequest.Command = Data.DataType.Logout;
+            disconnectRequest.Text = actualClient.UserName;
+            Program.client.Send(disconnectRequest);
         }
 
 

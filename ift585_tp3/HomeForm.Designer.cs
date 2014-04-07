@@ -33,6 +33,7 @@
             this.listBoxChatRooms = new System.Windows.Forms.ListBox();
             this.listBoxUsers = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.buttonDisconnect = new System.Windows.Forms.Button();
             this.buttonAddRoom = new System.Windows.Forms.Button();
             this.labelConnected = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.buttonProfil = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,6 +113,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(502, 114);
             this.panel1.TabIndex = 2;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnRefresh.Location = new System.Drawing.Point(255, 80);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(95, 26);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "Actualiser";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // buttonDisconnect
             // 
@@ -206,17 +217,6 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Utilisateurs :";
             // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnRefresh.Location = new System.Drawing.Point(255, 80);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(95, 26);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "Actualiser";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,6 +230,7 @@
             this.MaximizeBox = false;
             this.Name = "HomeForm";
             this.Text = "Windows Live Messenger";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
             this.Load += new System.EventHandler(this.HomeForm_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

@@ -142,9 +142,9 @@
     <value>True</value>
   </metadata>
   <metadata name="messageListBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>577, 17</value>
+    <value>581, 17</value>
   </metadata>
   <metadata name="refreshTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>773, 17</value>
+    <value>769, 19</value>
   </metadata>
 </root>

@@ -39,17 +39,24 @@
             this.discussionRoomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridViewMessage = new System.Windows.Forms.DataGridView();
-            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.textBoxMessage = new System.Windows.Forms.TextBox();
-            this.buttonSend = new System.Windows.Forms.Button();
-            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Client = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnMessage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Like = new System.Windows.Forms.DataGridViewImageColumn();
             this.Dislike = new System.Windows.Forms.DataGridViewImageColumn();
             this.Delete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.commandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.otherDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientUserNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.messageListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.textBoxMessage = new System.Windows.Forms.TextBox();
+            this.buttonSend = new System.Windows.Forms.Button();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -142,7 +149,14 @@
             this.ColumnMessage,
             this.Like,
             this.Dislike,
-            this.Delete});
+            this.Delete,
+            this.idDataGridViewTextBoxColumn,
+            this.commandDataGridViewTextBoxColumn,
+            this.textDataGridViewTextBoxColumn,
+            this.userDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn,
+            this.otherDataGridViewTextBoxColumn,
+            this.clientUserNameDataGridViewTextBoxColumn});
             this.dataGridViewMessage.DataSource = this.messageListBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -164,54 +178,6 @@
             this.dataGridViewMessage.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellContentClick);
             this.dataGridViewMessage.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewMessage_CellFormatting);
             this.dataGridViewMessage.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewMessage_CellMouseEnter);
-            // 
-            // messageListBindingSource
-            // 
-            this.messageListBindingSource.DataMember = "MessageList";
-            this.messageListBindingSource.DataSource = this.discussionRoomBindingSource;
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.textBoxMessage);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.buttonSend);
-            this.splitContainer3.Size = new System.Drawing.Size(562, 96);
-            this.splitContainer3.SplitterDistance = 405;
-            this.splitContainer3.TabIndex = 2;
-            // 
-            // textBoxMessage
-            // 
-            this.textBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxMessage.Location = new System.Drawing.Point(0, 0);
-            this.textBoxMessage.Multiline = true;
-            this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.Size = new System.Drawing.Size(405, 96);
-            this.textBoxMessage.TabIndex = 0;
-            // 
-            // buttonSend
-            // 
-            this.buttonSend.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSend.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSend.Location = new System.Drawing.Point(0, 0);
-            this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(153, 96);
-            this.buttonSend.TabIndex = 0;
-            this.buttonSend.Text = "Envoyer";
-            this.buttonSend.UseVisualStyleBackColor = true;
-            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
-            // 
-            // refreshTimer
-            // 
-            this.refreshTimer.Interval = 4000;
-            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
             // 
             // Date
             // 
@@ -273,6 +239,117 @@
             this.Delete.ReadOnly = true;
             this.Delete.Width = 60;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.idDataGridViewTextBoxColumn.Width = 41;
+            // 
+            // commandDataGridViewTextBoxColumn
+            // 
+            this.commandDataGridViewTextBoxColumn.DataPropertyName = "Command";
+            this.commandDataGridViewTextBoxColumn.HeaderText = "Command";
+            this.commandDataGridViewTextBoxColumn.Name = "commandDataGridViewTextBoxColumn";
+            this.commandDataGridViewTextBoxColumn.ReadOnly = true;
+            this.commandDataGridViewTextBoxColumn.Visible = false;
+            this.commandDataGridViewTextBoxColumn.Width = 79;
+            // 
+            // textDataGridViewTextBoxColumn
+            // 
+            this.textDataGridViewTextBoxColumn.DataPropertyName = "Text";
+            this.textDataGridViewTextBoxColumn.HeaderText = "Text";
+            this.textDataGridViewTextBoxColumn.Name = "textDataGridViewTextBoxColumn";
+            this.textDataGridViewTextBoxColumn.ReadOnly = true;
+            this.textDataGridViewTextBoxColumn.Visible = false;
+            this.textDataGridViewTextBoxColumn.Width = 53;
+            // 
+            // userDataGridViewTextBoxColumn
+            // 
+            this.userDataGridViewTextBoxColumn.DataPropertyName = "User";
+            this.userDataGridViewTextBoxColumn.HeaderText = "User";
+            this.userDataGridViewTextBoxColumn.Name = "userDataGridViewTextBoxColumn";
+            this.userDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDataGridViewTextBoxColumn.Visible = false;
+            this.userDataGridViewTextBoxColumn.Width = 54;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dateDataGridViewTextBoxColumn.Visible = false;
+            this.dateDataGridViewTextBoxColumn.Width = 55;
+            // 
+            // otherDataGridViewTextBoxColumn
+            // 
+            this.otherDataGridViewTextBoxColumn.DataPropertyName = "Other";
+            this.otherDataGridViewTextBoxColumn.HeaderText = "Other";
+            this.otherDataGridViewTextBoxColumn.Name = "otherDataGridViewTextBoxColumn";
+            this.otherDataGridViewTextBoxColumn.ReadOnly = true;
+            this.otherDataGridViewTextBoxColumn.Visible = false;
+            this.otherDataGridViewTextBoxColumn.Width = 58;
+            // 
+            // clientUserNameDataGridViewTextBoxColumn
+            // 
+            this.clientUserNameDataGridViewTextBoxColumn.DataPropertyName = "ClientUserName";
+            this.clientUserNameDataGridViewTextBoxColumn.HeaderText = "ClientUserName";
+            this.clientUserNameDataGridViewTextBoxColumn.Name = "clientUserNameDataGridViewTextBoxColumn";
+            this.clientUserNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.clientUserNameDataGridViewTextBoxColumn.Visible = false;
+            this.clientUserNameDataGridViewTextBoxColumn.Width = 108;
+            // 
+            // messageListBindingSource
+            // 
+            this.messageListBindingSource.DataMember = "MessageList";
+            this.messageListBindingSource.DataSource = this.discussionRoomBindingSource;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.textBoxMessage);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.buttonSend);
+            this.splitContainer3.Size = new System.Drawing.Size(562, 96);
+            this.splitContainer3.SplitterDistance = 405;
+            this.splitContainer3.TabIndex = 2;
+            // 
+            // textBoxMessage
+            // 
+            this.textBoxMessage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxMessage.Location = new System.Drawing.Point(0, 0);
+            this.textBoxMessage.Multiline = true;
+            this.textBoxMessage.Name = "textBoxMessage";
+            this.textBoxMessage.Size = new System.Drawing.Size(405, 96);
+            this.textBoxMessage.TabIndex = 0;
+            // 
+            // buttonSend
+            // 
+            this.buttonSend.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSend.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSend.Location = new System.Drawing.Point(0, 0);
+            this.buttonSend.Name = "buttonSend";
+            this.buttonSend.Size = new System.Drawing.Size(153, 96);
+            this.buttonSend.TabIndex = 0;
+            this.buttonSend.Text = "Envoyer";
+            this.buttonSend.UseVisualStyleBackColor = true;
+            this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
+            // 
+            // refreshTimer
+            // 
+            this.refreshTimer.Interval = 2500;
+            this.refreshTimer.Tick += new System.EventHandler(this.refreshTimer_Tick);
+            // 
             // RoomForm
             // 
             this.AcceptButton = this.buttonSend;
@@ -324,5 +401,12 @@
         private System.Windows.Forms.DataGridViewImageColumn Like;
         private System.Windows.Forms.DataGridViewImageColumn Dislike;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn commandDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn textDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn otherDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientUserNameDataGridViewTextBoxColumn;
     }
 }
