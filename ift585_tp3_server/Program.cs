@@ -71,7 +71,7 @@ namespace ift585_tp3_server
                     {
                         // Could not find user according to username + pwd
                         response.Text = "404";
-                        Console.WriteLine("User " + user.UserName + " doesn't exist with provided password.");
+                        Console.WriteLine("User " + received.Text + " doesn't exist with provided password.");
                     }
                     break;
 
